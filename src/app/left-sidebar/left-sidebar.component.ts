@@ -14,6 +14,10 @@ export class LeftSidebarComponent implements OnInit {
   public initials: string;
   public circleColor: string;
 
+  links = ['Dashboard', 'Badges', 'Orders'];
+  activeLink = this.links[0];
+
+
   private colors = [
     '#EB7181',
     '#468547',
@@ -27,7 +31,9 @@ export class LeftSidebarComponent implements OnInit {
     email: 'ira@gmail.com',
     password: 'ira!2345',
     status: ':)',
-    photoUrl: ''
+    photoUrl: 'https://avatars.githubusercontent.com/u/80851018?s=460&u=6885306bba64e3178299355a954089fa904f837a&v=4',
+    badges: 4,
+    exp: 80
   };
   constructor() { }
 

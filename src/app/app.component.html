@@ -2,7 +2,9 @@
 
   <mat-sidenav #sidenav mode="over">
     <mat-toolbar>
-      GMFCTN!
+      <div>
+      <a>GMFCTN!</a>
+      </div>
       <div>
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </div>
@@ -22,10 +24,8 @@
         <a style="color: white">GMFCTN!</a>
       </div>
       <nav mat-tab-nav-bar>
-
         <div class="navigationCenter">
-
-          <a animationDuration="2000ms" mat-tab-link mat-align-tabs="center" *ngFor="let link of links"
+          <a class="active" mat-tab-link mat-align-tabs="center" *ngFor="let link of links"
             (click)="activeLink = link" [active]="activeLink == link">
             {{link}}
           </a>

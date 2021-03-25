@@ -14,9 +14,9 @@
   }
 
   mat-sidenav{
-    background-color: rgb(39, 38, 38);
+    background-color: rgb(61, 59, 59);
     color: white;
-    width: 400px;
+    width: 350px;
   }
 
   mat-sidenav mat-toolbar{
@@ -50,7 +50,7 @@
     }
 
   .mat-toolbar  {
-      background-color: rgb(39, 38, 38);
+      background-color: rgb(61, 59, 59);
       justify-content: space-between;
   }
 
@@ -102,7 +102,7 @@
           letter-spacing: 0.2625px;
       }
   }
-.sidebar-content-to-center{
-  display: flex;
-  justify-content: center;
-}
+  .sidebar-content-to-center{
+    display: flex;
+    justify-content: center;
+  }

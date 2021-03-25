@@ -5,4 +5,6 @@ export interface User {
     password: string; // required
     status: string;
     photoUrl: string;
+    badges: number;
+    exp: number;
 }
