@@ -25,7 +25,7 @@ export class LeftSidebarComponent implements OnInit {
     '#3670B2',
   ]
 
-  user: User = {
+  public user: User = {
     name: 'Ira Khomyk',
     lastName: 'Khomyk',
     email: 'ira@gmail.com',

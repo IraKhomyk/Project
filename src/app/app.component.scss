@@ -1,4 +1,7 @@
-  nav a {
+.mat-drawer-container, .mat-drawer{
+  background-color: #323232;
+ }
+ nav a {
       color:white;
   }
 
@@ -14,8 +17,8 @@
   }
 
   mat-sidenav{
-    background-color: rgb(61, 59, 59);
-    color: white;
+    background-color: #323232;
+    color:  #323232;
     width: 350px;
   }
 

@@ -14,10 +14,20 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import {MatMenuModule} from '@angular/material/menu';
 import { LeftSidebarComponent } from './left-sidebar/left-sidebar.component';
+import { DASHBOARDComponent } from './dashboard/dashboard.component';
+import { GreetingComponent } from './dashboard/blocks/greeting/greeting.component';
+import {MatCardModule} from '@angular/material/card';
+import { PersonalEchievementsComponent } from './dashboard/blocks/personal-echievements/personal-echievements.component';
+import { HeaderComponent } from './header/header.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     LeftSidebarComponent,
+    DASHBOARDComponent,
+    GreetingComponent,
+    PersonalEchievementsComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,7 +41,8 @@ import { LeftSidebarComponent } from './left-sidebar/left-sidebar.component';
     MatButtonModule,
     MatIconModule,
     MatListModule,
-    MatMenuModule
+    MatMenuModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
