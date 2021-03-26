@@ -19,7 +19,7 @@ import { GreetingComponent } from './dashboard/blocks/greeting/greeting.componen
 import {MatCardModule} from '@angular/material/card';
 import { PersonalEchievementsComponent } from './dashboard/blocks/personal-echievements/personal-echievements.component';
 import { HeaderComponent } from './header/header.component';
-import { ThankYouComponent } from './thank-you/thank-you.component';
+import { ThankYouComponent } from './dashboard/blocks/thank-you/thank-you.component';
 
 @NgModule({
   declarations: [

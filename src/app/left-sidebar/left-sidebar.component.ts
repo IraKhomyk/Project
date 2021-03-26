@@ -51,7 +51,7 @@ export class LeftSidebarComponent implements OnInit {
     }
   }
 
-  private createInitials(): void {
+  public createInitials(): void {
     let initials = "";
 
     for (let i = 0; i < this.user.name.length; i++) {

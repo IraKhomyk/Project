@@ -1,0 +1,21 @@
+
+    <mat-card class="thank-you-container">
+        <div class="thank-you-text">
+            <span>THANK YOU</span>
+        </div>
+        <div>
+            <img class="star" src="./../../../../assets/star-big-image.png">
+            <br>
+            <div><span>Hey hey hey. Thank you for your help!!!</span></div>
+        </div>
+        <div class="user">
+            <div class="circle" [ngStyle]="{'background-color': circleColor}">
+                <img *ngIf="!showInitials" src={{user.photoUrl}}>
+
+                <div *ngIf="showInitials" class="initials">
+                    {{initials}}
+                </div>
+            </div>
+            <div class="user-name">{{user.name}}</div>
+        </div>
+    </mat-card>
