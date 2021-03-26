@@ -1,5 +1,6 @@
-<div>
-    <mat-sidenav #sidenav mode="push" [(opened)]="opened">
+<mat-sidenav-container class="example-container">
+    
+    <mat-sidenav #sidenav mode="push" >
         <mat-toolbar>
             <div>
                 <a>GMFCTN!</a>
@@ -13,6 +14,7 @@
             <app-left-sidebar></app-left-sidebar>
         </div>
     </mat-sidenav>
+
     <mat-sidenav-content>
         <mat-toolbar>
             <div>
@@ -53,6 +55,7 @@
                 </mat-menu>
             </div>
         </mat-toolbar>
+  <div> <app-dashboard></app-dashboard></div>  
+
     </mat-sidenav-content>
-</div>
-<!-- <div> <app-dashboard></app-dashboard></div>   -->
+</mat-sidenav-container>
