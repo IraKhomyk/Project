@@ -47,6 +47,5 @@ Thumbs.db
 
 # node_modules
 node_modules/
-src\app\dashboard\blocks\personal-echievements
-src\app\dashboard\blocks\greeting
+
 src\app\header
