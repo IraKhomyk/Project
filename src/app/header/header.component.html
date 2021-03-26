@@ -1,1 +1,58 @@
-<p>header works!</p>
+<div>
+    <mat-sidenav #sidenav mode="push" [(opened)]="opened">
+        <mat-toolbar>
+            <div>
+                <a>GMFCTN!</a>
+            </div>
+            <div> <button mat-button (click)="sidenav.toggle()">
+                    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+                </button>
+            </div>
+        </mat-toolbar>
+        <div class="sidebar-content-to-center">
+            <app-left-sidebar></app-left-sidebar>
+        </div>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar>
+            <div>
+                <button mat-button (click)="sidenav.toggle()">
+                    <mat-icon aria-label="Side nav toggle icon">menu </mat-icon>
+                </button>
+                <a style="color: white">GMFCTN!</a>
+            </div>
+            <nav mat-tab-nav-bar>
+                <div class="navigationCenter">
+                    <a class="active" mat-tab-link mat-align-tabs="center" *ngFor="let link of links"
+                        (click)="activeLink = link" [active]="activeLink == link">
+                        {{link}}
+                    </a>
+                </div>
+            </nav>
+
+            <div>
+                <div>
+                    <a>
+                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+                            <img class="circle"
+                                src="https://avatars.githubusercontent.com/u/80851018?s=460&u=6885306bba64e3178299355a954089fa904f837a&v=4">
+                        </button>
+
+                    </a>
+                </div>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item>
+                        <span>Edit profile</span>
+                    </button>
+                    <button mat-menu-item>
+                        <span>Change password</span>
+                    </button>
+                    <button mat-menu-item>
+                        <span>Log out</span>
+                    </button>
+                </mat-menu>
+            </div>
+        </mat-toolbar>
+    </mat-sidenav-content>
+</div>
+<!-- <div> <app-dashboard></app-dashboard></div>   -->

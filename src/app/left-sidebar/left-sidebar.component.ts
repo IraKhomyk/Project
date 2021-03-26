@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
 import { User } from '../models/user.model';
+import { CommonService } from '../servises/common.service';
 
 @Component({
   selector: 'app-left-sidebar',
@@ -10,10 +12,12 @@ export class LeftSidebarComponent implements OnInit {
   // @Input() public photoUrl: string;
   // @Input() public name: string;
 
+  constructor(public commonService:CommonService){}
+
   public showInitials = false;
   public initials: string;
   public circleColor: string;
-
+  public opened=false;
   links = ['Dashboard', 'Badges', 'Orders'];
   activeLink = this.links[0];
 
@@ -35,7 +39,7 @@ export class LeftSidebarComponent implements OnInit {
     badges: 4,
     exp: 80
   };
-  constructor() { }
+
 
   ngOnInit() {
     if (!this.user.photoUrl) {

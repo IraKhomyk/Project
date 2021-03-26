@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonService } from '../servises/common.service';
 
 @Component({
   selector: 'app-header',
@@ -7,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(public commonService:CommonService) { }
+  
+  title = 'frontEnd-Project';
+
+  links = ['Dashboard', 'Badges', 'Orders'];
+  activeLink = this.links[0];
+
 
   ngOnInit(): void {
   }
