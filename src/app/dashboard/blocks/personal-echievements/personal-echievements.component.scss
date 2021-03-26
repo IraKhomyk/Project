@@ -19,8 +19,6 @@
     flex-direction: row;
     color: white;
     font-weight: 550;
-
-
 }
 
 .mat-card>:first-child, .mat-card-content>:first-child {
@@ -88,5 +86,8 @@ mat-icon{
     display: flex;
     flex-direction: row;
     margin: 3px;
+}
+span{
+    margin: 7px;
 }
 
