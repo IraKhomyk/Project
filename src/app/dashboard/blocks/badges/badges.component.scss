@@ -1,7 +1,7 @@
-.badges-container{
+.badges-container {
     background-color: #424750;
-    height: 310px;
-    width: 330px;
+    height: 320px;
+    width: 300px;
     margin: 5px;
     font-size: 15px;
     font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -10,17 +10,17 @@
     justify-content: center;
 }
 
-.badges-text-top{
+.badges-text-top {
     margin-top: 10px;
     display: flex;
     justify-content: space-between;
     flex-direction: row;
     color: white;
     font-weight: 550;
-    margin:15px;
+    margin: 15px;
 }
 
-.badges-count{
+.badges-count {
     font-size: 150px;
     font-family: Roboto, "Helvetica Neue", sans-serif;
     padding: 10px;
@@ -30,7 +30,7 @@
     color: #5ea002;
 }
 
-.badges-text{
+.badges-text {
     font-size: 25px;
     display: flex;
     flex-direction: row;
@@ -39,13 +39,13 @@
     margin: 15px;
     justify-content: center;
 }
-.badges-count-container{
+.badges-count-container {
     margin-top: 40px;
     display: flex;
     justify-content: center;
 }
 
-.badges-text-container{
+.badges-text-container {
     position: fixed;
     bottom: 0;
     width: 22%;
@@ -53,25 +53,24 @@
     justify-content: center;
 }
 
-.badges-summary-text{
-color: white;
-font-size: 11px;
+.badges-summary-text {
+    color: white;
+    font-size: 11px;
 }
-.badges-summary-container{
+.badges-summary-container {
     display: flex;
     flex-direction: row;
-    margin: 15px;
     margin-top: 40px;
     font-size: 10px;
     justify-content: center;
 }
 
-mat-icon{
+mat-icon {
     font-size: 5px;
     justify-content: flex-start;
     display: flex;
     flex-direction: row;
     margin: 3px;
-    color:#5ea002;
+    color: #5ea002;
     margin: 8px;
 }
