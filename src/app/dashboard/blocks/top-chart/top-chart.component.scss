@@ -1,16 +1,16 @@
-.top-chart-container{
+.top-chart-container {
     background-color: #424750;
-    height: 330px;
-    width: 520px;
+    height: 320px;
+    width: 580px;
     margin: 5px;
     font-size: 15px;
     font-family: Roboto, "Helvetica Neue", sans-serif;
+    //  flex-direction: column;
+    //  justify-content: center;
     padding: 10px;
-    flex-direction: column;
-    justify-content: center;
 }
 
-.top-chart-text{
+.top-chart-text {
     margin-top: 5px;
     display: flex;
     justify-content: space-between;
@@ -19,62 +19,64 @@
     font-weight: 550;
 }
 
-$Largura-Barra: 60px;
-$MaxWidth: 160px;
-
-.grafico .content{
-    display: flex;
-    flex-direction: column;
-    width: 200px;
-    justify-content: flex-start;
-    height: 250px;
-}
-
-.grafico .content span{
-    font-family: 'Roboto';
-    font-size: 13px;
-    color: #707070;
-}
-
-.grafico .line{
-    background-color: #CCCCCC;
-    width: 100%;
+.line {
+    background-color: #5ea002;
+    width: 50%;
     height: 1px;
     margin-top: 5px;
     margin-bottom: 15px;
 }
 
-.grafico .legends{
+$Largura-Barra: 80px;
+$MaxWidth: 10px;
+
+.display-chart {
+    width: 110%;
+    font-size: 13px;
+    justify-content: space-between;
     display: flex;
-    flex-direction: row;
-    color: #707070;
-    font-family: 'Roboto';
-    font-size: 12px;
-    text-align: center;
+    color: white;
+    margin: 3px;
+    padding: 0;
 }
 
-.grafico .legends span{
-    width: $Largura-Barra;
-    margin:0 15px;
+.bar {
+    width: $MaxWidth;
+    min-height: 1px;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    justify-content: space-between;
+    padding: 10px;
+    color: white;
+    margin-left: 60px;
 }
 
-.grafico .bars{
+.circle {
+    border-radius: 50%;
+    border: 1px solid rgb(255, 255, 255);
+    width: 30px;
+    height: 30px;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    justify-content: flex-end;
-    height: 100%;
-}
 
-.grafico .bar{
-    width: $Largura-Barra;
-    min-height: 2px;
-    margin:0 15px;
-    border-top-left-radius: 7px;
-    border-top-right-radius: 7px;
-}
+    img {
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+    }
 
-.grafico .bar:hover{
-    transform: translateY(-1px);
-    box-shadow: 0 4px 17px rgba(0, 0, 0, 0.20);
+    .initials {
+        color: white;
+        font-size: 15px;
+        line-height: 19px;
+        letter-spacing: 0.2625px;
+    }
+}
+.leveling {
+    margin-left: 20px;
+    padding: 3px;
+}
+.info{
+    color: #5ea002;
 }

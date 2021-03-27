@@ -2,32 +2,40 @@
     <div>
         <span class="top-chart-text">TOP CHART</span>
     </div>
-    <div class="grafico">
-        <div class="content">
-
-            <div class="bars" *ngFor="let item of Animals">
-                <table>
-                    <tr>
-                        <td>
-                            icon
-                        </td>
-                        <td>
-                            {{item.firstName}}<br>{{item.lastName}}
-                        </td>
-                        <td>
-                            {{item.XP}}
-                        </td>
-                        <td>
-                <div class="bar" [style.background-color]="item.Color" [style.width]='item.Size'></div>
-                        </td>
-                    </tr>
-                </table>
-                <!-- <div>{{item.FirstName}}</div>
-                <span>{{item.XP}}</span>
-                <div class="bar" [style.background-color]="item.Color" [style.width]='item.Size'></div> -->
-            </div>
-        </div>
-       
+    <div class="info">
+        <span   style="margin-left: 25px;">
+            Name
+        </span>
+        <span  style="margin-left: 130px;">
+            Total XP
+        </span>
+        <div class="line"></div>
     </div>
+ 
+    <mat-list class="display-chart">
+        <table class="leveling">
+            <tr *ngFor="let item of UserEchiv">
+                <td class="leveling">
+                    <div class="circle" [ngStyle]="{'background-color': circleColor}">
+                        <img *ngIf="!showInitials" src={{user.photoUrl}}>
 
-</mat-card>
+                        <div *ngIf="showInitials" class="initials">
+                            {{initials}}
+                        </div>
+                    </div>
+                </td>
+                <td >
+                   <span  style="margin-left: 25px;"> {{item.firstName}}</span> 
+                   <br>
+                   <span  style="margin-left: 25px;">{{item.lastName}}</span>
+                </td>
+                <td>
+                   <span style="margin-left: 50px;">{{item.XP}}  </span> 
+                </td>
+                <td class="leveling">
+                    <div class="bar" [style.background-color]="item.Color" [style.width]='item.Size'> </div>
+                </td>
+            </tr>
+        </table>
+  </mat-list>
+  </mat-card>

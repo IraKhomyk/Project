@@ -1,8 +1,8 @@
 export interface User {
-    name: string; // required
-    lastName: string; // required
-    email: string; // required
-    password: string; // required
+    name: string; 
+    lastName: string; 
+    email: string; 
+    password: string; 
     status: string;
     photoUrl: string;
     badges: number;

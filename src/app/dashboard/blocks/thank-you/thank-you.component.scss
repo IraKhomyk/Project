@@ -1,13 +1,13 @@
-.thank-you-container{
+.thank-you-container {
     background-color: #424750;
-    height: 330px;
-    width: 330px;
+    height: 320px;
+    width: 300px;
     margin: 5px;
     font-size: 15px;
     font-family: Roboto, "Helvetica Neue", sans-serif;
     padding: 10px;
 }
-.thank-you-text{
+.thank-you-text {
     margin-top: 5px;
     display: flex;
     justify-content: space-between;
@@ -16,7 +16,7 @@
     font-weight: 550;
 }
 
-.circle{
+.circle {
     border-radius: 50%;
     border: 2px solid rgb(255, 255, 255);
     width: 40px;
@@ -25,41 +25,40 @@
     justify-content: center;
     align-items: center;
 
-    img{
+    img {
         border-radius: 50%;
         width: 40px;
         height: 40px;
     }
 
-    .initials{
-        color:  white;
+    .initials {
+        color: white;
         font-size: 15px;
         line-height: 19px;
         letter-spacing: 0.2625px;
     }
 }
 
-.star{
+.star {
     width: 150px;
     height: 150px;
     justify-content: center;
     display: flex;
-    margin-left: 100px
+    margin-left: 75px;
 }
-span{
+span {
     color: white;
     display: flex;
     justify-content: center;
     margin: 10px;
-
 }
-.user-name{
+.user-name {
     display: flex;
     justify-content: center;
     margin: 15px;
-    color:#5ea002;
+    color: #5ea002;
 }
-.user{
+.user {
     display: flex;
     justify-content: center;
     margin: 15px;

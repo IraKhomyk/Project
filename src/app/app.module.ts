@@ -22,7 +22,6 @@ import { HeaderComponent } from './header/header.component';
 import { ThankYouComponent } from './dashboard/blocks/thank-you/thank-you.component';
 import { BadgesComponent } from './dashboard/blocks/badges/badges.component';
 import { TopChartComponent } from './dashboard/blocks/top-chart/top-chart.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +47,7 @@ import { TopChartComponent } from './dashboard/blocks/top-chart/top-chart.compon
     MatIconModule,
     MatListModule,
     MatMenuModule,
-    MatCardModule
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
