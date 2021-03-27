@@ -21,6 +21,7 @@ import { PersonalEchievementsComponent } from './dashboard/blocks/personal-echie
 import { HeaderComponent } from './header/header.component';
 import { ThankYouComponent } from './dashboard/blocks/thank-you/thank-you.component';
 import { BadgesComponent } from './dashboard/blocks/badges/badges.component';
+import { TopChartComponent } from './dashboard/blocks/top-chart/top-chart.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { BadgesComponent } from './dashboard/blocks/badges/badges.component';
     HeaderComponent,
     ThankYouComponent,
     BadgesComponent,
+    TopChartComponent,
   ],
   imports: [
     BrowserModule,
