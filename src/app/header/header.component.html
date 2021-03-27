@@ -1,12 +1,12 @@
-<mat-sidenav-container class="example-container" >
-    
-    <mat-sidenav #sidenav mode="push" >
+<mat-sidenav-container class="example-container">
+
+    <mat-sidenav #sidenav mode="push">
         <mat-toolbar>
             <div>
                 <a>GMFCTN!</a>
             </div>
             <div> <button mat-button (click)="sidenav.toggle()">
-                    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+                    <mat-icon>menu</mat-icon>
                 </button>
             </div>
         </mat-toolbar>
@@ -33,13 +33,14 @@
             </nav>
 
             <div>
-                <div>
+                <div class="right-sidebar">
                     <a>
+                        <img class="circle"
+                            src="https://avatars.githubusercontent.com/u/80851018?s=460&u=6885306bba64e3178299355a954089fa904f837a&v=4">
                         <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-                            <img class="circle"
-                                src="https://avatars.githubusercontent.com/u/80851018?s=460&u=6885306bba64e3178299355a954089fa904f837a&v=4">
+                            {{user.name}}
+                            <mat-icon>arrow_drop_down</mat-icon>
                         </button>
-
                     </a>
                 </div>
                 <mat-menu #menu="matMenu">
@@ -55,7 +56,9 @@
                 </mat-menu>
             </div>
         </mat-toolbar>
-  <div  style="margin:15px"> <app-dashboard></app-dashboard></div>  
+        <div style="margin:15px">
+            <app-dashboard></app-dashboard>
+        </div>
 
     </mat-sidenav-content>
 </mat-sidenav-container>

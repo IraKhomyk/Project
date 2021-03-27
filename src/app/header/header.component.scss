@@ -1,111 +1,124 @@
-.mat-drawer-container, .mat-drawer{
-    background-color: #323232;
-   }
-   nav a {
-        color:white;
-    }
-  
-    .mat-tab-header{
-        display:flex;
-    }
-  
-    mat-sidenav-container{
-      height: 100%;
-    }
-    mat-sidenav, mat-sidenav-content{
-      padding: 5px;
-    }
-  
-    mat-sidenav{
-      background-color: #323232;
-      color:  #323232;
-      width: 350px;
-    }
-  
-    mat-sidenav mat-toolbar{
-      color:white;
-    }
-  
-    mat-sidenav a mat-icon{
-      display: flex;
-      justify-content: center;
-      flex-direction: row;
-    }
-  
-    .sidenav-container {
-        height: 100%;
-      }
-      
-      .sidenav {
-        width: 200px;
-      }
-      
-      .sidenav .mat-toolbar {
-        background: inherit;
-        
-      }
-  
-      .navigationCenter{
-        display: flex;
-        justify-content: center;
-        flex-direction: row;
-        animation-duration: 4s;
-      }
-  
-    .mat-toolbar  {
-        background-color: rgb(61, 59, 59);
-        justify-content: space-between;
-    }
-  
-    ::ng-deep .mat-tab-nav-bar.mat-primary .mat-ink-bar {
-        display: none;
-    }
-  
-    .mat-tab-label-active {
-        border-top: 5px solid rgb(41, 173, 41);
-    }
-  
-    .example-container {
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-      }
-  
-      .mat-button{
-        color: white;
-      }
-      
-      .mat-icon-button{
-          color: white;
-      }
-  
-      .example-header-image {
-        background-size: cover;
-      }
-  
-      .circle{
-        border-radius: 50%;
-        width: 30px;
-        height: 30px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    
-        img{
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-        }
-    
-        .initials{
-            color:  white;
-            font-size: 20px;
-            line-height: 19px;
-            letter-spacing: 0.2625px;
-        }
-    }
-    .sidebar-content-to-center{
-      display: flex;
-      justify-content: center;
-    }
+.mat-drawer-container,
+.mat-drawer {
+  background-color: #323232;
+}
+nav a {
+  color: white;
+}
+
+.mat-tab-header {
+  display: flex;
+}
+
+mat-sidenav-container {
+  height: 100%;
+}
+mat-sidenav,
+mat-sidenav-content {
+  padding: 5px;
+}
+
+mat-sidenav {
+  background-color: #323232;
+  color: #323232;
+  width: 350px;
+}
+
+mat-sidenav mat-toolbar {
+  color: white;
+}
+
+mat-sidenav a mat-icon {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.navigationCenter {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  animation-duration: 4s;
+}
+
+.mat-toolbar {
+  background-color: rgb(61, 59, 59);
+  justify-content: space-between;
+}
+
+::ng-deep .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+  display: none;
+}
+
+.mat-tab-label-active {
+  border-top: 5px solid rgb(41, 173, 41);
+}
+
+.example-container {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.mat-button {
+  color: white;
+}
+
+.mat-icon-button {
+  color: white;
+}
+
+.example-header-image {
+  background-size: cover;
+}
+
+.circle {
+  border-radius: 50%;
+  border: 1px solid rgb(255, 255, 255);
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+
+  img {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+  }
+
+  .initials {
+    color: white;
+    font-size: 20px;
+    line-height: 19px;
+    letter-spacing: 0.2625px;
+  }
+}
+.sidebar-content-to-center {
+  display: flex;
+  justify-content: center;
+}
+.right-sidebar a {
+  color: white;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  margin-right: 50px;
+}
