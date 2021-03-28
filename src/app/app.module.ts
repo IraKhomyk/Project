@@ -17,12 +17,12 @@ import { LeftSidebarComponent } from './left-sidebar/left-sidebar.component';
 import { DASHBOARDComponent } from './dashboard/dashboard.component';
 import { GreetingComponent } from './dashboard/blocks/greeting/greeting.component';
 import {MatCardModule} from '@angular/material/card';
-import { PersonalEchievementsComponent } from './dashboard/blocks/personal-echievements/personal-echievements.component';
+import { PersonalAchievementsComponent } from './dashboard/blocks/personal-achievements/personal-achievements.component';
 import { HeaderComponent } from './header/header.component';
 import { ThankYouComponent } from './dashboard/blocks/thank-you/thank-you.component';
 import { BadgesComponent } from './dashboard/blocks/badges/badges.component';
 import { TopChartComponent } from './dashboard/blocks/top-chart/top-chart.component';
-import { ExoftEchievementsComponent } from './dashboard/blocks/exoft-echievements/exoft-echievements.component';
+import { ExoftAchievementsComponent } from './dashboard/blocks/exoft-achievements/exoft-achievements.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 @NgModule({
   declarations: [
@@ -30,12 +30,12 @@ import {MatGridListModule} from '@angular/material/grid-list';
     LeftSidebarComponent,
     DASHBOARDComponent,
     GreetingComponent,
-    PersonalEchievementsComponent,
+    PersonalAchievementsComponent,
     HeaderComponent,
     ThankYouComponent,
     BadgesComponent,
     TopChartComponent,
-    ExoftEchievementsComponent,
+    ExoftAchievementsComponent,
   ],
   imports: [
     BrowserModule,
