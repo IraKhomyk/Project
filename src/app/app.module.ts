@@ -24,6 +24,7 @@ import { BadgesComponent } from './dashboard/blocks/badges/badges.component';
 import { TopChartComponent } from './dashboard/blocks/top-chart/top-chart.component';
 import { ExoftAchievementsComponent } from './dashboard/blocks/exoft-achievements/exoft-achievements.component';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { ChallengesComponent } from './dashboard/blocks/challenges/challenges.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +37,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
     BadgesComponent,
     TopChartComponent,
     ExoftAchievementsComponent,
+    ChallengesComponent,
   ],
   imports: [
     BrowserModule,
