@@ -27,9 +27,9 @@ export class TopChartComponent implements OnInit {
   public MaxWidth = 580;
 
   public UserEchiv: Array<GraficoModel> = [
-    { firstName: "Ira", lastName: "Khomyk", XP: 115, Color: 'rgb(92, 198, 206)', Size: '' },
+    { firstName: "Ira", lastName: "Khomyk", XP: 600, Color: 'rgb(92, 198, 206)', Size: '' },
     { firstName: "Diana", lastName: "Demydko", XP: 250, Color: 'rgb(196, 127, 184)', Size: '' },
-    { firstName: "Tanya", lastName: "Goida", XP: 200, Color: 'rgb(243, 159, 33)', Size: '' },
+    { firstName: "Tanya", lastName: "Gogina", XP: 200, Color: 'rgb(243, 159, 33)', Size: '' },
     { firstName: "Khrystya", lastName: "Radchenko", XP: 100, Color: 'rgb(33, 243, 215)', Size: '' },
     { firstName: "Karen", lastName: "Sarkisyan", XP: 500, Color: ' rgb(243, 81, 81)', Size: '' },
   ];

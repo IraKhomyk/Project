@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
-import { User } from '../models/user.model';
-import { CommonService } from '../servises/common.service';
+import { User } from '../../models/user.model';
+import { CommonService } from '../../services/common.service';
 
 @Component({
   selector: 'app-left-sidebar',
