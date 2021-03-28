@@ -9,3 +9,12 @@
     flex-direction: column;
     justify-content: center;
 }
+
+.top-text {
+    margin-top: 5px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    color: white;
+    font-weight: 550;
+}
