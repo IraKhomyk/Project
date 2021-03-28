@@ -1,7 +1,19 @@
 .block-container{
-display: inline-flex;
+    display: inline-flex;
+    width: 1000px;
+    height: 320px;
 }
 
 .first-row{
     display: inline-block;
+}
+// div{
+//     margin:5px;
+// }
+
+.private-container{
+    left: calc((20% - 20px + 10px) * 4);
+    width: calc((20% - 10px) * 1 + 100px);
+    top: 5px;
+    height: calc(840px);
 }

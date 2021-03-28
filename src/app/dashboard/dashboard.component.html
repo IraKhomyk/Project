@@ -1,17 +1,42 @@
-<div>
-    <app-greeting> </app-greeting>
-</div>
+<!-- 
 <div class="block-container">
     <div class="first-row">
         <app-personal-echievements></app-personal-echievements>
+
     </div>
     <div class="first-row">
         <app-thank-you></app-thank-you>
+
     </div>
     <div class="first-row">
         <app-top-chart></app-top-chart>
     </div>
 </div>
 <div>
-    <app-badges></app-badges>
+    <app-exoft-echievements></app-exoft-echievements>
 </div>
+<div>
+    <app-badges></app-badges>
+</div> -->
+<mat-grid-list  style="margin-left:0;" cols="5" [gutterSize]="'10px'" rowHeight="160px" class="dashboard-container" >
+    <mat-grid-tile [colspan]="4" [rowspan]="1">
+        <app-greeting> </app-greeting>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="5" class="private-container">
+        <app-exoft-echievements></app-exoft-echievements>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="2">
+        <app-personal-echievements></app-personal-echievements>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="2">
+        <app-thank-you></app-thank-you>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="2" [rowspan]="2">
+        <app-top-chart></app-top-chart>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="2">
+        <app-badges></app-badges>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="3" [rowspan]="2">
+    </mat-grid-tile>
+</mat-grid-list>

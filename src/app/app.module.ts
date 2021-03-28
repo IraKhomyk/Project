@@ -22,6 +22,8 @@ import { HeaderComponent } from './header/header.component';
 import { ThankYouComponent } from './dashboard/blocks/thank-you/thank-you.component';
 import { BadgesComponent } from './dashboard/blocks/badges/badges.component';
 import { TopChartComponent } from './dashboard/blocks/top-chart/top-chart.component';
+import { ExoftEchievementsComponent } from './dashboard/blocks/exoft-echievements/exoft-echievements.component';
+import {MatGridListModule} from '@angular/material/grid-list';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +35,7 @@ import { TopChartComponent } from './dashboard/blocks/top-chart/top-chart.compon
     ThankYouComponent,
     BadgesComponent,
     TopChartComponent,
+    ExoftEchievementsComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +51,7 @@ import { TopChartComponent } from './dashboard/blocks/top-chart/top-chart.compon
     MatListModule,
     MatMenuModule,
     MatCardModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

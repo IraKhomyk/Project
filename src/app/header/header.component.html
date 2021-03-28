@@ -26,9 +26,13 @@
             <nav mat-tab-nav-bar>
                 <div class="navigationCenter">
                     <a class="active" mat-tab-link mat-align-tabs="center" *ngFor="let link of links"
-                        (click)="activeLink = link" [active]="activeLink == link">
+                        (click)="activeLink = link" [active]="activeLink == link" routerLink="/dashboard" routerLinkActive="active">
                         {{link}}
                     </a>
+                    <!-- <a mat-tab-link routerLink="/dashboard" routerLinkActive="active"> Dashboard</a>
+                    <a mat-tab-link routerLink="/orders" routerLinkActive="active">Orders</a>
+                    <a mat-tab-link routerLink="/badges" routerLinkActive="active">Badges</a> -->
+
                 </div>
             </nav>
 
@@ -56,9 +60,9 @@
                 </mat-menu>
             </div>
         </mat-toolbar>
-        <div style="margin:15px">
+        <!-- <div style="margin:15px">
             <app-dashboard></app-dashboard>
-        </div>
-
+        </div> -->
+        <router-outlet></router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>
