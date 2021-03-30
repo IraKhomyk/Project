@@ -36,7 +36,7 @@ namespace Gamification.Controllers
         public Achievement GetAchievementById(int Id)
         {
 
-            Achievement achiv =  CreatedList[CreatedList.FindIndex(elem => elem.Id == Id)];
+            Achievement achiv = CreatedList[CreatedList.FindIndex(elem => elem.Id == Id)];
             return achiv;
         }
     }
