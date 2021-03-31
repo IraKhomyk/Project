@@ -11,7 +11,7 @@ import { PersonalAchievementsComponent } from './blocks/personal-achievements/pe
 import { ThankYouComponent } from './blocks/thank-you/thank-you.component';
 import { TopChartComponent } from './blocks/top-chart/top-chart.component';
 import { DashboardComponent } from './dashboard.component';
-import { PipesModule } from 'src/app/shared/Pipes/pipes/pipes.module';
+import { PipesModule } from 'src/app/shared/Pipes/pipes.module';
 
 
 @NgModule({
