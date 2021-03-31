@@ -1,6 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { GraficoModel } from 'src/app/models/grafico.model';
-import { UserInf } from 'src/app/models/icon-user.model';
+import { Component, OnInit } from '@angular/core';
+import { userWithAchievements } from 'src/app/models/userWithAchievements.model';
 
 @Component({
   selector: 'app-top-chart',
@@ -10,72 +9,33 @@ import { UserInf } from 'src/app/models/icon-user.model';
 export class TopChartComponent implements OnInit {
 
   public showInitials = false;
-  public initials: string;
-  public circleColor: string;
+  public total = 0;
+  public maxWidth = 580;
 
-  private colors = [
-    '#EB7181',
-    '#468547',
-    '#FFD558',
-    '#3670B2',
-  ]
-
-  public user: UserInf = { name: "Ira Khomyk", photoUrl: "" };
-
-
-  public Total = 0;
-  public MaxWidth = 580;
-
-  public UserEchiv: Array<GraficoModel> = [
-    { firstName: "Ira", lastName: "Khomyk", XP: 600, Color: 'rgb(92, 198, 206)', Size: '' },
-    { firstName: "Diana", lastName: "Demydko", XP: 250, Color: 'rgb(196, 127, 184)', Size: '' },
-    { firstName: "Tanya", lastName: "Gogina", XP: 200, Color: 'rgb(243, 159, 33)', Size: '' },
-    { firstName: "Khrystya", lastName: "Radchenko", XP: 100, Color: 'rgb(33, 243, 215)', Size: '' },
-    { firstName: "Karen", lastName: "Sarkisyan", XP: 500, Color: ' rgb(243, 81, 81)', Size: '' },
+  public userWithAchiv: Array<userWithAchievements> = [
+    { firstName: "Ira", lastName: "Khomyk", XP: 600, color: 'rgb(92, 198, 206)', size: '', photoUrl: 'https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg' },
+    { firstName: "Diana", lastName: "Demydko", XP: 250, color: 'rgb(196, 127, 184)', size: '', photoUrl: '' },
+    { firstName: "Tanya", lastName: "Gogina", XP: 200, color: 'rgb(243, 159, 33)', size: '', photoUrl: '' },
+    { firstName: "Khrystya", lastName: "Radchenko", XP: 100, color: 'rgb(33, 243, 215)', size: '', photoUrl: '' },
+    { firstName: "Karen", lastName: "Sarkisyan", XP: 500, color: ' rgb(243, 81, 81)', size: '', photoUrl: '' },
   ];
 
   constructor() { }
 
   ngOnInit(): void {
-    this.MontarGrafico();
-
-    if (!this.user.photoUrl) {
-      this.showInitials = true;
-      this.createInitials();
-
-      const randomIndex = Math.floor(Math.random() * Math.floor(this.colors.length));
-      this.circleColor = this.colors[randomIndex];
-    }
-
-
+    this.createGrafic();
   }
 
-  MontarGrafico() {
-    this.UserEchiv.forEach(element => {
-      this.Total += element.XP;
+  public createGrafic() {
+    this.userWithAchiv.forEach(element => {
+      this.total += element.XP;
     });
 
-    this.UserEchiv.forEach(element => {
-      element.Size = Math.round((element.XP * this.MaxWidth) / this.Total) + '%';
+    this.userWithAchiv.forEach(element => {
+      element.size = Math.round((element.XP * this.maxWidth) / this.total) + '%';
     });
   }
-  public createInitials(): void {
-    let initials = "";
-      for (let i = 0; i < this.user.name.length; i++) {
-        if (this.user.name.charAt(i) === ' ') {
-          continue;
-        }
 
-        if (this.user.name.charAt(i) === this.user.name.charAt(i).toUpperCase()) {
-          initials += this.user.name.charAt(i);
-
-          if (initials.length == 2) {
-            break;
-          }
-        }
-      }
-    this.initials = initials;
-  }
 }
 
 

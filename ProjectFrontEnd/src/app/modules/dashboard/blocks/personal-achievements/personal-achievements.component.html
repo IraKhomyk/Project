@@ -3,47 +3,16 @@
     <span>PERSONAL ACHIEVEMENTS</span>
     <button mat-raised-button>Request</button>
   </div>
-  <mat-list>
-    <table>
-      <tr class="display-echiv">
-        <td><img class="circle" src="https://i.pinimg.com/474x/e1/bd/f9/e1bdf9ec46ab4e467bb30add09b63a2a.jpg"></td>
-        <td>Exoft turbo power
-          <br>0 min ago
-        </td>
-        <td class="xp-points">
-          <mat-icon>stop_circle</mat-icon>+15 xp
-        </td>
-      </tr>
-      <tr class="display-echiv">
-        <td><img class="circle" src="https://i.pinimg.com/474x/b0/f3/2b/b0f32bf8d25f8a8f7d2b065b694d89ee.jpg"></td>
-        <td>Exoft turbo power
-          <br>0 min ago
-        </td>
-        <td class="xp-points">
-          <mat-icon>stop_circle</mat-icon>+15 xp
-        </td>
-      </tr>
 
-      <tr class="display-echiv">
-        <td><img class="circle" src="https://i.pinimg.com/474x/61/aa/43/61aa4376604de66b5eb8af9020c2ea99.jpg"></td>
-        <td style="margin-left:20px ;">Exoft corporate power
-          <br>0 min ago
-        </td>
-        <td class="xp-points">
-          <mat-icon>stop_circle</mat-icon>+15 xp
-        </td>
-      </tr>
+  <mat-list class="display-echiv-container">
+    <mat-list-item *ngFor="let achievement of achievements">
+      <img matListAvata class="circle" [src]="achievement.photoUrl">
+      <div class="display-echiv-info">
+        <span matLine> {{achievement.name}} </span>
+        <span> {{achievement.time}} </span>
+        <span class="xp-points"> &#11044; {{achievement.ex}}</span>
+      </div>
 
-      <tr class="display-echiv">
-        <td><img class="circle" src="https://i.pinimg.com/474x/0a/85/5c/0a855c7da675bf40a44dda26dbeac8e3.jpg"></td>
-        <td style="margin-left:3px ;">Exoft skylark power
-          <br>0 min ago
-        </td>
-        <td class="xp-points">
-          <mat-icon>stop_circle</mat-icon>+15 xp
-        </td>
-      </tr>
-
-    </table>
+    </mat-list-item>
   </mat-list>
 </mat-card>

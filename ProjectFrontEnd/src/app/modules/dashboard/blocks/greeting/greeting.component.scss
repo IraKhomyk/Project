@@ -1,4 +1,4 @@
-.greeting-container{
+.greeting-container {
     background-color: #5ea002;
     height: 100px;
     width: 1300px;
@@ -7,26 +7,26 @@
     font-family: Roboto, "Helvetica Neue", sans-serif;
     margin-right: 7px;
 }
-.all-greet{
+.all-greet {
     margin-left: 60px;
-
 }
-.main-greeting{
+.main-greeting {
     font-size: 40px;
     height: 50px;
     width: 100%;
     display: flex;
 }
-.take-a-look{
+.take-a-look {
     margin-bottom: 5px;
     display: flex;
     height: 30px;
     width: auto;
     font-size: 23px;
 }
-.greet-important{
+.greet-important {
     font-weight: 700;
 }
-.mat-card>:first-child, .mat-card-content>:first-child {
+.mat-card > :first-child,
+.mat-card-content > :first-child {
     margin-top: 20px;
 }

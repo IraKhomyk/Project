@@ -3,39 +3,39 @@
         <span class="top-chart-text">TOP CHART</span>
     </div>
     <div class="info">
-        <span   style="margin-left: 35px;">
+        <span style="margin-left: 35px;">
             Name
         </span>
-        <span  style="margin-left: 130px;">
+        <span style="margin-left: 130px;">
             Total XP
         </span>
         <div class="line"></div>
     </div>
- 
+
     <mat-list class="display-chart">
         <table class="leveling">
-            <tr *ngFor="let item of UserEchiv">
+            <tr *ngFor="let user of userWithAchiv">
                 <td class="leveling">
-                    <div class="circle" [ngStyle]="{'background-color': circleColor}">
-                        <img *ngIf="!showInitials" src={{user.photoUrl}}>
+                    <div class="circle" [ngStyle]="{'background-color': user.color}">
+                        <img *ngIf="user.photoUrl" src={{user.photoUrl}}>
 
-                        <div *ngIf="showInitials" class="initials">
-                            {{initials}}
+                        <div *ngIf="!user.photoUrl" class="initials">
+                            {{user | initials}}
                         </div>
                     </div>
                 </td>
-                <td >
-                   <span  style="margin-left: 25px;"> {{item.firstName}}</span> 
-                   <br>
-                   <span  style="margin-left: 25px;">{{item.lastName}}</span>
+                <td>
+                    <span style="margin-left: 25px;"> {{user.firstName}}</span>
+                    <br>
+                    <span style="margin-left: 25px;">{{user.lastName}}</span>
                 </td>
                 <td>
-                   <span style="margin-left: 50px;">{{item.XP}}  </span> 
+                    <span style="margin-left: 50px;">{{user.XP}} </span>
                 </td>
                 <td class="leveling">
-                    <div class="bar" [style.background-color]="item.Color" [style.width]='item.Size'> </div>
+                    <div class="bar" [style.background-color]="user.color" [style.width]='user.size'> </div>
                 </td>
             </tr>
         </table>
-  </mat-list>
-  </mat-card>
+    </mat-list>
+</mat-card>

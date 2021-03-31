@@ -1,5 +1,4 @@
 <mat-sidenav-container class="example-container">
-
     <mat-sidenav #sidenav mode="push">
         <mat-toolbar>
             <div>
@@ -19,14 +18,15 @@
         <mat-toolbar>
             <div>
                 <button mat-button (click)="sidenav.toggle()">
-                    <mat-icon aria-label="Side nav toggle icon">menu </mat-icon>
+                    <mat-icon>menu </mat-icon>
                 </button>
                 <a style="color: white">GMFCTN!</a>
             </div>
             <nav mat-tab-nav-bar>
                 <div class="navigationCenter">
                     <a class="active" mat-tab-link mat-align-tabs="center" *ngFor="let link of links"
-                        (click)="activeLink = link" [active]="activeLink == link" routerLink="/dashboard" routerLinkActive="active">
+                        (click)="activeLink = link" [active]="activeLink == link" routerLink="/dashboard"
+                        routerLinkActive="active">
                         {{link}}
                     </a>
                     <!-- <a mat-tab-link routerLink="/dashboard" routerLinkActive="active"> Dashboard</a>
@@ -39,10 +39,15 @@
             <div>
                 <div class="right-sidebar">
                     <a>
-                        <img class="circle"
-                            src="https://avatars.githubusercontent.com/u/80851018?s=460&u=6885306bba64e3178299355a954089fa904f837a&v=4">
-                        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-                            {{user.name}}
+                        <div class="circle" [ngStyle]="{'background-color': user.color}">
+                            <img *ngIf="user.photoUrl" src={{user.photoUrl}}>
+    
+                            <div *ngIf="!user.photoUrl" class="initials">
+                                {{user | initials}}
+                            </div>
+                        </div>
+                        <button mat-icon-button [matMenuTriggerFor]="menu">
+                            {{user.firstName}}{{user.lastName}}
                             <mat-icon>arrow_drop_down</mat-icon>
                         </button>
                     </a>
@@ -60,9 +65,6 @@
                 </mat-menu>
             </div>
         </mat-toolbar>
-        <!-- <div style="margin:15px">
-            <app-dashboard></app-dashboard>
-        </div> -->
         <router-outlet></router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>
