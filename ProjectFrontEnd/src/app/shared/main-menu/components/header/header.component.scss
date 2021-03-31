@@ -59,7 +59,7 @@ mat-sidenav a mat-icon {
 }
 
 ::ng-deep .mat-tab-nav-bar.mat-primary .mat-ink-bar {
-  display: none;
+  display:none;
 }
 
 .mat-tab-label-active {
@@ -122,3 +122,24 @@ mat-sidenav a mat-icon {
   flex-direction: row;
   margin-right: 50px;
 }
+.mat-toolbar .router-link-active {
+  border-top:5px solid rgb(41, 173, 41);
+  border-radius: 0;
+}
+.mat-sidenav-container .container-active {
+  text-decoration: underline red 4px;
+  text-underline-offset: 0.2em;
+}
+// .navigationCenter a:link, a:visited{
+//   border-top: 5px solid rgb(41, 173, 41);
+
+
+// .mat-tab-label-active {
+//   border-top: 5px solid rgb(41, 173, 41);
+
+// }
+
+// md-tabs .md-tab.md-active {
+//   border-top: 5px solid rgb(41, 173, 41);
+
+// }

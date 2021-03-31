@@ -24,15 +24,10 @@
             </div>
             <nav mat-tab-nav-bar>
                 <div class="navigationCenter">
-                    <a class="active" mat-tab-link mat-align-tabs="center" *ngFor="let link of links"
-                        (click)="activeLink = link" [active]="activeLink == link" routerLink="/dashboard"
-                        routerLinkActive="active">
-                        {{link}}
+                    <a class="active" mat-tab-link mat-align-tabs="center" *ngFor="let route of routers"
+                        routerLink={{route.link}} routerLinkActive="active">
+                        {{route.name}}
                     </a>
-                    <!-- <a mat-tab-link routerLink="/dashboard" routerLinkActive="active"> Dashboard</a>
-                    <a mat-tab-link routerLink="/orders" routerLinkActive="active">Orders</a>
-                    <a mat-tab-link routerLink="/badges" routerLinkActive="active">Badges</a> -->
-
                 </div>
             </nav>
 
@@ -41,13 +36,13 @@
                     <a>
                         <div class="circle" [ngStyle]="{'background-color': user.color}">
                             <img *ngIf="user.photoUrl" src={{user.photoUrl}}>
-    
+
                             <div *ngIf="!user.photoUrl" class="initials">
                                 {{user | initials}}
                             </div>
                         </div>
                         <button mat-icon-button [matMenuTriggerFor]="menu">
-                            {{user.firstName}}{{user.lastName}}
+                            {{user.firstName}} {{user.lastName}}
                             <mat-icon>arrow_drop_down</mat-icon>
                         </button>
                     </a>

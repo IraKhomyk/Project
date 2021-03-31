@@ -57,13 +57,13 @@
       justify-content: space-between;
   }
 
-  ::ng-deep .mat-tab-nav-bar.mat-primary .mat-ink-bar {
-      display: none;
-  }
+  // ::ng-deep .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+  //     display: none;
+  // }
 
-  .mat-tab-label-active {
-      border-top: 5px solid rgb(41, 173, 41);
-  }
+  // .mat-tab-label-active {
+  //     border-top: 5px solid rgb(41, 173, 41);
+  // }
 
   .example-container {
       top: 0;

@@ -17,7 +17,7 @@ export class ThankYouComponent implements OnInit {
     photoUrl: '',
     badges: 6,
     exp: 120,
-    color:'',
+    color:'rgb(40, 120, 224)',
   }
 
 

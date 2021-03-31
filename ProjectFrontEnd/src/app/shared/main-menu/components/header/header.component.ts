@@ -10,22 +10,33 @@ type userShortInfo = Pick<userWithAchievements, 'firstName' | 'lastName' | 'phot
 })
 
 export class HeaderComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
   title = 'frontEnd-Project';
-
-  links = ['Dashboard', 'Badges', 'Orders'];
-  activeLink = this.links[0];
+  routers = [{
+    link: '/dashboard',
+    name: 'Dashboard'
+  },
+  {
+    link: '/badges',
+    name: 'Badges'
+  },
+  {
+    link: '/orders',
+    name: 'Orders'
+  }
+  ];
+  
+  activeLink = this.routers[0];
 
   user: userShortInfo = {
     firstName: 'Ira',
     lastName: 'Khomyk',
     photoUrl: './../../../../assets/myphoto.jpg',
     color: '',
+  }
+
+  constructor() { }
+
+  ngOnInit(): void {
   }
 }
 
