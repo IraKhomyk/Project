@@ -2,11 +2,11 @@
     <div>
         <span class="top-chart-text">TOP CHART</span>
     </div>
-    <div class="info">
-        <span style="margin-left: 35px;">
+    <div class="info-title">
+        <span class="name-title">
             Name
         </span>
-        <span style="margin-left: 130px;">
+        <span class="total-title">
             Total XP
         </span>
         <div class="line"></div>
@@ -24,16 +24,19 @@
                         </div>
                     </div>
                 </td>
+
                 <td>
-                    <span style="margin-left: 25px;"> {{user.firstName}}</span>
+                    <span class="user-name"> {{user.firstName}}</span>
                     <br>
-                    <span style="margin-left: 25px;">{{user.lastName}}</span>
+                    <span class="user-name">{{user.lastName}}</span>
                 </td>
+
                 <td>
-                    <span style="margin-left: 50px;">{{user.XP}} </span>
+                    <span class="user-xp">{{user.XP}}</span>
                 </td>
+
                 <td class="leveling">
-                    <div class="bar" [style.background-color]="user.color" [style.width]='user.size'> </div>
+                    <div class="bar" [style.background-color]="user.color" [style.width]='user.size'></div>
                 </td>
             </tr>
         </table>

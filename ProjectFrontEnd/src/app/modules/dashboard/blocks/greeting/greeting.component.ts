@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user.model';
-type userShortInfo = Pick<User, 'firstName' | 'lastName' | 'photoUrl'>;
+type userShortInfo = Pick<User, 'firstName'>;
 
 @Component({
   selector: 'app-greeting',
@@ -11,8 +11,6 @@ export class GreetingComponent implements OnInit {
 
   user: userShortInfo = {
     firstName: 'Ira',
-    lastName: 'Khomyk',
-    photoUrl: '',
   };
   
 

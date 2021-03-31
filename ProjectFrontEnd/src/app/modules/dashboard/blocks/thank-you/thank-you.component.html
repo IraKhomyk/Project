@@ -7,12 +7,12 @@
         <br>
         <div><span>Hey hey hey. Thank you for your help!!!</span></div>
     </div>
-    <div class="user" >
+    <div class="user">
         <div class="circle" [ngStyle]="{'background-color': user.color}">
             <img *ngIf="user.photoUrl" src={{user.photoUrl}}>
 
             <div *ngIf="!user.photoUrl" class="initials">
-                {{user|initials}}
+                {{user | initials}}
             </div>
         </div>
         <div class="user-name">{{user.firstName}}</div>

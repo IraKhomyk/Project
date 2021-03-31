@@ -4,37 +4,38 @@
     width: 620px;
     font-size: 15px;
     font-family: Roboto, "Helvetica Neue", sans-serif;
-}
 
-.top-chart-text {
-    margin-top: 5px;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    color: white;
-    font-weight: 550;
-}
+    .top-chart-text {
+        margin-top: 5px;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        color: white;
+        font-weight: 550;
+    }
+    .info-title {
+        color: #5ea002;
 
-.line {
-    background-color: #5ea002;
-    width: 45%;
-    height: 1px;
-    margin-top: 5px;
-    margin-bottom: 15px;
+        .total-title {
+            margin-left: 130px;
+        }
+
+        .name-title {
+            margin-left: 35px;
+        }
+
+        .line {
+            background-color: #5ea002;
+            width: 45%;
+            height: 1px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+        }
+    }
 }
 
 $Largura-Barra: 80px;
 $MaxWidth: 10px;
-
-.display-chart {
-    width: 110%;
-    font-size: 13px;
-    justify-content: space-between;
-    display: flex;
-    color: white;
-    margin: 3px;
-    padding: 0;
-}
 
 .bar {
     width: $MaxWidth;
@@ -47,33 +48,47 @@ $MaxWidth: 10px;
     margin-left: 60px;
 }
 
-.circle {
-    border-radius: 50%;
-    border: 1px solid rgb(255, 255, 255);
-    width: 30px;
-    height: 30px;
+.display-chart {
+    width: 110%;
+    font-size: 13px;
+    justify-content: space-between;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    color: white;
+    margin: 3px;
+    padding: 0;
 
-    img {
+    .circle {
         border-radius: 50%;
+        border: 1px solid rgb(255, 255, 255);
         width: 30px;
         height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+        }
+
+        .initials {
+            color: white;
+            font-size: 15px;
+            line-height: 19px;
+            letter-spacing: 0.2625px;
+        }
     }
 
-    .initials {
-        color: white;
-        font-size: 15px;
-        line-height: 19px;
-        letter-spacing: 0.2625px;
-    }
-}
+    .leveling {
+        margin-left: 20px;
+        padding: 3px;
 
-.leveling {
-    margin-left: 20px;
-    padding: 3px;
-}
-.info {
-    color: #5ea002;
+        .user-name {
+            margin-left: 25px;
+        }
+        .user-xp {
+            margin-left: 50px;
+        }
+    }
 }
