@@ -1,7 +1,7 @@
 .top-chart-container {
     background-color: #424750;
-    height: 320px;
-    width: 620px;
+    width: 100%;
+    height: 100%;
     font-size: 15px;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 
@@ -13,6 +13,7 @@
         color: white;
         font-weight: 550;
     }
+    
     .info-title {
         color: #5ea002;
 
@@ -45,17 +46,14 @@ $MaxWidth: 10px;
     justify-content: space-between;
     padding: 10px;
     color: white;
-    margin-left: 60px;
+    margin-left: 100px;
 }
 
 .display-chart {
-    width: 110%;
     font-size: 13px;
     justify-content: space-between;
     display: flex;
     color: white;
-    margin: 3px;
-    padding: 0;
 
     .circle {
         border-radius: 50%;
@@ -81,8 +79,7 @@ $MaxWidth: 10px;
     }
 
     .leveling {
-        margin-left: 20px;
-        padding: 3px;
+ 
 
         .user-name {
             margin-left: 25px;

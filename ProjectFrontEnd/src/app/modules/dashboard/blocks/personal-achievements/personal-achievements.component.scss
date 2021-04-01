@@ -1,19 +1,16 @@
-.app-personal-echievements-container {
+.app-personal-achievements-container {
     background-color: #424750;
-    height: 320px;
-    width: 310px;
     font-size: 15px;
-    padding: 10px;
     font-family: Roboto, "Helvetica Neue", sans-serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: space-between;
+    height: 100%;
+    width: 100%;
 }
 
-.mat-card>:first-child, .mat-card-content>:first-child {
+.mat-card > :first-child,
+.mat-card-content > :first-child {
     margin-top: 5px;
 }
+
 .request-button {
     margin-top: 10px;
     display: flex;
@@ -21,8 +18,8 @@
     flex-direction: row;
     color: white;
     font-weight: 550;
+    margin-right: 25px;
 }
-
 
 .mat-raised-button {
     background-color: #5ea002;
@@ -33,7 +30,8 @@
     border-radius: 50%;
     width: 50px;
     height: 50px;
-    padding: 3px;
+    padding: 10px;
+
     img {
         border-radius: 50%;
         width: 40px;
@@ -47,31 +45,26 @@
         letter-spacing: 0.2625px;
     }
 }
-.mat-list-base .mat-list-item, .mat-list-base .mat-list-option {
+.mat-list-base .mat-list-item,
+.mat-list-base .mat-list-option {
     display: block;
-    height: 48px;
-    -webkit-tap-highlight-color: transparent;
-    width: 100%;
-    padding: 8px;
 }
-.display-echiv-container{
+
+.display-achiv-container {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 10px;
+    margin-top: 10px;
+    .display-achiv-info {
+        font-size: 12px;
+        color: white;
+    }
 
+    .xp-points {
+        color: #fcf81d;
+        font-size: 12px;
+        font-weight: 500;
+        justify-content: flex-end;
+        margin-left: 70px;
+    }
 }
-
-.display-echiv-info {
-    font-size: 12px;
-    color: white;
-}
-
-.xp-points {
-    color: #fcf81d;
-    font-size: 12px;
-    font-weight: 500;
-    justify-content: flex-end;
-    margin-left: 70px;
-}
-

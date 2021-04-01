@@ -1,13 +1,13 @@
-<mat-card class="app-personal-echievements-container">
+<mat-card class="app-personal-achievements-container">
   <div class="request-button">
     <span>PERSONAL ACHIEVEMENTS</span>
     <button mat-raised-button>Request</button>
   </div>
 
-  <mat-list class="display-echiv-container">
+  <mat-list class="display-achiv-container">
     <mat-list-item *ngFor="let achievement of achievements">
       <img matListAvata class="circle" [src]="achievement.photoUrl">
-      <div class="display-echiv-info">
+      <div class="display-achiv-info">
         <span matLine> {{achievement.name}} </span>
         <span> {{achievement.time}} </span>
         <span class="xp-points"> &#11044; {{achievement.ex}}</span>

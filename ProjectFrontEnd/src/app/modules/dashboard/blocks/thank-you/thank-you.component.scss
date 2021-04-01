@@ -1,18 +1,18 @@
 .thank-you-container {
     background-color: #424750;
-    height: 320px;
-    width: 310px;
     font-size: 15px;
     font-family: Roboto, "Helvetica Neue", sans-serif;
-    margin-left: 30px;
-}
-.thank-you-text {
-    margin-top: 5px;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    color: white;
-    font-weight: 550;
+    height: 100%;
+    width: 100%;
+
+    .thank-you-title {
+        margin-top: 5px;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        color: white;
+        font-weight: 550;
+    }
 }
 
 .circle {
@@ -24,6 +24,7 @@
     justify-content: center;
     align-items: center;
     background-color: bisque;
+
     img {
         border-radius: 50%;
         width: 40px;
@@ -37,29 +38,32 @@
         letter-spacing: 0.2625px;
     }
 }
-
-.star {
-    width: 150px;
-    height: 150px;
-    justify-content: center;
+.star-content {
+    width: 100%;
+    padding-top: 24px;
     display: flex;
-    margin-left: 75px;
-}
-span {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     color: white;
-    display: flex;
-    justify-content: center;
-    margin: 10px;
+
+    .star {
+        width: 130px;
+        height: 130px;
+        display: flex;
+        align-items: center;
+    }
 }
-.user-name {
-    display: flex;
-    justify-content: center;
-    margin: 15px;
-    color: #5ea002;
-}
+
 .user {
     display: flex;
     justify-content: center;
     margin: 15px;
-    margin-left: 40px;
+
+    .user-name {
+        display: flex;
+        justify-content: center;
+        margin: 15px;
+        color: #5ea002;
+    }
 }
