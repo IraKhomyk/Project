@@ -1,14 +1,11 @@
 .badges-container {
     background-color: #424750;
-    height: 320px;
-    width: 310px;
     font-size: 15px;
     font-family: Roboto, "Helvetica Neue", sans-serif;
-    margin-left: 20px;
-    margin-top: 10px;
+    height: 100%;
+    width: 100%;
 }
-
-.badges-text-top {
+.badges-text-title {
     margin-top: 10px;
     display: flex;
     justify-content: space-between;
@@ -17,38 +14,29 @@
     font-weight: 550;
     margin: 15px;
 }
-
-.badges-count {
-    font-size: 150px;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-    margin-top: 40px;
-    color: #5ea002;
-}
-
-.badges-text {
-    font-size: 25px;
-    display: flex;
-    flex-direction: row;
-    margin-top: 20px;
-    color: white;
-    margin: 15px;
-    justify-content: center;
-}
 .badges-count-container {
     margin-top: 40px;
     display: flex;
     justify-content: center;
-}
 
+    .badges-count-number {
+        font-size: 150px;
+        font-family: Roboto, "Helvetica Neue", sans-serif;
+        padding: 10px;
+        color: #5ea002;
+    }
+}
 .badges-text-container {
-    position: fixed;
-    bottom: 0;
-    width: 22%;
+    margin-top: 40px;
     display: flex;
     justify-content: center;
+
+    .badges-text {
+        font-size: 25px;
+        display: flex;
+        flex-direction: row;
+        color: white;
+    }
 }
 
 .badges-summary-text {
