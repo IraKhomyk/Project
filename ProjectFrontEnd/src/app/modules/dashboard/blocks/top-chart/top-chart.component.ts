@@ -12,7 +12,7 @@ export class TopChartComponent implements OnInit {
   public total = 0;
   public maxWidth = 580;
 
-  public userWithAchiv: Array<userWithAchievements> = [
+  public usersWithAchiv: Array<userWithAchievements> = [
     { firstName: "Ira", lastName: "Khomyk", XP: 600, color: 'rgb(92, 198, 206)', size: '', photoUrl: 'https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg' },
     { firstName: "Diana", lastName: "Demydko", XP: 250, color: 'rgb(196, 127, 184)', size: '', photoUrl: '' },
     { firstName: "Tanya", lastName: "Gogina", XP: 200, color: 'rgb(243, 159, 33)', size: '', photoUrl: '' },
@@ -27,11 +27,11 @@ export class TopChartComponent implements OnInit {
   }
 
   public createGrafic() {
-    this.userWithAchiv.forEach(element => {
+    this.usersWithAchiv.forEach(element => {
       this.total += element.XP;
     });
 
-    this.userWithAchiv.forEach(element => {
+    this.usersWithAchiv.forEach(element => {
       element.size = Math.round((element.XP * this.maxWidth) / this.total) + '%';
     });
   }

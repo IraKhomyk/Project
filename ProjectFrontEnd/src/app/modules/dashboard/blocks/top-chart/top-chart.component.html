@@ -14,7 +14,7 @@
 
     <mat-list class="display-chart">
         <table class="leveling">
-            <tr *ngFor="let user of userWithAchiv">
+            <tr *ngFor="let user of usersWithAchiv">
                 <td class="leveling">
                     <div class="circle" [ngStyle]="{'background-color': user.color}">
                         <img *ngIf="user.photoUrl" src={{user.photoUrl}}>

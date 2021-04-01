@@ -9,9 +9,6 @@ import { CommonService } from '../../../../services/common.service';
 })
 export class LeftSidebarComponent implements OnInit {
 
-  constructor(public commonService: CommonService) { }
-
-
   public opened = false;
 
   links = ['Dashboard', 'Badges', 'Orders'];
@@ -28,6 +25,8 @@ export class LeftSidebarComponent implements OnInit {
     exp: 80,
     color:'rgb(92, 198, 206)',
   };
+
+  constructor(public commonService: CommonService) { }
 
   ngOnInit() {
   }

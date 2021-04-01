@@ -24,9 +24,10 @@
             </div>
             <nav mat-tab-nav-bar>
                 <div class="navigationCenter">
-                    <a class="active" mat-tab-link mat-align-tabs="center" *ngFor="let route of routers"
+                    <a class="active" mat-tab-link *ngFor="let route of routers"
+                    (click)="activeLink = route" [active]="activeLink == route"
                         routerLink={{route.link}} routerLinkActive="active">
-                        {{route.name}}
+                      {{route.name}}
                     </a>
                 </div>
             </nav>

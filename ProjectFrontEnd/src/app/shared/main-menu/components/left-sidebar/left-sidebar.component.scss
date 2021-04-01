@@ -62,18 +62,13 @@
 .sidebar-container{
     background-color: #323232;
 }
+
 .sidebar-container .mat-tab-label-active{
     border-bottom: 5px solid rgb(41, 173, 41);
     color:rgb(41, 173, 41);
-
 }
 
 .sidebar-container .mat-tab-link{
     color:white;
     margin:2px;
-
 }
-// .sidebar-container .mat-tab-link .mat-focus-indicator .active .ng-star-inserted .mat-tab-label-active {
-//      border-bottom: 5px solid rgb(41, 173, 41);
-//     color:rgb(41, 173, 41);
-// }
