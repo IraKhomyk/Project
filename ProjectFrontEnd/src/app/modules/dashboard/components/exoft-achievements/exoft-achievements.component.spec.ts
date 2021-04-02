@@ -8,9 +8,9 @@ describe('ExoftEchievementsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ExoftAchievementsComponent ]
+      declarations: [ExoftAchievementsComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

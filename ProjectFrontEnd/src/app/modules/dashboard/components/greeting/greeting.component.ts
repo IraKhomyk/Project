@@ -8,35 +8,27 @@ type userShortInfo = Pick<User, 'firstName'>;
   styleUrls: ['./greeting.component.scss']
 })
 export class GreetingComponent implements OnInit {
-
   user: userShortInfo = {
     firstName: 'Ira',
   };
-  
 
-  public greet: string;
+  greet: string;
 
-  constructor() { }
-
-
-  ngOnInit() {
+  ngOnInit(): void {
     this.getGreeting();
   }
 
   getGreeting(): void {
-    let myDate = new Date();
-    let hrs = myDate.getHours();
+    const myDate = new Date();
+    const hrs = myDate.getHours();
 
     if (hrs >= 5 && hrs <= 11) {
       this.greet = 'Good morning';
-    }
-    else if (hrs >= 12 && hrs <= 17) {
+    } else if (hrs >= 12 && hrs <= 17) {
       this.greet = 'Good day';
-    }
-    else if (hrs >= 18 && hrs <= 23) {
+    } else if (hrs >= 18 && hrs <= 23) {
       this.greet = 'Good evening';
-    }
-    else if (hrs >= 0 && hrs <= 5) {
+    } else if (hrs >= 0 && hrs <= 5) {
       this.greet = 'Good night';
     }
   }

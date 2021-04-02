@@ -5,11 +5,6 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './exoft-achievements.component.html',
   styleUrls: ['./exoft-achievements.component.scss']
 })
-export class ExoftAchievementsComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+export class ExoftAchievementsComponent {
 
 }

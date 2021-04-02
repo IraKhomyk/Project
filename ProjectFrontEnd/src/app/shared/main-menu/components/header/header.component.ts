@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { userWithAchievements } from 'src/app/models/userWithAchievements.model';
+import { userWithAchievements } from 'src/app/models/user-with-achievements.model';
 type userShortInfo = Pick<userWithAchievements, 'firstName' | 'lastName' | 'photoUrl' | 'color'>;
 
 
@@ -9,7 +9,7 @@ type userShortInfo = Pick<userWithAchievements, 'firstName' | 'lastName' | 'phot
   styleUrls: ['./header.component.scss']
 })
 
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   title = 'frontEnd-Project';
   routers = [{
     link: '/dashboard',
@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit {
     name: 'Orders'
   }
   ];
-  
+
   activeLink = this.routers[0];
 
   user: userShortInfo = {
@@ -32,11 +32,6 @@ export class HeaderComponent implements OnInit {
     lastName: 'Khomyk',
     photoUrl: './../../../../assets/myphoto.jpg',
     color: '',
-  }
-
-  constructor() { }
-
-  ngOnInit(): void {
   }
 }
 
