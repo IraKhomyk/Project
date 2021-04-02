@@ -8,7 +8,19 @@ import { Component, OnInit } from '@angular/core';
 export class ChallengesComponent implements OnInit {
 
   constructor() { }
+images=[
+  {url:'./../../../../assets/beauty.jpg'},
+  {url:'./../../../../assets/beauty.jpg'},
+  {url:'./../../../../assets/beauty.jpg'},
+  {url:'./../../../../assets/beauty.jpg'},
+  {url:'./../../../../assets/beauty.jpg'},
+  {url:'./../../../../assets/beauty.jpg'},
+  {url:'./../../../../assets/beauty.jpg'},
+  {url:'./../../../../assets/beauty.jpg'},
+  {url:'./../../../../assets/beauty.jpg'},
 
+]
+  
   ngOnInit(): void {
   }
 
