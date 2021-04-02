@@ -1,8 +1,8 @@
-*{
-    margin:10px;
-
+* {
+    margin: 10px;
 }
-.circle{
+
+.circle {
     border-radius: 50%;
     border: 1px solid rgb(255, 255, 255);
     width: 200px;
@@ -11,7 +11,7 @@
     justify-content: center;
     align-items: center;
 
-    img{
+    img {
         border-radius: 50%;
         width: 200px;
         height: 200px;
@@ -20,55 +20,59 @@
         align-items: center;
     }
 
-    .initials{
-        color:  white;
+    .initials {
+        color: white;
         font-size: 100px;
         line-height: 19px;
         letter-spacing: 0.2625px;
     }
 }
-.user-name{
+
+.user-name {
     display: flex;
     justify-content: center;
 }
- .sidebar-button-column{
-    margin:15px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column; 
-}
-.mat-raised-button{
-    background-color: rgb(41, 173, 41);
-    color:white;
-}
 
-.left-sidebar-sumary{
-    display: flex;
-    justify-content: center;
-}
-.left-sidebar-sumary-green{
-    color: rgb(41, 173, 41);
-}
-
-.left-sidebar-sumary-white{
-    color: white;
-}
-
-.left-sidebar-nav{
+.sidebar-button-column {
+    margin: 15px;
     display: flex;
     justify-content: center;
     flex-direction: column;
 }
-.sidebar-container{
+
+.mat-raised-button {
+    background-color: rgb(41, 173, 41);
+    color: white;
+}
+
+.left-sidebar-sumary {
+    display: flex;
+    justify-content: center;
+}
+
+.left-sidebar-sumary-green {
+    color: rgb(41, 173, 41);
+}
+
+.left-sidebar-sumary-white {
+    color: white;
+}
+
+.left-sidebar-nav {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.sidebar-container {
     background-color: #323232;
 }
 
-.sidebar-container .mat-tab-label-active{
+.sidebar-container .mat-tab-label-active {
     border-bottom: 5px solid rgb(41, 173, 41);
-    color:rgb(41, 173, 41);
+    color: rgb(41, 173, 41);
 }
 
-.sidebar-container .mat-tab-link{
-    color:white;
-    margin:2px;
+.sidebar-container .mat-tab-link {
+    color: white;
+    margin: 2px;
 }

@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InitialsPipe } from './Initials/initials.pipe';
 
-
-
 @NgModule({
   declarations: [
     InitialsPipe,
@@ -13,9 +11,9 @@ import { InitialsPipe } from './Initials/initials.pipe';
   ],
   exports: [
     InitialsPipe,
-
   ]
 })
+
 export class PipesModule {
   static forRoot() {
     return {

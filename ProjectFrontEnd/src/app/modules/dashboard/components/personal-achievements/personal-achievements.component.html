@@ -7,6 +7,7 @@
   <mat-list class="display-achiv-container">
     <mat-list-item *ngFor="let achievement of achievements">
       <img matListAvata class="circle" [src]="achievement.photoUrl">
+
       <div class="display-achiv-info">
         <span matLine> {{achievement.name}} </span>
         <span> {{achievement.time}} </span>

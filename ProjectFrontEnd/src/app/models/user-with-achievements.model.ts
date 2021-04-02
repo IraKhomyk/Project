@@ -1,7 +1,7 @@
 export class userWithAchievements {
     firstName: string;
     lastName: string;
-    XP: number;
+    xp: number;
     color: string;
     size: string;
     photoUrl: string;

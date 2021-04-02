@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './personal-achievements.component.html',
   styleUrls: ['./personal-achievements.component.scss']
 })
-export class PersonalAchievementsComponent implements OnInit {
+export class PersonalAchievementsComponent {
   achievements = [
     { photoUrl: './../../../../assets/achiv1.jpg', name: 'Exoft turbo power', time: '0 min ago', ex: '15 px', },
     { photoUrl: './../../../../assets/achiv2.jpg', name: 'Exoft turbo power', time: '0 min ago', ex: '15 px', },
@@ -13,8 +13,4 @@ export class PersonalAchievementsComponent implements OnInit {
     { photoUrl: './../../../../assets/achiv4.jpg', name: 'Exoft skylark power', time: '0 min ago', ex: '15 px', },
   ]
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 }

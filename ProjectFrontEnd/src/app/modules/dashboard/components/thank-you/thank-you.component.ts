@@ -6,9 +6,9 @@ import { User } from 'src/app/models/user.model';
   templateUrl: './thank-you.component.html',
   styleUrls: ['./thank-you.component.scss']
 })
-export class ThankYouComponent implements OnInit {
+export class ThankYouComponent {
 
-  public user: User = {
+  user: User = {
     firstName: 'Dima Khomyk',
     lastName: 'Khomyk',
     email: 'dima@gmail.com',
@@ -17,15 +17,7 @@ export class ThankYouComponent implements OnInit {
     photoUrl: '',
     badges: 6,
     exp: 120,
-    color:'rgb(40, 120, 224)',
+    color: 'rgb(40, 120, 224)',
   }
-
-
-  constructor() { }
-
-  ngOnInit() {
-
-  }
-
 
 }
