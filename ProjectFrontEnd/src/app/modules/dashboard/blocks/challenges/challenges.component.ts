@@ -18,6 +18,15 @@ images=[
   {url:'./../../../../assets/beauty.jpg'},
   {url:'./../../../../assets/beauty.jpg'},
   {url:'./../../../../assets/beauty.jpg'},
+  {url:'./../../../../assets/beauty.jpg'},
+  {url:'./../../../../assets/beauty.jpg'},
+  {url:'./../../../../assets/beauty.jpg'},
+  {url:'./../../../../assets/beauty.jpg'},
+  {url:'./../../../../assets/beauty.jpg'},
+  {url:'./../../../../assets/beauty.jpg'},
+  {url:'./../../../../assets/beauty.jpg'},
+  {url:'./../../../../assets/beauty.jpg'},
+  {url:'./../../../../assets/beauty.jpg'},
 
 ]
   

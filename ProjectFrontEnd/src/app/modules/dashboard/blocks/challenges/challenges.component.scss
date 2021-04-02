@@ -1,88 +1,5 @@
-// .challenges-container {
-//     background-color: #424750;
-//     font-size: 15px;
-//     font-family: Roboto, "Helvetica Neue", sans-serif;
-//     width: 100%;
-//     height: 100%;
-//     overflow: scroll;
-//     overflow-x: hidden;
-
-//     .top-text {
-//         margin-top: 5px;
-//         display: flex;
-//         justify-content: space-between;
-//         flex-direction: row;
-//         color: white;
-//         font-weight: 550;
-//     }
-// }
-
-// .body {
-//     display: flex;
-//     flex-wrap: wrap;
-//     margin-left: 4px;
-//     padding: 10px 0 10px 10px;
-//     flex-direction: column;
-//     overflow-y: scroll;
-// }
-
-// .available-block-container {
-//     display: flex;
-//     flex-direction: column;
-//     position: relative;
-
-//     .available-content{
-//         border-left: 2px solid grey;
-//         margin-left: 4px;
-//         padding: 0px 0 10px 10px;
-
-//         .image{
-//             width: 150px;
-//             height: 100px;
-//         }
-//     }
-// }
-// .ended-block-container{
-//     display: flex;
-//   flex-direction: column;
-//   position: relative;
-
-//     .ended-content{
-//         border-left: 2px solid grey;
-//         margin-left: 4px;
-//         padding: 0px 0 10px 10px;
-
-//         .ended-img {
-//             display: flex;
-//   flex-direction: row;
-//   flex-wrap: wrap;
-//   margin-left: 4px;
-//   border-left: 2px solid grey;
-//   padding: 10px 0 10px 10px;
-//             .image {
-//                 left: 0;
-//                 top: 0;
-//                 width: 100px;
-//                 height: 100px;
-//             }
-//             .image-text {
-//                 z-index: 1;
-//                 position: absolute;
-//                 color: white;
-//                 font-size: 15px;
-//                 font-weight: bold;
-//                 display: flex;
-//                 flex-direction: row;
-//                 flex-wrap: wrap;
-//                 padding: 70px 0 10px 10px;
-//             }
-//         }
-//     }
-// }
-
 .challenges-container {
     background-color: #424750;
-    margin-top: 10px;
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
@@ -96,7 +13,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    
+
     .top-title {
         margin-top: 5px;
         color: white;
@@ -111,12 +28,12 @@
     }
 }
 
-.events {
+.challenges-list {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     margin-left: 4px;
-    border-left: 2px solid grey;
+    border-left: 2px solid rgb(177, 174, 174);
     padding: 10px 0 10px 10px;
 }
 
@@ -125,8 +42,8 @@
     flex-direction: column;
     position: relative;
     .image {
-        width: 150px;
-        height: 100px;
+        width: 130px;
+        height: 90px;
     }
 }
 
@@ -135,47 +52,47 @@
     flex-direction: column;
     position: relative;
     .image {
-        width: 100px;
-        height: 100px;
+        width: 90px;
+        height: 90px;
+    }
+    .image-text {
+        position: absolute;
+        color: white;
+        font-size: 15px;
+        display: flex;
+        flex-direction: row;
+        padding: 70px 0 20px 20px;
     }
 }
 
 .block-title {
-    color: var(--primary-color);
+    color: #5ea002;
     margin-left: 4px;
-    border-left: 2px solid grey;
+    border-left: 2px solid rgb(177, 174, 174);
     padding-left: 14px;
     font-size: 18px;
 }
 .available-block::before {
     content: "";
-    white-space: pre;
     display: inline-block;
     width: 10px;
     height: 10px;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
-    border-radius: 8px;
+    border-radius: 10px;
     background-color: #5ea002;
-    position: absolute;
 }
 .finished-block::before {
     content: "";
-    white-space: pre;
     display: inline-block;
     width: 10px;
     height: 10px;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
-    border-radius: 8px;
+    border-radius: 810px;
     background-color: #5ea002;
     position: absolute;
 }
 
-
-
 ::-webkit-scrollbar {
-    width: 4px;
+    width: 5px;
+    position:fixed;
 }
 
 ::-webkit-scrollbar-track {
@@ -183,7 +100,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--primary-color);
+    background: #5ea002;
 }
 .ng-star-inserted {
     height: 100px;
