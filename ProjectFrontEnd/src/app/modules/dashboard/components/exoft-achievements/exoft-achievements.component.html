@@ -1,5 +1,39 @@
-<mat-card class="exoft-echievements-container">
-    <div class="top-text">
-        <span>EXOFT ACHIEVEMENTS</span>
+<mat-card class="component-container challenges-container">
+    <div class="header">
+        <span class="top-title">
+            EXOFT ACHIEVEMENT
+        </span>
+        <mat-chip class="summary-chip">
+            80 XP
+        </mat-chip>
+    </div>
+
+    <div>
+        <div class="user-block" *ngFor="let user of users">
+            <div class="user-info">
+                <div class="circle" [ngStyle]="{'background-color': user.color}">
+                    <img *ngIf="user.photoUrl" src={{user.photoUrl}}>
+
+                    <div *ngIf="!user.photoUrl" class="initials">
+                        {{user | initials}}
+                    </div>
+                </div>
+
+                <span class="user-name">
+                    {{user.firstName}} {{user.lastName}}
+                </span>
+
+                <span class="time-ago">
+                    0 mins ago
+                </span>
+            </div>
+
+            <div class="achiv-info">
+                <span class='achivment'>
+                    Got achievement Exoft turbo power
+                </span>
+                <mat-chip class="records">Records</mat-chip>
+            </div>
+        </div>
     </div>
 </mat-card>

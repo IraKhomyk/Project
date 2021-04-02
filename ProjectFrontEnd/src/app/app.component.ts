@@ -10,11 +10,4 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'frontEnd-Project';
 
-  links = ['Dashboard', 'Badges', 'Orders'];
-  activeLink = this.links[0];
-
-  events: string[] = [];
-  opened: boolean;
-  
-
 }
