@@ -18,10 +18,9 @@
     <div class="finished-block">
       <span class="block-title">Finished</span>
       <div class="challenges-list">
-        <div *ngFor="let image of images">
+        <div *ngFor="let item of [].constructor(10)">
           <span class="image-text">5K Code</span>
-          <img [src]="image.url" class="image"/>
-         
+          <img [src]="imageUrl" class="image"/>
         </div>
       </div>
     </div>
