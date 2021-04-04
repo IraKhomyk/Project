@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog} from '@angular/material/dialog';
 import { userWithAchievements } from 'src/app/models/user-with-achievements.model';
+import { OtherUserProfileComponent } from '../other-user-profile/other-user-profile.component';
 
 @Component({
   selector: 'app-top-chart',
@@ -20,6 +22,10 @@ export class TopChartComponent implements OnInit {
     { firstName: "Karen", lastName: "Sarkisyan", xp: 500, color: ' rgb(243, 81, 81)', size: '', photoUrl: '' },
   ];
 
+  constructor(
+    public dialog: MatDialog
+  ) { }
+
   ngOnInit(): void {
     this.createGrafic();
   }
@@ -32,6 +38,15 @@ export class TopChartComponent implements OnInit {
     this.usersWithAchiv.forEach(element => {
       element.size = Math.round((element.xp * this.maxWidth) / this.total) + '%';
     });
+  }
+
+  otherProfile(): void {
+    const dialogRef = this.dialog.open(OtherUserProfileComponent, {
+      panelClass: 'say-thanks-container',
+      width: '800px',
+      height: '400px',
+      data: {}
+    })
   }
 
 }
