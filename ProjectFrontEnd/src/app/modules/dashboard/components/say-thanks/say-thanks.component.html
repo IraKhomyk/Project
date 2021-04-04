@@ -1,0 +1,33 @@
+<div class="thanks-container">
+    <div class="close-button">
+        <button mat-button (click)="onNoClick()">
+            <span class="material-icons">
+                close
+            </span>
+        </button>
+    </div>
+    
+    <div class="body">
+        <div class="user-info">
+            <div class="circle" [ngStyle]="{'background-color': user.color}">
+                <img *ngIf="user.photoUrl" src={{user.photoUrl}}>
+
+                <div *ngIf="!user.photoUrl" class="initials">
+                    {{user | initials}}
+                </div>
+            </div>
+            <div class="user-name">{{user.firstName}} {{user.lastName}}</div>
+            <div class="user-exp"><span class="exp">EXP: </span>{{user.exp}}</div>
+        </div>
+        <div class="achievement-list">
+            <div class="achiv-info" *ngFor="let achievement of achievements">
+                <img class="achiv-img" [src]="achievement.photoUrl">
+
+                <div class="achiv-name">
+                    {{achievement.name}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="say-thanks-button"><button class="btn" mat-button>SAY THANKS</button></div>
+</div>

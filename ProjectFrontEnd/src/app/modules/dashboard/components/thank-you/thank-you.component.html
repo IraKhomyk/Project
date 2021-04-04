@@ -10,6 +10,7 @@
     </div>
 
     <div class="user">
+        <button mat-button (click)="sayThanks()">
         <div class="circle" [ngStyle]="{'background-color': user.color}">
             <img *ngIf="user.photoUrl" src={{user.photoUrl}}>
 
@@ -17,7 +18,7 @@
                 {{user | initials}}
             </div>
         </div>
-
-        <div class="user-name">{{user.firstName}}</div>
+    </button>
+        <div class="user-name">{{user.firstName}} {{user.lastName}}</div>
     </div>
 </mat-card>

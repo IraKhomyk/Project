@@ -1,0 +1,27 @@
+<div class="request-container">
+  <div class="close-button">
+    <button mat-button (click)="onNoClick()">
+      <span class="material-icons">
+        close
+      </span>
+    </button>
+  </div>
+
+
+  <span mat-dialog-title>
+    Please, leave a message and your achievement will be assigned soon
+  </span>
+
+  <div class="body-request">
+    <mat-select [(value)]="selected">
+      <mat-option *ngFor="let item of [].constructor(3)" value="achievement">{{achievement}}</mat-option>
+    </mat-select>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Your message</mat-label>
+      <textarea matInput></textarea>
+    </mat-form-field>
+
+    <button class="send-button" mat-button>Send</button>
+  </div>
+</div>
