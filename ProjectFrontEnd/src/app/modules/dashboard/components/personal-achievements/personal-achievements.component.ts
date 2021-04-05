@@ -8,6 +8,7 @@ import { RequestAchievementComponent } from '../request-achievement/request-achi
   styleUrls: ['./personal-achievements.component.scss']
 })
 export class PersonalAchievementsComponent {
+
   message: string;
 
   achievements = [

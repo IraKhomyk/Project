@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { userWithAchievements } from 'src/app/models/user-with-achievements.model';
 import { OtherUserProfileComponent } from '../other-user-profile/other-user-profile.component';
 

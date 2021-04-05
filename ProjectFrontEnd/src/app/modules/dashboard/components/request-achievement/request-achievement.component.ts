@@ -15,8 +15,6 @@ export class RequestAchievementComponent {
 
   achievement = 'Achievement';
 
-  selected = 'Achievement';
-  
   constructor(
     public dialogRef: MatDialogRef<RequestAchievementComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) { }

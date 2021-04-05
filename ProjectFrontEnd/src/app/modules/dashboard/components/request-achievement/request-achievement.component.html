@@ -7,13 +7,12 @@
     </button>
   </div>
 
-
   <span mat-dialog-title>
     Please, leave a message and your achievement will be assigned soon
   </span>
 
   <div class="body-request">
-    <mat-select [(value)]="selected">
+    <mat-select [(value)]="achievement">
       <mat-option *ngFor="let item of [].constructor(3)" value="achievement">{{achievement}}</mat-option>
     </mat-select>
 

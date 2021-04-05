@@ -8,9 +8,9 @@ describe('RequestAchievementComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RequestAchievementComponent ]
+      declarations: [RequestAchievementComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

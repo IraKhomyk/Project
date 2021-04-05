@@ -18,8 +18,9 @@ export class OtherUserProfileComponent {
   ];
 
   users: Array<userWithAchievements> = [
-    { firstName: "Ira", lastName: "Khomyk", xp: 600, color: 'rgb(92, 198, 206)', size: '', photoUrl: './../../../../assets/myphoto.jpg'},
+    { firstName: "Ira", lastName: "Khomyk", xp: 600, color: 'rgb(92, 198, 206)', size: '', photoUrl: './../../../../assets/myphoto.jpg' },
   ];
+
   constructor(
     public dialogRef: MatDialogRef<OtherUserProfileComponent>,
     @Inject(MAT_DIALOG_DATA) public data: string) { }
@@ -27,6 +28,4 @@ export class OtherUserProfileComponent {
   onNoClick(): void {
     this.dialogRef.close();
   }
-
-
 }

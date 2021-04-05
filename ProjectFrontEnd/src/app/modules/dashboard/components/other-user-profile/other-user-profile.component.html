@@ -1,5 +1,4 @@
-
-<div class="thanks-container">
+<div class="other-user-container">
     <div class="close-button">
         <button mat-button (click)="onNoClick()">
             <span class="material-icons">
@@ -7,7 +6,7 @@
             </span>
         </button>
     </div>
-    
+
     <div class="body">
         <div class="user-info" *ngFor="let user of users">
             <div class="circle" [ngStyle]="{'background-color': user.color}">

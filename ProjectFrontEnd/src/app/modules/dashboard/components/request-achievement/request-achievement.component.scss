@@ -4,14 +4,14 @@
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-.body-request{
+.body-request {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
 
-.send-button{
+.send-button {
     background-color: #5ea002;
     width: 100px;
     height: 30px;
@@ -21,12 +21,12 @@
     justify-content: center;
     align-items: center;
 }
-.material-icons{
+
+.material-icons {
     color: #5ea002;
 }
 
-.close-button{
+.close-button {
     display: flex;
     justify-content: flex-end;
 }
-
