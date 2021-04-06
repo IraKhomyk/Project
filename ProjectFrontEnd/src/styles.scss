@@ -121,7 +121,6 @@ body {
   color: white;
 }
 
-
 .request-model-container .mat-form-field-underline {
   width: 0%;
   height: 0%;
@@ -147,12 +146,13 @@ body {
   transform: perspective(100px);
   color: white;
   -ms-transform: none;
-  cursor:none;
+  cursor: none;
 }
 
 .request-model-container .mat-form-field-appearance-legacy .mat-form-field-subscript-wrapper {
   border-bottom: 1px solid white;
 }
+
 //------------------------------say thanks modal window------------
 .say-thanks-container .mat-dialog-container {
   display: block;

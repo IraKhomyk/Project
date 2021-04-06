@@ -15,7 +15,7 @@ import { PipesModule } from 'src/app/shared/pipes/pipes.module';
 import { RequestAchievementComponent } from './components/request-achievement/request-achievement.component';
 import { SayThanksComponent } from './components/say-thanks/say-thanks.component';
 import { OtherUserProfileComponent } from './components/other-user-profile/other-user-profile.component';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -35,6 +35,8 @@ import { OtherUserProfileComponent } from './components/other-user-profile/other
     MaterialModule,
     RouterModule,
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     PipesModule.forRoot(),
   ],
 })

@@ -1,4 +1,5 @@
 import { Component, Inject } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
@@ -7,11 +8,22 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./request-achievement.component.scss']
 })
 export class RequestAchievementComponent {
-  achievement = 'Achievement';
+  selectAchievement = 'Achievement';
+
+  requestForm: FormGroup = new FormGroup({
+    "achievement": new FormControl(),
+    "message": new FormControl(),
+  });
 
   constructor(
     public dialogRef: MatDialogRef<RequestAchievementComponent>,
     @Inject(MAT_DIALOG_DATA) public message: string) { }
+
+  send(): void {
+    if (this.requestForm.valid) {
+      this.dialogRef.close();
+    }
+  }
 
   onNoClick(): void {
     this.dialogRef.close();
