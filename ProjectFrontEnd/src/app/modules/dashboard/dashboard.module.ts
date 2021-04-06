@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from 'src/app/shared/material/material.module';
-import { BadgesComponent } from './components/badges/badges.component';
 
+import { BadgesComponent } from './components/badges/badges.component';
 import { ChallengesComponent } from './components/challenges/challenges.component';
 import { ExoftAchievementsComponent } from './components/exoft-achievements/exoft-achievements.component';
 import { GreetingComponent } from './components/greeting/greeting.component';
