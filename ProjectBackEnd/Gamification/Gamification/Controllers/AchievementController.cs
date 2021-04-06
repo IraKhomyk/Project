@@ -1,12 +1,14 @@
 ﻿using Gamification.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+using System.Threading;
+using Microsoft.EntityFrameworkCore;
+using Gamification.DAL.IRepository;
 
 namespace Gamification.Controllers
 {
@@ -14,30 +16,24 @@ namespace Gamification.Controllers
     [ApiController]
     public class AchievementController : ControllerBase
     {
-        string path = @"./../Gamification/MockData/mock_data.json";
-
-        private ILogger<AchievementController> _logger;
-        List<Achievement> CreatedList;
-        public AchievementController(ILogger<AchievementController> logger)
+        private readonly IAchievementRepository _achievementRepository;
+        public AchievementController(IAchievementRepository achievementRepository)
         {
-            _logger = logger;
-
-            string readText = System.IO.File.ReadAllText(path);
-            CreatedList = JsonSerializer.Deserialize<List<Achievement>>(readText);
+            _achievementRepository = achievementRepository;
         }
 
         [HttpGet]
-        public IEnumerable<Achievement> GetAll()
+        public async Task<IActionResult> GetAllAchievements(CancellationToken cancellationToken)
         {
-            return CreatedList;
+            var achievements = _achievementRepository.GetAllAchievements(cancellationToken);
+            return Ok(await achievements);
         }
 
         [HttpGet("{Id}")]
-        public Achievement GetAchievementById(int Id)
+        public async Task<ActionResult<Achievement>> GetAchievementById(int Id, CancellationToken cancellationToken)
         {
-
-            Achievement achiv = CreatedList[CreatedList.FindIndex(elem => elem.Id == Id)];
-            return achiv;
+            var achievement = _achievementRepository.GetAchievementById(Id, cancellationToken);
+            return Ok(await achievement);
         }
     }
 }
