@@ -10,7 +10,6 @@ namespace Gamification
     public class MyContext : DbContext
     {
         public DbSet<Achievement> Achievements { get; set; }
-
         public MyContext(DbContextOptions<MyContext> options) : base(options)
         {
         }
@@ -18,7 +17,6 @@ namespace Gamification
         public MyContext()
         {
         }
-
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

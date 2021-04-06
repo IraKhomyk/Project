@@ -17,7 +17,6 @@ namespace Gamification.Controllers
     public class AchievementController : ControllerBase
     {
         private readonly IAchievementRepository _achievementRepository;
-
         public AchievementController(IAchievementRepository achievementRepository)
         {
             _achievementRepository = achievementRepository;
@@ -26,7 +25,7 @@ namespace Gamification.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllAchievements(CancellationToken cancellationToken)
         {
-            var achievements =  _achievementRepository.GetAllAchievements(cancellationToken);
+            var achievements = _achievementRepository.GetAllAchievements(cancellationToken);
             return Ok(await achievements);
         }
 
