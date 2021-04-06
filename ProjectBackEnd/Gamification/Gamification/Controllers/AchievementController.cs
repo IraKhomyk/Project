@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using System.Threading;
 using Microsoft.EntityFrameworkCore;
+using Gamification.DAL.IRepository;
 
 namespace Gamification.Controllers
 {
@@ -15,34 +16,25 @@ namespace Gamification.Controllers
     [ApiController]
     public class AchievementController : ControllerBase
     {
-        //string path = @"./../Gamification/MockData/mock_data.json";
-        private MyContext mycontext;
-        private ILogger<AchievementController> _logger;
-       // List<Achievement> CreatedList;
-        public AchievementController(ILogger<AchievementController> logger, MyContext context)
-        {
-            _logger = logger;
+        private readonly IAchievementRepository _achievementRepository;
 
-            mycontext = context;
+        public AchievementController(IAchievementRepository achievementRepository)
+        {
+            _achievementRepository = achievementRepository;
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Achievement>> GetAll(CancellationToken cancellationToken)
+        public async Task<IActionResult> GetAllAchievements(CancellationToken cancellationToken)
         {
-            using (mycontext)
-            {
-                return await mycontext.Achievements.ToListAsync();
-            }
+            var achievements =  _achievementRepository.GetAllAchievements(cancellationToken);
+            return Ok(await achievements);
         }
 
         [HttpGet("{Id}")]
         public async Task<ActionResult<Achievement>> GetAchievementById(int Id, CancellationToken cancellationToken)
         {
-            using (mycontext)
-            {
-                return Ok(await mycontext.Achievements.FirstAsync(c => c.Id == Id));
-            }
-
+            var achievement = _achievementRepository.GetAchievementById(Id, cancellationToken);
+            return Ok(await achievement);
         }
     }
 }
