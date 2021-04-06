@@ -1,17 +1,19 @@
-.mat-drawer-container, .mat-drawer{
+.mat-drawer-container,
+.mat-drawer {
   background-color: #323232;
- }
- nav a {
-      color:white;
-  }
+}
+nav a {
+  color: white;
+}
 
-  .mat-tab-header{
-      display:flex;
-  }
+.mat-tab-header {
+  display: flex;
+}
 
-  mat-sidenav-container{
-    height: 100%;
-  }
-  
+mat-sidenav-container {
+  height: 100%;
+}
 
-  
+.container {
+  min-width: 1600px;
+}

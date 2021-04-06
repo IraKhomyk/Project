@@ -16,13 +16,15 @@
         <table class="leveling">
             <tr *ngFor="let user of usersWithAchiv">
                 <td class="leveling">
-                    <div class="circle" [ngStyle]="{'background-color': user.color}">
-                        <img *ngIf="user.photoUrl" src={{user.photoUrl}}>
+                    <button mat-button (click)="otherProfile()">
+                        <div class="circle" [ngStyle]="{'background-color': user.color}">
+                            <img *ngIf="user.photoUrl" src={{user.photoUrl}}>
 
-                        <div *ngIf="!user.photoUrl" class="initials">
-                            {{user | initials}}
+                            <div *ngIf="!user.photoUrl" class="initials">
+                                {{user | initials}}
+                            </div>
                         </div>
-                    </div>
+                    </button>
                 </td>
 
                 <td>

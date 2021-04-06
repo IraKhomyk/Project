@@ -1,14 +1,147 @@
-.exoft-echievements-container {
+.challenges-container {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    height: 100%;
+}
+
+.header {
     background-color: #424750;
     font-size: 15px;
     font-family: Roboto, "Helvetica Neue", sans-serif;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    .top-title {
+        margin-top: 5px;
+        color: white;
+        font-weight: 550;
+    }
+
+    .summary-chip {
+        background-color: #5ea002;
+        color: white;
+        border-radius: 40px;
+        width: 50px;
+        height: 20px;
+        align-content: center;
+        display: flex;
+        justify-content: center;
+        padding: 5px;
+    }
+}
+.user-block {
+    display: flex;
+    flex-direction: column;
+    position: relative;
 }
 
-.top-text {
-    margin-top: 5px;
+.block-title {
+    color: #5ea002;
     display: flex;
-    justify-content: space-between;
     flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: 15px;
+    border-left: 1px solid rgb(177, 174, 174);
+}
+
+.user-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .circle {
+        border-radius: 50%;
+        border: 1px solid #5ea002;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: -5px;
+
+        img {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+        }
+        .initials {
+            color: white;
+            font-size: 20px;
+            line-height: 19px;
+            letter-spacing: 0.2625px;
+            margin-top: 85px;
+            flex-direction: row;
+        }
+    }
+
+    .user-name {
+        color: #5ea002;
+        padding: 10px;
+        font-size: 15px;
+    }
+
+    .time-ago {
+        color: white;
+        display: flex;
+        justify-content: end;
+        font-size: 11px;
+        padding: 5px;
+    }
+}
+
+.achiv-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-left: 15px;
+    border-left: 1px solid #b1aeae;
+    height: 100%;
+    width: 100%;
     color: white;
-    font-weight: 550;
+    padding: 5px;
+
+    .records {
+        color: white;
+        border-radius: 40px;
+        padding: 5px;
+        margin: 10px;
+        margin-left: 15px;
+        width: 70px;
+        height: 20px;
+        font-size: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #10acac;
+        border-radius: 40px;
+    }
+
+    .achivment {
+        margin-left: 15px;
+        font-size: 13px;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    position: fixed;
+}
+
+::-webkit-scrollbar-track {
+    background: grey;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #5ea002;
+}
+
+.ng-star-inserted {
+    height: 100px;
+    margin: 4px;
 }

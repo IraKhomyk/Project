@@ -13,6 +13,10 @@ import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatDialogModule} from '@angular/material/dialog';
+import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -36,6 +40,10 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatListModule,
     MatCardModule,
     MatGridListModule,
+    MatChipsModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    FormsModule
   ]
 })
 
