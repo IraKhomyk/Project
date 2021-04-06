@@ -16,9 +16,17 @@
                     {{user | initials}}
                 </div>
             </div>
-            <div class="user-name">{{user.firstName}} {{user.lastName}}</div>
-            <div class="user-exp"><span class="exp">EXP: </span>{{user.xp}}</div>
+
+            <div class="user-name">
+                {{user.firstName}} {{user.lastName}}
+            </div>
+
+            <div class="user-exp">
+                <span class="exp">EXP: </span>
+                {{user.xp}}
+            </div>
         </div>
+
         <div class="achievement-list">
             <div class="achiv-info" *ngFor="let achievement of achievements">
                 <img class="achiv-img" [src]="achievement.photoUrl">
@@ -29,5 +37,8 @@
             </div>
         </div>
     </div>
-    <div class="say-thanks-button"><button class="btn" mat-button>SAY THANKS</button></div>
+
+    <div class="say-thanks-button">
+        <button class="btn text-uppercase" mat-button>say thanks</button>
+    </div>
 </div>

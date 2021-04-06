@@ -11,20 +11,20 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$frontEnd-Project-primary: mat-palette($mat-indigo);
-$frontEnd-Project-accent: mat-palette($mat-pink, A200, A100, A400);
+$front-end-Project-primary: mat-palette($mat-indigo);
+$front-end-Project-accent: mat-palette($mat-pink, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
-$frontEnd-Project-warn: mat-palette($mat-red);
+$front-end-Project-warn: mat-palette($mat-red);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$frontEnd-Project-theme: mat-light-theme(
+$front-end-Project-theme: mat-light-theme(
   (
     color: (
-      primary: $frontEnd-Project-primary,
-      accent: $frontEnd-Project-accent,
-      warn: $frontEnd-Project-warn,
+      primary: $front-end-Project-primary,
+      accent: $front-end-Project-accent,
+      warn: $front-end-Project-warn,
     ),
   )
 );
@@ -32,7 +32,7 @@ $frontEnd-Project-theme: mat-light-theme(
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include angular-material-theme($frontEnd-Project-theme);
+@include angular-material-theme($front-end-Project-theme);
 
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
@@ -47,20 +47,20 @@ $frontEnd-Project-theme: mat-light-theme(
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$frontEnd-Project-primary: mat-palette($mat-indigo);
-$frontEnd-Project-accent: mat-palette($mat-pink, A200, A100, A400);
+$front-end-Project-primary: mat-palette($mat-indigo);
+$front-end-Project-accent: mat-palette($mat-pink, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
-$frontEnd-Project-warn: mat-palette($mat-red);
+$front-end-Project-warn: mat-palette($mat-red);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$frontEnd-Project-theme: mat-light-theme(
+$front-end-Project-theme: mat-light-theme(
   (
     color: (
-      primary: $frontEnd-Project-primary,
-      accent: $frontEnd-Project-accent,
-      warn: $frontEnd-Project-warn,
+      primary: $front-end-Project-primary,
+      accent: $front-end-Project-accent,
+      warn: $front-end-Project-warn,
     ),
   )
 );
@@ -68,7 +68,7 @@ $frontEnd-Project-theme: mat-light-theme(
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include angular-material-theme($frontEnd-Project-theme);
+@include angular-material-theme($front-end-Project-theme);
 
 /* You can add global styles to this file, and also import other style files */
 
@@ -86,6 +86,11 @@ body {
   background-color: #424750;
   font-size: 15px;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+  font-size: 14px;
 }
 
 //------------------------------request achievement modal window------------
@@ -146,8 +151,6 @@ body {
 }
 
 .request-model-container .mat-form-field-appearance-legacy .mat-form-field-subscript-wrapper {
-  margin-top: 0.5416666667em;
-  top: calc(100% - 1.6666666667em);
   border-bottom: 1px solid white;
 }
 //------------------------------say thanks modal window------------

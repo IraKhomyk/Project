@@ -9,7 +9,6 @@ import { OtherUserProfileComponent } from '../other-user-profile/other-user-prof
   styleUrls: ['./top-chart.component.scss']
 })
 export class TopChartComponent implements OnInit {
-
   showInitials = false;
   total = 0;
   maxWidth = 580;
@@ -45,10 +44,8 @@ export class TopChartComponent implements OnInit {
       panelClass: 'say-thanks-container',
       width: '800px',
       height: '400px',
-      data: {}
     })
   }
-
 }
 
 

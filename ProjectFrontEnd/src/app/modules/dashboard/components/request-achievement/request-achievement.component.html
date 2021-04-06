@@ -13,7 +13,7 @@
 
   <div class="body-request">
     <mat-select [(value)]="achievement">
-      <mat-option *ngFor="let item of [].constructor(3)" value="{{achievement}}" >{{achievement}}</mat-option>
+      <mat-option *ngFor="let item of [].constructor(3)" [value]="achievement">{{achievement}}</mat-option>
     </mat-select>
 
     <mat-form-field class="example-full-width">

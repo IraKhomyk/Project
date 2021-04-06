@@ -1,9 +1,5 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-
-interface DialogData {
-  message: string;
-}
 
 @Component({
   selector: 'app-request-achievement',
@@ -11,16 +7,13 @@ interface DialogData {
   styleUrls: ['./request-achievement.component.scss']
 })
 export class RequestAchievementComponent {
-  message: string;
-
   achievement = 'Achievement';
 
   constructor(
     public dialogRef: MatDialogRef<RequestAchievementComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
+    @Inject(MAT_DIALOG_DATA) public message: string) { }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
-
 }

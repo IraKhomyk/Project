@@ -1,7 +1,6 @@
 <mat-card class="component-container challenges-container">
-
   <div class="header">
-    <span class="top-title">CHALLENGES</span>
+    <span class="top-title text-uppercase">challenges</span>
     <a mat-button class="top-button">Show more</a>
   </div>
 
@@ -16,11 +15,15 @@
     </div>
 
     <div class="finished-block">
-      <span class="block-title">Finished</span>
+      <span class="block-title">
+        Finished
+      </span>
       <div class="challenges-list">
         <div *ngFor="let item of [].constructor(10)">
-          <span class="image-text">5K Code</span>
-          <img [src]="imageUrl" class="image"/>
+          <span class="image-text">
+            5K Code
+          </span>
+          <img [src]="imageUrl" class="image" />
         </div>
       </div>
     </div>

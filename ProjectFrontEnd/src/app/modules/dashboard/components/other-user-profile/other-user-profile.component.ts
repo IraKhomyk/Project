@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { userWithAchievements } from 'src/app/models/user-with-achievements.model';
 
@@ -8,13 +8,11 @@ import { userWithAchievements } from 'src/app/models/user-with-achievements.mode
   styleUrls: ['./other-user-profile.component.scss']
 })
 export class OtherUserProfileComponent {
-
   achievements = [
     { photoUrl: './../../../../assets/achiv1.jpg', name: 'Exoft turbo power' },
     { photoUrl: './../../../../assets/achiv6.jpg', name: 'Exoft corporate power' },
     { photoUrl: './../../../../assets/achiv7.jpg', name: 'Exoft skylark power' },
     { photoUrl: './../../../../assets/achiv8.jpg', name: 'Exoft skylark power' },
-
   ];
 
   users: Array<userWithAchievements> = [
