@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-challenges',
@@ -6,5 +6,5 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./challenges.component.scss']
 })
 export class ChallengesComponent {
-
+  imageUrl = './../../../../assets/beauty.jpg';
 }

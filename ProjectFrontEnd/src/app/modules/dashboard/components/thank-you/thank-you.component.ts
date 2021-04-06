@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { User } from 'src/app/models/user.model';
+import { SayThanksComponent } from '../say-thanks/say-thanks.component';
 
 @Component({
   selector: 'app-thank-you',
@@ -9,7 +11,7 @@ import { User } from 'src/app/models/user.model';
 export class ThankYouComponent {
 
   user: User = {
-    firstName: 'Dima Khomyk',
+    firstName: 'Dima',
     lastName: 'Khomyk',
     email: 'dima@gmail.com',
     password: 'ira!2345',
@@ -20,4 +22,14 @@ export class ThankYouComponent {
     color: 'rgb(40, 120, 224)',
   }
 
+  constructor(public dialog: MatDialog) { }
+
+  sayThanks(): void {
+    const dialogRef = this.dialog.open(SayThanksComponent, {
+      panelClass: 'say-thanks-container',
+      width: '800px',
+      height: '400px',
+      data: {}
+    })
+  }
 }

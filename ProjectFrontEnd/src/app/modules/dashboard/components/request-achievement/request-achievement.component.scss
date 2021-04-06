@@ -1,0 +1,32 @@
+.request-container {
+    height: 100%;
+    width: 100%;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.body-request {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.send-button {
+    background-color: #5ea002;
+    width: 100px;
+    height: 30px;
+    font-size: 15px;
+    color: rgb(182, 182, 182);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.material-icons {
+    color: #5ea002;
+}
+
+.close-button {
+    display: flex;
+    justify-content: flex-end;
+}

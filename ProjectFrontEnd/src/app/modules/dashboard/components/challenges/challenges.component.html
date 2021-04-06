@@ -1,5 +1,28 @@
-<mat-card class="challenges-container">
-    <div class="top-text">
-        <span>CHALLENGES</span>
+<mat-card class="component-container challenges-container">
+
+  <div class="header">
+    <span class="top-title">CHALLENGES</span>
+    <a mat-button class="top-button">Show more</a>
+  </div>
+
+  <div class="challenges-body">
+    <div class="available-block">
+      <span class="block-title">Available</span>
+      <div class="challenges-list">
+        <div>
+          <img src="./../../../../assets/books.jpg" class="image" />
+        </div>
+      </div>
     </div>
+
+    <div class="finished-block">
+      <span class="block-title">Finished</span>
+      <div class="challenges-list">
+        <div *ngFor="let item of [].constructor(10)">
+          <span class="image-text">5K Code</span>
+          <img [src]="imageUrl" class="image"/>
+        </div>
+      </div>
+    </div>
+  </div>
 </mat-card>

@@ -1,14 +1,107 @@
 .challenges-container {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    height: 100%;
+}
+
+.header {
     background-color: #424750;
     font-size: 15px;
     font-family: Roboto, "Helvetica Neue", sans-serif;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .top-title {
+        margin-top: 5px;
+        color: white;
+        font-weight: 550;
+    }
+    .top-button {
+        background-color: #5ea002;
+        color: white;
+        display: flex;
+        align-items: center;
+        height: 30px;
+    }
 }
 
-.top-text {
-    margin-top: 5px;
+.challenges-list {
     display: flex;
-    justify-content: space-between;
     flex-direction: row;
-    color: white;
-    font-weight: 550;
+    flex-wrap: wrap;
+    margin-left: 4px;
+    border-left: 2px solid rgb(177, 174, 174);
+    padding: 10px 0 10px 10px;
+}
+
+.available-block {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    .image {
+        width: 130px;
+        height: 90px;
+    }
+}
+
+.finished-block {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    .image {
+        width: 90px;
+        height: 90px;
+    }
+    .image-text {
+        position: absolute;
+        color: white;
+        font-size: 15px;
+        display: flex;
+        flex-direction: row;
+        padding: 70px 0 20px 20px;
+    }
+}
+
+.block-title {
+    color: #5ea002;
+    margin-left: 4px;
+    border-left: 2px solid rgb(177, 174, 174);
+    padding-left: 14px;
+    font-size: 18px;
+}
+.available-block::before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    background-color: #5ea002;
+}
+.finished-block::before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    background-color: #5ea002;
+    position: absolute;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    position:fixed;
+}
+
+::-webkit-scrollbar-track {
+    background: grey;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #5ea002;
+}
+.ng-star-inserted {
+    height: 100px;
+    margin: 4px;
 }
