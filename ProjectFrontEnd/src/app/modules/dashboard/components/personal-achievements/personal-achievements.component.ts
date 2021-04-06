@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { RequestAchievementComponent } from '../request-achievement/request-achievement.component';
 
@@ -8,9 +8,6 @@ import { RequestAchievementComponent } from '../request-achievement/request-achi
   styleUrls: ['./personal-achievements.component.scss']
 })
 export class PersonalAchievementsComponent {
-
-  message: string;
-
   achievements = [
     { photoUrl: './../../../../assets/achiv1.jpg', name: 'Exoft turbo power', time: '0 min ago', ex: '15 px', },
     { photoUrl: './../../../../assets/achiv2.jpg', name: 'Exoft turbo power', time: '0 min ago', ex: '15 px', },
@@ -29,7 +26,6 @@ export class PersonalAchievementsComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.message = result;
     });
   }
 }
