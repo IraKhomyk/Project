@@ -9,17 +9,13 @@ import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { MaterialModule } from './shared/material/material.module';
 import { CommonModule } from '@angular/common';
 import { MainMenuModule } from './shared/main-menu/main-menu.module';
-import { BadgesComponent } from './modules/badges/badges/badges.component';
 import { BadgesModule } from './modules/badges/badges/badges.module';
-import { LastAchievementsComponent } from './modules/badges/components/last-achievements/last-achievements.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    BadgesComponent,
-    LastAchievementsComponent,
   ],
 
   imports: [

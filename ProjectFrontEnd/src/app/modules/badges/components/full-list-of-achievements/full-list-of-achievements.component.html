@@ -1,0 +1,41 @@
+<mat-card class="component-container full-list-container">
+    <div class="header">
+        <span class="top-title text-uppercase">full list of achievements</span>
+    </div>
+
+    <table class="table-body">
+        <tr class="table-title text">
+            <td>
+                <span>Achievement</span>
+            </td>
+
+            <td>
+                <span> EXP points</span>
+            </td>
+
+            <td>
+                <span class="date-title">Date</span>
+            </td>
+        </tr>
+        <tr *ngFor="let achievement of achievements">
+            <td class="achiev-info">
+                <img matListAvata class="circle" [src]="achievement.photoUrl">
+                <span matLine class="text">
+                    {{achievement.name}}
+                </span>
+            </td>
+
+            <td>
+                <span class="text xp-info">
+                    + {{achievement.ex}}
+                </span>
+            </td>
+
+            <td>
+                <span class="text">
+                    {{achievement.time}}
+                </span>
+            </td>
+        </tr>
+    </table>
+</mat-card>

@@ -10,7 +10,6 @@ type userShortInfo = Pick<userWithAchievements, 'firstName' | 'lastName' | 'phot
 })
 
 export class HeaderComponent {
-  title = 'front-end-Project';
   routers = [{
     link: '/dashboard',
     name: 'Dashboard'

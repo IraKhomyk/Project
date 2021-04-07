@@ -1,0 +1,19 @@
+<mat-card class="edit-profile-container">
+    <div class="edit-profile-button">
+        <button mat-raised-button>Request</button>
+    </div>
+
+    <div class="body">
+        <div class="circle" [ngStyle]="{'background-color': user.color}">
+            <img *ngIf="user.photoUrl" src={{user.photoUrl}}>
+
+            <div *ngIf="!user.photoUrl" class="initials">
+                {{user | initials}}
+            </div>
+        </div>
+
+        <div class="user-name">
+            {{user.firstName}} {{user.lastName}}
+        </div>
+    </div>
+</mat-card>

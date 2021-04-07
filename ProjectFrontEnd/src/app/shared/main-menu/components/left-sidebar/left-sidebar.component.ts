@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { User } from '../../../../models/user.model';
-import { CommonService } from '../../../../services/common.service';
 
 @Component({
   selector: 'app-left-sidebar',
@@ -8,7 +7,6 @@ import { CommonService } from '../../../../services/common.service';
   styleUrls: ['./left-sidebar.component.scss']
 })
 export class LeftSidebarComponent {
-
   opened = false;
 
   links = ['Dashboard', 'Badges', 'Orders'];

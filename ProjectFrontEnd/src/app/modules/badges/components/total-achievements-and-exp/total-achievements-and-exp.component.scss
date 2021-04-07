@@ -1,0 +1,84 @@
+.total-achiv-container {
+    background-color: #424750;
+    font-size: 15px;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    height: 100%;
+    width: 100%;
+}
+
+.text-title {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    color: white;
+    font-weight: 550;
+    margin: 15px;
+    margin-top: 5px;
+}
+
+.exp-count-container {
+    margin-top: 10px;
+
+    .exp-count-number {
+        font-size: 100px;
+        font-family: Roboto, "Helvetica Neue", sans-serif;
+        color: #5ea002;
+    }
+}
+
+.badges-count-container {
+    margin-top: 30px;
+
+    .badges-count-number {
+        font-size: 40px;
+        font-family: Roboto, "Helvetica Neue", sans-serif;
+        color: #5ea002;
+    }
+}
+
+.count-title {
+    margin-top: 10px;
+
+    .count-text {
+        font-size: 25px;
+        display: flex;
+        color: white;
+    }
+
+    .count-text-badges {
+        font-size: 15px;
+        display: flex;
+        color: white;
+    }
+}
+
+.badges-summary-text {
+    color: white;
+    font-size: 11px;
+}
+
+.badges-summary-container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 40px;
+    font-size: 10px;
+    justify-content: center;
+}
+
+mat-icon {
+    font-size: 5px;
+    justify-content: flex-start;
+    display: flex;
+    flex-direction: row;
+    margin: 3px;
+    color: #5ea002;
+    margin: 8px;
+}
+
+.body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 40px;
+}

@@ -2,6 +2,7 @@
 .mat-drawer {
   background-color: #323232;
 }
+
 nav a {
   color: white;
 }
@@ -23,6 +24,7 @@ mat-sidenav {
   background-color: #323232;
   color: #323232;
   width: 350px;
+  height: 100%;
 }
 
 mat-sidenav mat-toolbar {
@@ -41,6 +43,7 @@ mat-sidenav a mat-icon {
 
 .sidenav {
   width: 200px;
+  height: 100%;
 }
 
 .sidenav .mat-toolbar {
@@ -113,6 +116,7 @@ mat-sidenav a mat-icon {
   display: flex;
   justify-content: center;
 }
+
 .right-sidebar a {
   color: white;
   display: flex;
