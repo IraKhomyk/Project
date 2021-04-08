@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
@@ -6,10 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sign-in.component.scss']
 })
 export class SignInComponent implements OnInit {
+  constructor(private router: Router) { }
 
-  constructor() { }
+  username: string;
+  password: string;
 
-  ngOnInit(): void {
+  ngOnInit() {
+  }
+
+  login(): void {
+    if (this.username == 'admin' && this.password == 'admin') {
+      this.router.navigate(["user"]);
+    } else {
+      alert("Invalid credentials");
+    }
   }
 
 }

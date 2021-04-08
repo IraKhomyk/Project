@@ -93,6 +93,11 @@ body {
   font-size: 14px;
 }
 
+.mat-form-field.mat-form-field-invalid .mat-form-field-label.mat-accent,
+.mat-form-field.mat-form-field-invalid .mat-form-field-label .mat-form-field-required-marker {
+  display: none;
+}
+
 //------------------------------request achievement modal window------------
 .request-model-container .mat-dialog-container {
   display: block;
@@ -169,3 +174,49 @@ body {
   border-radius: 20px;
 }
 
+//-----------------------------------------------------sign in page
+.sign-in-container .mat-form-field.mat-warn .mat-input-element,
+.mat-form-field-invalid .mat-input-element {
+  caret-color: #ffffff;
+}
+
+.sign-in-container .mat-form-field.mat-form-field-invalid .mat-form-field-label {
+  color: white;
+  font-size: 10px;
+}
+
+.sign-in-container .mat-input-element {
+  color: white;
+  font-size: 10px;
+}
+
+.sign-in-container .mat-form-field-appearance-legacy .mat-form-field-label {
+  color: white;
+}
+
+.sign-in-container .mat-card {
+  background: white;
+  color: white;
+}
+
+.sign-in-container .mat-form-field-appearance-legacy .mat-form-field-underline {
+  background-color: white;
+}
+
+.sign-in-container .mat-form-field.mat-form-field-invalid .mat-form-field-ripple,
+.mat-form-field.mat-form-field-invalid .mat-form-field-ripple.mat-accent {
+  background-color: white;
+}
+
+.sign-in-container .mat-button,
+.mat-icon-button,
+.mat-stroked-button,
+.mat-flat-button {
+  box-sizing: border-box;
+  position: relative;
+  border: none;
+  -webkit-tap-highlight-color: transparent;
+  text-align: center;
+  line-height: 36px;
+  border-radius: 0%;
+}

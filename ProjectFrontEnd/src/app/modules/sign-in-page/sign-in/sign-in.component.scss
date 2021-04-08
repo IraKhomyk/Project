@@ -1,0 +1,56 @@
+mat-card {
+    background-color: #3d4147;
+    padding: 20px;
+    width: 25%;
+    height: 25%;
+    margin: 2em auto;
+    text-align: center;
+    border-top-left-radius: 0%;
+    border-top-right-radius: 0%;
+    border-bottom-left-radius: 3%;
+    border-bottom-right-radius: 3%;
+    border-bottom: 50px #5ea002 solid;
+    border-top: 5px #5ea002 solid;
+    display: block;
+    margin-top: 200px;
+}
+
+mat-form-field {
+    display: block;
+}
+
+.exoft-logo-image {
+    padding: 20px;
+    width: 100%;
+    padding-top: 50px;
+    height: 90%;
+}
+
+.sign-in-button {
+    border-bottom: 5px solid #5ea002;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #5ea002;
+    margin-top: 65px;
+
+    .btn {
+        font-size: 20px;
+        color: white;
+        border: medium none;
+        background-image: none;
+        background: transparent;
+        float: left;
+        background-color: transparent;
+        width: 100%;
+    }
+}
+
+.forgot-password-button {
+    color: #5ea002;
+    margin-top: 20px;
+
+    .btn span {
+        border-bottom: 2px solid #5ea002;
+    }
+}
