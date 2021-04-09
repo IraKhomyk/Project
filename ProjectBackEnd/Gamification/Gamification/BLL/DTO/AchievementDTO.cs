@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Gamification.Models
+namespace Gamification.BLL.DTO
 {
-    public class Achievement : BaseEntity
+    public class AchievementDTO
     {
         public string Name { get; set; }
         public string Description { get; set; }
         public int Xp { get; set; }
         public int IconId { get; set; }
-        public ICollection<UserAchievement> UserAchievements { get; set; }
-
     }
 }
