@@ -16,7 +16,8 @@ namespace Gamification.DAL.Repository.UnitOfWork
         {
             _context = context;
         }
-        public IAchievementRepository achievementRepository { 
+        public IAchievementRepository achievementRepository
+        {
             get
             {
                 if (this._achievementRepository == null)

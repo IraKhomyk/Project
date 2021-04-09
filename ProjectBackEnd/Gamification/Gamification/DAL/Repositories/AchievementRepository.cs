@@ -12,8 +12,6 @@ namespace Gamification.DAL.Repository
 {
     public class AchievementRepository : IAchievementRepository
     {
-        private readonly IMapper _mapper;
-
         private MyContext _context;
 
         public AchievementRepository(MyContext context)
