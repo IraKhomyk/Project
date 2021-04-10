@@ -33,6 +33,8 @@ namespace Gamification.DAL.Repository
 
         public async Task CreateAchievement(Achievement achievement, CancellationToken cancellationToken)
         {
+            var guid = new Guid();
+            achievement.Id = guid;
             await _context.Achievements.AddAsync(achievement, cancellationToken);
         }
 

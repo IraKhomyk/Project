@@ -1,4 +1,5 @@
-﻿using Gamification.DAL.IRepository;
+﻿using Gamification.DAL.IRepositories;
+using Gamification.DAL.IRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,6 @@ namespace Gamification.DAL.Repository.UnitOfWork
     {
         Task SaveChanges(CancellationToken cancellationToken);
         IAchievementRepository achievementRepository { get; set; }
+        IUserRepository userRepository { get; set; }
     }
 }
