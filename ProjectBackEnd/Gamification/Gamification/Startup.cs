@@ -1,5 +1,8 @@
+using AutoMapper;
+using Gamification.DAL.Repository.UnitOfWork;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -27,7 +30,6 @@ namespace Gamification
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors();
 
             services.AddControllers();
 
@@ -35,7 +37,21 @@ namespace Gamification
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Gamification", Version = "v1" });
             });
+
             services.AddDbContext<MyContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MyConnection")));
+
+            var mapperConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new AutoMappingProfile());
+            });
+
+            IMapper mapper = mapperConfig.CreateMapper();
+            services.AddSingleton(mapper);
+
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
+
+            services.AddCors();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
         }
 
