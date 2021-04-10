@@ -89,3 +89,4 @@ C:\Users\flagman\Desktop\Project\ProjectBackEnd\Gamification\Gamification\obj\De
 C:\Users\flagman\Desktop\Project\ProjectBackEnd\Gamification\Gamification\obj\Debug\net5.0\Gamification.pdb
 C:\Users\flagman\Desktop\Project\ProjectBackEnd\Gamification\Gamification\obj\Debug\net5.0\Gamification.genruntimeconfig.cache
 C:\Users\flagman\Desktop\Project\ProjectBackEnd\Gamification\Gamification\bin\Debug\net5.0\AutoMapper.dll
+C:\Users\flagman\Desktop\Project\ProjectBackEnd\Gamification\Gamification\obj\Debug\net5.0\Gamification.csprojAssemblyReference.cache
