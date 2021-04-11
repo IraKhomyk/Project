@@ -20,7 +20,6 @@ import { EditProfileModalWinComponent } from 'src/app/shared/edit-profile/edit-p
     TotalAchievementsAndExpComponent,
     LastAchievementsComponent,
     FullListOfAchievementsComponent,
-    EditProfileModalWinComponent
 
   ],
   imports: [
@@ -36,7 +35,6 @@ import { EditProfileModalWinComponent } from 'src/app/shared/edit-profile/edit-p
     TotalAchievementsAndExpComponent,
     LastAchievementsComponent,
     FullListOfAchievementsComponent,
-    EditProfileModalWinComponent
   ]
 })
 export class BadgesModule { }

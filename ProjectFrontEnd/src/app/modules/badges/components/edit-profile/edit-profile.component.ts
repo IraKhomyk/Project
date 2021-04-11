@@ -24,8 +24,8 @@ export class EditProfileComponent {
   editProfile(): void {
     const dialogRef = this.dialog.open(EditProfileModalWinComponent, {
       panelClass: 'edit-profile-modal-win',
-      width: '800px',
-      height: '400px',
+      width: '500px',
+      height: '600px',
     })
   }
 }
