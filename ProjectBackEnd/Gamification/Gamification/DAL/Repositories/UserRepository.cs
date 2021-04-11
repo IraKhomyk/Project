@@ -45,11 +45,17 @@ namespace Gamification.DAL.Repositories
                 await _context.SaveChangesAsync();
             }
         }
+
         public async Task DeleteUser(Guid userId, CancellationToken cancellationToken)
         {
             var user = await _context.Users.FindAsync(userId, cancellationToken);
             _context.Users.Attach(user);
             _context.Users.Remove(user);
+        }
+
+        public User AuthenticateUser(string email, string password)
+        {
+            return _context.Users.SingleOrDefault(x => x.Email == email && x.Password == password);
         }
     }
 }

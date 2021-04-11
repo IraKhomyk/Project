@@ -14,6 +14,7 @@ namespace Gamification.DAL.IRepositories
         public Task CreateUser(User user, CancellationToken cancellationToken);
         public Task UpdateUser(User user, CancellationToken cancellationToken);
         public Task DeleteUser(Guid userId, CancellationToken cancellationToken);
+        public User AuthenticateUser(string email, string password );
 
     }
 }
