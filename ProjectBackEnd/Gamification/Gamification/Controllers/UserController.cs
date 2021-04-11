@@ -30,7 +30,8 @@ namespace Gamification.Controllers
             _authOptions = authOptions;
         }
 
-        [HttpPost("{login}")]
+        [Route("/login")]
+        [HttpPost]
         public IActionResult Login([FromBody] Login request)
         {
             var user = AuthenticateUser(request.Email, request.Password);
@@ -48,7 +49,7 @@ namespace Gamification.Controllers
 
         private User AuthenticateUser(string email, string password)
         {
-            var user =  _unitOfWork.userRepository.AuthenticateUser(email, password);
+            var user = _unitOfWork.userRepository.AuthenticateUser(email, password);
             return user;
         }
 
@@ -65,11 +66,13 @@ namespace Gamification.Controllers
                 new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString())
             };
 
-            foreach (var role in user.UserRoles)
+            if(user.UserRoles != null)
             {
-                claims.Add(new Claim("role", role.ToString()));
+                foreach (var role in user.UserRoles)
+                {
+                    claims.Add(new Claim("role", role.ToString()));
+                }
             }
-
             var token = new JwtSecurityToken(authParams.Issuer,
                 authParams.Audience,
                 claims,

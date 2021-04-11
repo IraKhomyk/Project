@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gamification.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,5 +14,7 @@ namespace Gamification.BLL.DTO
         public string Password { get; set; }
         public string Status { get; set; }
         public int Xp { get; set; }
+        public IEnumerable<UserRoleDTO> UserRoles { get; set; }
+
     }
 }
