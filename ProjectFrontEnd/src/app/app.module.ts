@@ -17,7 +17,6 @@ import { SignInModule } from './modules/sign-in-page/sign-in/sign-in.module';
   declarations: [
     AppComponent,
   ],
-
   imports: [
     BrowserModule,
     AppRoutingModule,

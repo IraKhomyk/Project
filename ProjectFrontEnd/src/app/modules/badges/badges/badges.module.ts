@@ -9,6 +9,7 @@ import { EditProfileComponent } from '../components/edit-profile/edit-profile.co
 import { TotalAchievementsAndExpComponent } from '../components/total-achievements-and-exp/total-achievements-and-exp.component';
 import { LastAchievementsComponent } from '../components/last-achievements/last-achievements.component';
 import { FullListOfAchievementsComponent } from '../components/full-list-of-achievements/full-list-of-achievements.component';
+import { EditProfileModalWinComponent } from 'src/app/shared/edit-profile/edit-profile-modal-win/edit-profile-modal-win.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { FullListOfAchievementsComponent } from '../components/full-list-of-achi
     EditProfileComponent,
     TotalAchievementsAndExpComponent,
     LastAchievementsComponent,
-    FullListOfAchievementsComponent
+    FullListOfAchievementsComponent,
+    EditProfileModalWinComponent
 
   ],
   imports: [
@@ -33,7 +35,8 @@ import { FullListOfAchievementsComponent } from '../components/full-list-of-achi
     EditProfileComponent,
     TotalAchievementsAndExpComponent,
     LastAchievementsComponent,
-    FullListOfAchievementsComponent
+    FullListOfAchievementsComponent,
+    EditProfileModalWinComponent
   ]
 })
 export class BadgesModule { }
