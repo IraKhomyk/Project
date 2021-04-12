@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { EditProfileModalWinComponent } from 'src/app/shared/edit-profile/edit-profile-modal-win/edit-profile-modal-win.component';
 import { User } from '../../../../models/user.model';
 
 @Component({
@@ -23,4 +25,14 @@ export class LeftSidebarComponent {
     exp: 80,
     color: 'rgb(92, 198, 206)',
   };
+
+  constructor(public dialog: MatDialog){}
+
+  editProfile(): void {
+    const dialogRef = this.dialog.open(EditProfileModalWinComponent, {
+      panelClass: 'edit-profile-modal-win',
+      width: '500px',
+      height: '600px',
+    })
+  }
 }

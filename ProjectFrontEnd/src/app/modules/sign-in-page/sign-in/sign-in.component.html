@@ -1,13 +1,13 @@
 <mat-card class="sign-in-container">
   <div class=context>
     <div class="body">
-      <form class="example-form">
+      <form [formGroup]="signInForm" class="example-form">
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="USERNAME" [(ngModel)]="username" name="username" required>
+          <input matInput placeholder="USERNAME" id="username" formControlName="username" required>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="PASSWORD" [(ngModel)]="password" type="password" name="password" required>
+          <input matInput placeholder="PASSWORD" id="password" formControlName="password" required>
         </mat-form-field>
       </form>
     </div>

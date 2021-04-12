@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -7,21 +7,11 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.scss']
 })
-export class SignInComponent implements OnInit {
+export class SignInComponent {
   constructor(private router: Router) { }
-
-  username: string;
-  password: string;
-
-  ngOnInit() {
-  }
-
-  login(): void {
-    if (this.username == 'admin' && this.password == 'admin') {
-      this.router.navigate(["user"]);
-    } else {
-      alert("Invalid credentials");
-    }
-  }
+  signInForm: FormGroup = new FormGroup({
+    "username": new FormControl(),
+    "password": new FormControl()
+  });
 
 }
