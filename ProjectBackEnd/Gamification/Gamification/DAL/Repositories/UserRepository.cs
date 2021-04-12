@@ -32,23 +32,30 @@ namespace Gamification.DAL.Repositories
 
         public async Task CreateUser(User user, CancellationToken cancellationToken)
         {
-            var guid = new Guid();
+            var guid = Guid.NewGuid();
             user.Id = guid;
             await _context.Users.AddAsync(user, cancellationToken);
         }
 
-        public async Task UpdateUser(User user, CancellationToken cancellationToken)
+        public async Task UpdateUser(Guid userId, User newUser, CancellationToken cancellationToken)
         {
-            if (_context != null)
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == userId, cancellationToken);
+            if (user != null)
             {
-                _context.Users.Update(user);
+                user.Id = userId;
+                user.FirstName = newUser.FirstName;
+                user.LastName = newUser.LastName;
+                user.Email = newUser.Email;
+                user.Status = newUser.Status;
+                user.UserName = newUser.UserName;
+                _context.Users.Update(newUser);
                 await _context.SaveChangesAsync();
             }
         }
 
         public async Task DeleteUser(Guid userId, CancellationToken cancellationToken)
         {
-            var user = await _context.Users.FindAsync(userId, cancellationToken);
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == userId, cancellationToken);
             _context.Users.Attach(user);
             _context.Users.Remove(user);
         }

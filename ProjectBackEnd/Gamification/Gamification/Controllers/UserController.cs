@@ -108,10 +108,10 @@ namespace Gamification.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateUser(UpdateUserDTO newUser, CancellationToken cancellationToken)
+        public async Task<IActionResult> UpdateUser(Guid userId, UpdateUserDTO newUser, CancellationToken cancellationToken)
         {
             var mapData = _mapper.Map<User>(newUser);
-            var user = _unitOfWork.userRepository.UpdateUser(mapData, cancellationToken);
+            var user = _unitOfWork.userRepository.UpdateUser(userId, mapData, cancellationToken);
             await _unitOfWork.SaveChanges(cancellationToken);
             return Ok(user);
         }

@@ -49,7 +49,9 @@ namespace Gamification
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
 
+            services.AddDbContext<MyContext>(ServiceLifetime.Transient);
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.AddTransient<MyContext>();
 
             services.AddCors(options =>
             {
@@ -61,6 +63,11 @@ namespace Gamification
                         .AllowAnyHeader();
                     });
             });
+
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson(options =>
+                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+);
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 

@@ -53,10 +53,10 @@ namespace Gamification.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateAchievement(AchievementDTO newAchievement, CancellationToken cancellationToken)
+        public async Task<IActionResult> UpdateAchievement(Guid achievementId, AchievementDTO newAchievement, CancellationToken cancellationToken)
         {
             var mapData = _mapper.Map<Achievement>(newAchievement);
-            var achievement = _unitOfWork.achievementRepository.UpdateAchievement(mapData, cancellationToken);
+            var achievement = _unitOfWork.achievementRepository.UpdateAchievement(achievementId, mapData, cancellationToken);
             await _unitOfWork.SaveChanges(cancellationToken);
             return Ok(achievement);
         }
