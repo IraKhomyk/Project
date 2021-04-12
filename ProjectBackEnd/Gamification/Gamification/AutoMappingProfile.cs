@@ -24,11 +24,6 @@ namespace Gamification
             CreateMap<User, UpdateUserDTO>();
             CreateMap<UpdateUserDTO, User>();
 
-            CreateMap<Role, RoleDTO>();
-            CreateMap<RoleDTO, Role>();
-
-            CreateMap<UserRole, UserRoleDTO>();
-            CreateMap<UserRoleDTO, UserRole>();
         }
     }
 }
