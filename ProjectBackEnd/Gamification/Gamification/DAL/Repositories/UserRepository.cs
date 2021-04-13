@@ -61,9 +61,9 @@ namespace Gamification.DAL.Repositories
             _context.Users.Remove(user);
         }
 
-        public User AuthenticateUser(string email, string password)
+        public async Task<User> AuthenticateUser(string email, string password, CancellationToken cancellationToken)
         {
-            return _context.Users.SingleOrDefault(x => x.Email == email && x.Password == password);
+            return await _context.Users.SingleOrDefaultAsync(x => x.Email == email && x.Password == password, cancellationToken);
         }
     }
 }

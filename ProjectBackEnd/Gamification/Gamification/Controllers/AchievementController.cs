@@ -12,6 +12,7 @@ using Gamification.DAL.IRepository;
 using AutoMapper;
 using Gamification.BLL.DTO;
 using Gamification.DAL.Repository.UnitOfWork;
+using Gamification.BLL.Services.Interfaces;
 
 namespace Gamification.Controllers
 {
@@ -19,54 +20,43 @@ namespace Gamification.Controllers
     [ApiController]
     public class AchievementController : ControllerBase
     {
-        private readonly IMapper _mapper;
-        private IUnitOfWork _unitOfWork { get; set; }
-        public AchievementController(IUnitOfWork unitOfWork, IMapper mapper)
+        private IAchievementService _achievementService { get; set; }
+        public AchievementController(IAchievementService achievementService)
         {
-            _unitOfWork = unitOfWork;
-            _mapper = mapper;
+            _achievementService = achievementService;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAllAchievements(CancellationToken cancellationToken)
         {
-            var achievements = await _unitOfWork.achievementRepository.GetAllAchievements(cancellationToken);
-            var mapData = _mapper.Map<IEnumerable<AchievementDTO>>(achievements);
-            return Ok(mapData);
+            return Ok(await _achievementService.GetAllAchievements(cancellationToken));
         }
 
         [HttpGet("{Id}")]
-        public async Task<IActionResult> GetAchievementById(Guid Id, CancellationToken cancellationToken)
+        public async Task<IActionResult> GetAchievementById(Guid achievementId, CancellationToken cancellationToken)
         {
-            var achievement = await _unitOfWork.achievementRepository.GetAchievementById(Id, cancellationToken);
-            var mapData = _mapper.Map<AchievementDTO>(achievement);
-            return Ok(mapData);
+            return Ok(await _achievementService.GetAchievementById(achievementId, cancellationToken));
         }
 
         [HttpPost]
         public async Task<IActionResult> CreateAchievement(AchievementDTO newAchievement, CancellationToken cancellationToken)
         {
-            var mapData = _mapper.Map<Achievement>(newAchievement);
-            var achievement = _unitOfWork.achievementRepository.CreateAchievement(mapData, cancellationToken);
-            await _unitOfWork.SaveChanges(cancellationToken);
-            return Ok(achievement);
+            await _achievementService.CreateAchievement(newAchievement, cancellationToken);
+            return Ok();
         }
 
         [HttpPut]
         public async Task<IActionResult> UpdateAchievement(Guid achievementId, AchievementDTO newAchievement, CancellationToken cancellationToken)
         {
-            var mapData = _mapper.Map<Achievement>(newAchievement);
-            var achievement = _unitOfWork.achievementRepository.UpdateAchievement(achievementId, mapData, cancellationToken);
-            await _unitOfWork.SaveChanges(cancellationToken);
-            return Ok(achievement);
+            await _achievementService.UpdateAchievement(achievementId, newAchievement, cancellationToken);
+            return Ok();
         }
 
         [HttpDelete]
         public async Task<IActionResult> DeleteAchievement(Guid achievemenId, CancellationToken cancellationToken)
         {
-            var deletedAcievement = _unitOfWork.achievementRepository.DeleteAchievement(achievemenId, cancellationToken);
-            await _unitOfWork.SaveChanges(cancellationToken);
-            return Ok(deletedAcievement);
+            await _achievementService.DeleteAchievement(achievemenId, cancellationToken);
+            return NoContent();
         }
     }
 }
