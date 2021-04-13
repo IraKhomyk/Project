@@ -42,13 +42,14 @@ namespace Gamification.DAL.Repositories
             var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == userId, cancellationToken);
             if (user != null)
             {
+                user.Password = user.Password;
                 user.Id = userId;
                 user.FirstName = newUser.FirstName;
                 user.LastName = newUser.LastName;
                 user.Email = newUser.Email;
                 user.Status = newUser.Status;
                 user.UserName = newUser.UserName;
-                _context.Users.Update(newUser);
+                _context.Users.Update(user);
                 await _context.SaveChangesAsync();
             }
         }
