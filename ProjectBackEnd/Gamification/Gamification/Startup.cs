@@ -1,4 +1,6 @@
 using AutoMapper;
+using Gamification.BLL.Services;
+using Gamification.BLL.Services.Interfaces;
 using Gamification.DAL.Repository.UnitOfWork;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -52,6 +54,9 @@ namespace Gamification
             services.AddDbContext<MyContext>(ServiceLifetime.Transient);
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddTransient<MyContext>();
+            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IAchievementService, AchievementService>();
+            services.AddTransient<IAuthService, AuthService>();
 
             services.AddCors(options =>
             {
