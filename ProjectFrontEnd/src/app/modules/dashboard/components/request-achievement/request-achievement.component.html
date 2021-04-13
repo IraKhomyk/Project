@@ -12,7 +12,7 @@
   </span>
   
   <form [formGroup]="requestForm" class="body-request">
-    <mat-select [(value)]="selectAchievement" id="achievement" formControlName="achievement" required>
+    <mat-select [(value)]="selectAchievement" id="achievement" formControlName="achievement">
       <mat-option *ngFor="let item of [].constructor(3)" [value]="selectAchievement">
         {{selectAchievement}}
       </mat-option>
@@ -20,7 +20,7 @@
 
     <mat-form-field class="example-full-width">
       <mat-label>Your message</mat-label>
-      <textarea matInput id="message" formControlName="message" required></textarea>
+      <textarea matInput id="message" formControlName="message"></textarea>
     </mat-form-field>
 
     <button class="send-button send" mat-button (click)="send()" [disabled]="requestForm.invalid">

@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
@@ -12,7 +12,7 @@ export class RequestAchievementComponent {
 
   requestForm: FormGroup = new FormGroup({
     "achievement": new FormControl(),
-    "message": new FormControl(),
+    "message": new FormControl("", Validators.required),
   });
 
   constructor(

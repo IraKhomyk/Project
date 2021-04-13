@@ -11,7 +11,7 @@ import { OtherUserProfileComponent } from '../other-user-profile/other-user-prof
 export class TopChartComponent implements OnInit {
   showInitials = false;
   total = 0;
-  maxWidth = 580;
+  maxWidth = 450;
 
   usersWithAchiv: Array<userWithAchievements> = [
     { firstName: "Ira", lastName: "Khomyk", xp: 600, color: 'rgb(92, 198, 206)', size: '', photoUrl: 'https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg' },
