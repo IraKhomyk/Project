@@ -11,7 +11,7 @@ import { PersonalAchievementsComponent } from './components/personal-achievement
 import { ThankYouComponent } from './components/thank-you/thank-you.component';
 import { TopChartComponent } from './components/top-chart/top-chart.component';
 import { DashboardComponent } from './dashboard.component';
-import { PipesModule } from 'src/app/shared/pipes/pipes.module';
+import { PipesModule } from 'src/app/shared/pipes-lalala/pipes.module';
 import { RequestAchievementComponent } from './components/request-achievement/request-achievement.component';
 import { SayThanksComponent } from './components/say-thanks/say-thanks.component';
 import { OtherUserProfileComponent } from './components/other-user-profile/other-user-profile.component';
