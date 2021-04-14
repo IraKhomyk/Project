@@ -1,4 +1,4 @@
-export class userWithAchievements {
+export class UserWithAchievements {
     firstName: string;
     lastName: string;
     xp: number;

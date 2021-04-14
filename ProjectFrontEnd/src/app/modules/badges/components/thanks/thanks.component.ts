@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { User } from 'src/app/models/user.model';
-type userShortInfo = Pick<User, 'firstName' | 'lastName' | 'photoUrl' | 'color'>;
+import { UserServiceService } from 'src/app/services/UserService/user-service.service';
 
 @Component({
   selector: 'app-thanks',
@@ -8,10 +8,6 @@ type userShortInfo = Pick<User, 'firstName' | 'lastName' | 'photoUrl' | 'color'>
   styleUrls: ['./thanks.component.scss']
 })
 export class ThanksComponent {
-  user: userShortInfo = {
-    firstName: 'Dima',
-    lastName: 'Khomyk',
-    photoUrl: '',
-    color: 'rgb(40, 120, 224)',
-  }
+
+  constructor(public readonly userService: UserServiceService) { }
 }

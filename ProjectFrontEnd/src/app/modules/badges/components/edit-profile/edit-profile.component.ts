@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { User } from 'src/app/models/user.model';
+import { UserServiceService } from 'src/app/services/UserService/user-service.service';
 import { EditProfileModalWinComponent } from 'src/app/shared/edit-profile/edit-profile-modal-win/edit-profile-modal-win.component';
-type userShortInfo = Pick<User, 'firstName' | 'lastName' | 'photoUrl' | 'color'>;
 
 @Component({
   selector: 'app-edit-profile',
@@ -10,16 +9,10 @@ type userShortInfo = Pick<User, 'firstName' | 'lastName' | 'photoUrl' | 'color'>
   styleUrls: ['./edit-profile.component.scss']
 })
 export class EditProfileComponent {
-  user: userShortInfo = {
-    firstName: 'Ira',
-    lastName: 'Khomyk',
-    photoUrl: './../../../../assets/myphoto.jpg',
-    color: '',
-  }
 
   constructor(
-    public dialog: MatDialog
-  ) { }
+    public dialog: MatDialog,
+    public readonly userService: UserServiceService) { }
 
   editProfile(): void {
     const dialogRef = this.dialog.open(EditProfileModalWinComponent, {

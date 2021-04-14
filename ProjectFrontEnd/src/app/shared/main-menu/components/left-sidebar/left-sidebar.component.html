@@ -1,15 +1,15 @@
 <div class="sidebar-content">
     <div>
-        <div class="circle" [ngStyle]="{'background-color': user.color}">
-            <img *ngIf="user.photoUrl" src={{user.photoUrl}}>
+        <div class="circle">
+            <img *ngIf="userService.users[0].photoUrl" src={{userService.users[0].photoUrl}}>
 
-            <div *ngIf="!user.photoUrl" class="initials">
-                {{user | initials}}
+            <div *ngIf="!userService.users[0].photoUrl" class="initials">
+                {{userService.users[0] | initials}}
             </div>
         </div>
 
         <div>
-            <div class="user-name">{{user.firstName}} {{user.lastName}}</div>
+            <div class="user-name">{{userService.users[0].firstName}} {{userService.users[0].lastName}}</div>
 
             <div class="sidebar-button-column">
                 <button mat-raised-button (click)="editProfile()">Edit profile</button>
@@ -26,15 +26,20 @@
 
         <div>
             <div class="left-sidebar-sumary">
-                <span class="left-sidebar-sumary-white"><a class="left-sidebar-sumary-green">Total:</a>{{user.badges}}
-                    Bages</span>
+                <span class="left-sidebar-sumary-white"><a
+                        class="left-sidebar-sumary-green">Total:</a>{{userService.users[0].badges}}
+                    Bages
+                </span>
             </div>
 
             <div class="left-sidebar-sumary">
-                <span class="left-sidebar-sumary-white"><a class="left-sidebar-sumary-green">EXP:</a>{{user.exp}}
-                    XP</span>
+                <span class="left-sidebar-sumary-white"><a
+                        class="left-sidebar-sumary-green">EXP:</a>{{userService.users[0].exp}}
+                    XP
+                </span>
             </div>
         </div>
+        
         <mat-sidenav-container class="sidebar-container">
             <nav mat-tab-nav-bar>
                 <div class="left-sidebar-nav">

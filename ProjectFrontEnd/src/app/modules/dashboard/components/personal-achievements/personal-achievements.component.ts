@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { AchievementServiceService } from 'src/app/services/AchievementService/achievement-service.service';
 import { RequestAchievementComponent } from '../request-achievement/request-achievement.component';
 
 @Component({
@@ -8,14 +9,9 @@ import { RequestAchievementComponent } from '../request-achievement/request-achi
   styleUrls: ['./personal-achievements.component.scss']
 })
 export class PersonalAchievementsComponent {
-  achievements = [
-    { photoUrl: './../../../../assets/achiv1.jpg', name: 'Exoft turbo power', time: '0 min ago', ex: '15 px', },
-    { photoUrl: './../../../../assets/achiv2.jpg', name: 'Exoft turbo power', time: '0 min ago', ex: '15 px', },
-    { photoUrl: './../../../../assets/achiv3.jpg', name: 'Exoft corporate power', time: '0 min ago', ex: '15 px', },
-    { photoUrl: './../../../../assets/achiv4.jpg', name: 'Exoft skylark power', time: '0 min ago', ex: '15 px', },
-  ];
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog,
+    public readonly achievementServiceService: AchievementServiceService) { }
 
   request(): void {
     const dialogRef = this.dialog.open(RequestAchievementComponent, {

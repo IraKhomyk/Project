@@ -4,16 +4,16 @@
     </div>
 
     <div class="body">
-        <div class="circle" [ngStyle]="{'background-color': user.color}">
-            <img *ngIf="user.photoUrl" src={{user.photoUrl}}>
+        <div class="circle">
+            <img *ngIf="userService.users[0].photoUrl" src={{userService.users[0].photoUrl}}>
 
-            <div *ngIf="!user.photoUrl" class="initials">
-                {{user | initials}}
+            <div *ngIf="!userService.users[0].photoUrl" class="initials">
+                {{userService.users[0] | initials}}
             </div>
         </div>
 
         <div class="user-name">
-            {{user.firstName}} {{user.lastName}}
+            {{userService.users[0].firstName}} {{userService.users[0].lastName}}
         </div>
     </div>
 </mat-card>

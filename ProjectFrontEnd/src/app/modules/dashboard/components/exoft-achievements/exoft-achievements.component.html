@@ -1,4 +1,4 @@
-<mat-card class="component-container challenges-container">
+<mat-card class="challenges-container">
     <div class="header">
         <span class="top-title text-uppercase">
             exoft achievement
@@ -8,17 +8,17 @@
         </mat-chip>
     </div>
 
+
     <div>
-        <div class="user-block" *ngFor="let user of users">
+        <div class="user-block" *ngFor="let user of userService.users">
             <div class="user-info">
-                <div class="circle" [ngStyle]="{'background-color': user.color}">
+                <div class="circle">
                     <img *ngIf="user.photoUrl" src={{user.photoUrl}}>
 
                     <div *ngIf="!user.photoUrl" class="initials">
                         {{user | initials}}
                     </div>
                 </div>
-
                 <span class="user-name">
                     {{user.firstName}} {{user.lastName}}
                 </span>
@@ -26,6 +26,7 @@
                 <span class="time-ago">
                     0 mins ago
                 </span>
+
             </div>
 
             <div class="achiv-info">

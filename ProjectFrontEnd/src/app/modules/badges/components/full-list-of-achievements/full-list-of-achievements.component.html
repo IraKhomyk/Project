@@ -17,7 +17,7 @@
                 <span class="date-title">Date</span>
             </td>
         </tr>
-        <tr *ngFor="let achievement of achievements">
+        <tr *ngFor="let achievement of achievementService.achievements | slice:0:4">
             <td class="achiev-info">
                 <img matListAvata class="circle" [src]="achievement.photoUrl">
                 <span matLine class="text">
@@ -27,13 +27,13 @@
 
             <td>
                 <span class="text xp-info">
-                    + {{achievement.ex}}
+                    + {{achievement.exp}}
                 </span>
             </td>
 
             <td>
                 <span class="text">
-                    {{achievement.time}}
+                    0 mins ago
                 </span>
             </td>
         </tr>

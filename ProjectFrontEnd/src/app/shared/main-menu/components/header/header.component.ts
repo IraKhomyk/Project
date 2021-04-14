@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { userWithAchievements } from 'src/app/models/user-with-achievements.model';
+import { UserServiceService } from 'src/app/services/UserService/user-service.service';
 import { EditProfileModalWinComponent } from 'src/app/shared/edit-profile/edit-profile-modal-win/edit-profile-modal-win.component';
-type userShortInfo = Pick<userWithAchievements, 'firstName' | 'lastName' | 'photoUrl' | 'color'>;
-
 
 @Component({
   selector: 'app-header',
@@ -28,14 +26,8 @@ export class HeaderComponent {
 
   activeLink = this.routers[0];
 
-  user: userShortInfo = {
-    firstName: 'Ira',
-    lastName: 'Khomyk',
-    photoUrl: './../../../../assets/myphoto.jpg',
-    color: '',
-  }
-
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog,
+    public readonly userService: UserServiceService) { }
 
   editProfile(): void {
     const dialogRef = this.dialog.open(EditProfileModalWinComponent, {

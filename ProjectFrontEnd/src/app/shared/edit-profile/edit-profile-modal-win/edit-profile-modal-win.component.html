@@ -6,11 +6,11 @@
 </button>
 <div class="profile-container">
     <div class="image">
-        <div class="circle" [ngStyle]="{'background-color': user.color}">
-            <img *ngIf="user.photoUrl" src={{user.photoUrl}}>
+        <div class="circle">
+            <img *ngIf="userService.users[0].photoUrl" src={{userService.users[0].photoUrl}}>
 
-            <div *ngIf="!user.photoUrl" class="initials">
-                {{user | initials}}
+            <div *ngIf="!userService.users[0].photoUrl" class="initials">
+                {{userService.users[0] | initials}}
             </div>
         </div>
     </div>
@@ -18,27 +18,36 @@
     <form [formGroup]="profileForm">
         <div>
             <mat-form-field class="example-full-width">
-                <mat-label class="text-uppercase">first name</mat-label>
-                <input matInput id="firstName" formControlName="firstName"/>
+                <mat-label class="text-uppercase">
+                    first name
+                </mat-label>
+                <input matInput id="firstName" formControlName="firstName" />
             </mat-form-field>
 
             <mat-form-field class="example-full-width">
-                <mat-label class="text-uppercase">last name</mat-label>
-                <input matInput id="lastName" formControlName="lastName"/>
+                <mat-label class="text-uppercase">
+                    last name
+                </mat-label>
+                <input matInput id="lastName" formControlName="lastName" />
             </mat-form-field>
         </div>
 
         <div class="row-field">
             <mat-form-field class="example-full-width">
-                <mat-label class="text-uppercase">email address</mat-label>
-                <input matInput id="email" formControlName="email"/>
+                <mat-label class="text-uppercase">
+                    email address
+                </mat-label>
+                <input matInput id="email" formControlName="email" />
             </mat-form-field>
 
             <mat-form-field class="example-full-width">
-                <mat-label class="text-uppercase">status</mat-label>
-                <input matInput id="status" formControlName="status"/>
+                <mat-label class="text-uppercase">
+                    status
+                </mat-label>
+                <input matInput id="status" formControlName="status" />
             </mat-form-field>
         </div>
+        
         <div class="sign-in-button">
             <button class="btn text-uppercase" mat-button>
                 save changes

@@ -1,15 +1,27 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { RequestAchievementComponent } from 'src/app/modules/dashboard/components/request-achievement/request-achievement.component';
+import { AchievementServiceService } from 'src/app/services/AchievementService/achievement-service.service';
 
 @Component({
   selector: 'app-last-achievements',
   templateUrl: './last-achievements.component.html',
   styleUrls: ['./last-achievements.component.scss']
 })
-export class LastAchievementsComponent{
-  achievements = [
-    { photoUrl: './../../../../assets/achiv5.jpg', name: 'Exoft turbo power', time: '0 min ago', ex: '15 px', },
-    { photoUrl: './../../../../assets/achiv6.jpg', name: 'Exoft turbo power', time: '0 min ago', ex: '15 px', },
-    { photoUrl: './../../../../assets/achiv7.jpg', name: 'Exoft corporate power', time: '0 min ago', ex: '15 px', },
-    { photoUrl: './../../../../assets/achiv8.jpg', name: 'Exoft skylark power', time: '0 min ago', ex: '15 px', },
-  ];
+export class LastAchievementsComponent {
+
+  constructor(public dialog: MatDialog,
+    public achievementService: AchievementServiceService) { }
+
+  request(): void {
+    const dialogRef = this.dialog.open(RequestAchievementComponent, {
+      panelClass: 'request-model-container',
+      width: '700px',
+      height: '300px',
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
+  }
 }

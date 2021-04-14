@@ -5,7 +5,7 @@
   </div>
 
   <mat-list class="display-achiv-container">
-    <mat-list-item *ngFor="let achievement of achievements">
+    <mat-list-item *ngFor="let achievement of achievementServiceService.achievements | slice:0:4;">
       <img matListAvata class="circle" [src]="achievement.photoUrl">
 
       <div class="display-achiv-info">
@@ -14,11 +14,11 @@
         </span>
 
         <span>
-          {{achievement.time}}
+          0 mins ago
         </span>
 
         <span class="xp-points">
-          &#11044; {{achievement.ex}}
+          &#11044; + {{achievement.exp}}
         </span>
       </div>
     </mat-list-item>

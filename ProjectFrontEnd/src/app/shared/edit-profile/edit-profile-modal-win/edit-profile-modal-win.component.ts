@@ -1,8 +1,7 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { Component, Inject } from '@angular/core';
+import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { User } from 'src/app/models/user.model';
-type userShortInfo = Pick<User, 'firstName' | 'lastName' | 'photoUrl' | 'color'>;
+import { UserServiceService } from 'src/app/services/UserService/user-service.service';
 
 @Component({
   selector: 'app-edit-profile-modal-win',
@@ -10,12 +9,6 @@ type userShortInfo = Pick<User, 'firstName' | 'lastName' | 'photoUrl' | 'color'>
   styleUrls: ['./edit-profile-modal-win.component.scss']
 })
 export class EditProfileModalWinComponent {
-  user: userShortInfo = {
-    firstName: 'Ira',
-    lastName: 'Khomyk',
-    photoUrl: './../../../../assets/myphoto.jpg',
-    color: '',
-  }
 
   private readonly passwordRegex: RegExp = /^(?=\D*\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}$/;
 
@@ -29,7 +22,8 @@ export class EditProfileModalWinComponent {
 
   constructor(
     public dialogRef: MatDialogRef<EditProfileModalWinComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: string) { }
+    @Inject(MAT_DIALOG_DATA) public data: string,
+    public readonly userService: UserServiceService) { }
 
 
   onNoClick(): void {
