@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from 'src/app/shared/material/material.module';
-import { PipesModule } from 'src/app/shared/pipes-lalala/pipes.module';
+import { PipesModule } from 'src/app/shared/pipes/pipes.module';
 import { BadgesComponent } from './badges.component';
 import { ThanksComponent } from '../components/thanks/thanks.component';
 import { EditProfileComponent } from '../components/edit-profile/edit-profile.component';

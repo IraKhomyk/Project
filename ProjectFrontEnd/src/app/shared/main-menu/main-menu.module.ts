@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { LeftSidebarComponent } from './components/left-sidebar/left-sidebar.component';
 import { MaterialModule } from '../material/material.module';
-import { PipesModule } from '../pipes-lalala/pipes.module';
+import { PipesModule } from '../pipes/pipes.module';
 import { EditProfileModalWinComponent } from '../edit-profile/edit-profile-modal-win/edit-profile-modal-win.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
