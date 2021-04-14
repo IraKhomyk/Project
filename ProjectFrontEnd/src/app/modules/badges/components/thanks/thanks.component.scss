@@ -23,7 +23,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: bisque;
+    background-color: rgb(61, 60, 58);
 
     img {
         border-radius: 50%;
@@ -32,7 +32,7 @@
     }
 
     .initials {
-        color: white;
+        color: #5ea002;
         font-size: 15px;
         line-height: 19px;
         letter-spacing: 0.2625px;
@@ -41,7 +41,6 @@
 
 .star-content {
     width: 100%;
-    padding-top: 24px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -49,22 +48,26 @@
     color: white;
 
     .star {
-        width: 130px;
-        height: 130px;
+        width: 40%;
+        height: 40%;
         display: flex;
         align-items: center;
+    }
+
+    .message{
+        margin: 5%;
     }
 }
 
 .user {
     display: flex;
     justify-content: center;
-    margin: 15px;
+    margin: 2%;
 
     .user-name {
         display: flex;
         justify-content: center;
-        margin: 15px;
+        margin: 2%;
         color: #5ea002;
     }
 }

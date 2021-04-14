@@ -17,22 +17,24 @@
 }
 
 .badges-count-container {
-    margin-top: 40px;
     display: flex;
+    width: 100%;
+    align-items: center;
+    height: 40%;
     justify-content: center;
 
     .badges-count-number {
         font-size: 150px;
         font-family: Roboto, "Helvetica Neue", sans-serif;
-        padding: 10px;
         color: #5ea002;
     }
 }
 
 .badges-text-container {
-    margin-top: 40px;
     display: flex;
     justify-content: center;
+    align-items: center;
+    height: 20%;
 
     .badges-text {
         font-size: 25px;
@@ -42,17 +44,16 @@
     }
 }
 
-.badges-summary-text {
-    color: white;
-    font-size: 11px;
-}
-
 .badges-summary-container {
     display: flex;
-    flex-direction: row;
-    margin-top: 40px;
     font-size: 10px;
     justify-content: center;
+    margin-top: 10%;
+
+    .badges-summary-text {
+        color: white;
+        font-size: 11px;
+    }
 }
 
 mat-icon {

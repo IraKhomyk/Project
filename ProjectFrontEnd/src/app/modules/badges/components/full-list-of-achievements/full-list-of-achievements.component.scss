@@ -21,13 +21,13 @@
 }
 
 .table-body {
-    padding-top: 20px;
+    padding-top: 1%;
 
     .table-title {
         font-size: 18px;
 
         .date-title {
-            margin-left: 10px;
+            margin-left: 5%;
         }
     }
 
@@ -37,14 +37,14 @@
 
         .circle {
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            padding: 10px;
+            width: 60px;
+            height: 60px;
+            padding: 3%;
 
             img {
                 border-radius: 50%;
-                width: 40px;
-                height: 40px;
+                width: 60px;
+                height: 60px;
             }
         }
     }

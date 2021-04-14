@@ -7,5 +7,4 @@ export interface User {
     photoUrl: string;
     badges: number;
     exp: number;
-    color:string;
 }
