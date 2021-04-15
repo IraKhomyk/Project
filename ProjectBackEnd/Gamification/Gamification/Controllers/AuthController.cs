@@ -22,7 +22,7 @@ namespace Gamification.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login([FromBody] Login login, CancellationToken cancellationToken )
+        public async Task<IActionResult> Login([FromBody] Login login, CancellationToken cancellationToken)
         {
             if (!ModelState.IsValid)
             {

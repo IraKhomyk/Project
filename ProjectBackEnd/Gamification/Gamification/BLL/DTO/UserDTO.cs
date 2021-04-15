@@ -16,6 +16,7 @@ namespace Gamification.BLL.DTO
         public string Password { get; set; }
         public string Status { get; set; }
         public int Xp { get; set; }
+        public ICollection<RoleDTO> Roles { get; set; }
 
     }
 }

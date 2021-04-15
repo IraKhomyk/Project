@@ -31,7 +31,7 @@ namespace Gamification.BLL.Services
 
         public async Task<string> Login(string email, string password, CancellationToken cancellationToken)
         {
-            var user = await AuthenticateUser(email, password, cancellationToken);
+            User user = await AuthenticateUser(email, password, cancellationToken);
             if (user == null)
             {
                 return null;
@@ -55,14 +55,14 @@ namespace Gamification.BLL.Services
             var credentialist = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
             var claims = new List<Claim>()
-                    {
-                        new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                        new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString())
-                    };
-
-            if (user.UserRoles != null)
             {
-                foreach (var role in user.UserRoles)
+                new Claim(JwtRegisteredClaimNames.Email, user.Email),
+                new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString())
+            };
+
+            if (user.Roles != null)
+            {
+                foreach (var role in user.Roles)
                 {
                     claims.Add(new Claim("role", role.ToString()));
                 }
@@ -76,6 +76,5 @@ namespace Gamification.BLL.Services
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
-
     }
 }

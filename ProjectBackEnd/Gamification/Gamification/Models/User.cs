@@ -35,9 +35,7 @@ namespace Gamification.Models
         public int Xp { get; set; }
 
         public Guid? AvatarId { get; set; }
-        public ICollection<UserRole> UserRoles { get; set; }
-        public ICollection<UserAchievement> UserAchievements { get; set; }
-
-
+        public ICollection<Role> Roles { get; set; }
+        public ICollection<Achievement> Achievements { get; set; }
     }
 }

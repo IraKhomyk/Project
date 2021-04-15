@@ -20,7 +20,7 @@ namespace Gamification.DAL.Repositories
 
         public async Task<IEnumerable<User>> GetAllUsers(CancellationToken cancellationToken)
         {
-            var users = _context.Users;
+            var users = _context.Users.Include(a => a.Roles);
 
             return await users.ToListAsync(cancellationToken);
         }
@@ -63,7 +63,7 @@ namespace Gamification.DAL.Repositories
 
         public async Task<User> AuthenticateUser(string email, string password, CancellationToken cancellationToken)
         {
-            return await _context.Users.SingleOrDefaultAsync(x => x.Email == email && x.Password == password, cancellationToken);
+            return await _context.Users.Include(a => a.Roles).SingleOrDefaultAsync(x => x.Email == email && x.Password == password, cancellationToken);
         }
     }
 }
