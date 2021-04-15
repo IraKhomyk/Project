@@ -11,8 +11,20 @@ import { EditProfileModalWinComponent } from 'src/app/shared/edit-profile/edit-p
 export class LeftSidebarComponent {
   opened = false;
 
-  links = ['Dashboard', 'Badges', 'Orders'];
-  activeLink = this.links[0];
+  routers = [{
+    link: '/dashboard',
+    name: 'Dashboard'
+  },
+  {
+    link: '/badges',
+    name: 'Badges'
+  },
+  {
+    link: '/orders',
+    name: 'Orders'
+  }
+  ];
+  activeLink = this.routers[0];
 
   constructor(public dialog: MatDialog,
     public readonly userService: UserServiceService) { }

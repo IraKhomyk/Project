@@ -43,10 +43,10 @@
         <mat-sidenav-container class="sidebar-container">
             <nav mat-tab-nav-bar>
                 <div class="left-sidebar-nav">
-                    <a class="active" mat-tab-link mat-align-tabs="center" *ngFor="let link of links"
-                        (click)="activeLink = link" [active]="activeLink == link">
-                        {{link}}
-                    </a>
+                    <a class="active" mat-tab-link *ngFor="let route of routers" (click)="activeLink = route"
+                    [active]="activeLink == route" routerLink={{route.link}} routerLinkActive="active">
+                    {{route.name}}
+                </a>
                 </div>
             </nav>
         </mat-sidenav-container>
