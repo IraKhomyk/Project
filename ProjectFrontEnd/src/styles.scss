@@ -199,7 +199,18 @@ body {
   .mat-card {
     background: white;
     color: white;
+    display: contents;
+    margin-top: 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
   }
+
+  .mat-card>:first-child, .mat-card-content>:first-child {
+    margin-top: 0;
+    height: 97%;
+    box-shadow: none;
+}
 
   .mat-form-field-appearance-legacy .mat-form-field-underline {
     background-color: white;
@@ -222,6 +233,20 @@ body {
     line-height: 36px;
     border-radius: 0%;
   }
+
+  .context{
+    height: 100%;
+    background-color: #3d4147;
+    border-top: 10px solid #5ea002;
+    border-top-left-radius: 0%;
+    border-top-right-radius: 0%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom-left-radius: 5%;
+    border-bottom-right-radius: 5%;
+  }
+
 }
 
 //----------------------------------profile modal window
