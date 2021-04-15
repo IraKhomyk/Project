@@ -21,68 +21,12 @@ namespace Gamification.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IMapper _mapper;
         private IUserService _userService { get; set; }
-        private IOptions<AuthOptions> _authOptions;
-        public UserController(IUserService userService, IMapper mapper, IOptions<AuthOptions> authOptions)
+        public UserController(IUserService userService, IMapper mapper)
         {
             _userService = userService;
-            _mapper = mapper;
-            _authOptions = authOptions;
         }
-        /*
-                [Route("/login")]
-                [HttpPost]
-                public IActionResult Login(string password, string email)
-                {
-                    var user = AuthenticateUser(email, password);
-                    if (user != null)
-                    {
-                        var token = GenerateJWT(user);
-
-                        return Ok(new
-                        {
-                            access_token = token
-                        });
-                    }
-                    return Unauthorized();
-                }
-
-                private User AuthenticateUser(string email, string password)
-                {
-                    var user = _unitOfWork.userRepository.AuthenticateUser(email, password);
-                    return user;
-                }
-
-                private string GenerateJWT(User user)
-                {
-                    var authParams = _authOptions.Value;
-
-                    var securityKey = authParams.GetSymmetricSecurityKey();
-                    var credentialist = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-
-                    var claims = new List<Claim>()
-                    {
-                        new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                        new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString())
-                    };
-
-                    if(user.UserRoles != null)
-                    {
-                        foreach (var role in user.UserRoles)
-                        {
-                            claims.Add(new Claim("role", role.ToString()));
-                        }
-                    }
-                    var token = new JwtSecurityToken(authParams.Issuer,
-                        authParams.Audience,
-                        claims,
-                        expires: DateTime.Now.AddSeconds(authParams.TokenLifeTime),
-                        signingCredentials: credentialist);
-
-                    return new JwtSecurityTokenHandler().WriteToken(token);
-                }*/
-
+      
         [HttpGet]
         public async Task<IActionResult> GetAllUsers(CancellationToken cancellationToken)
         {

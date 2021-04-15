@@ -16,7 +16,6 @@ namespace Gamification.BLL.Services
         private readonly IMapper _mapper;
         public IUnitOfWork UnitOfWork { get; set; }
 
-
         public AchievementService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             this.UnitOfWork = unitOfWork;
@@ -34,6 +33,7 @@ namespace Gamification.BLL.Services
             Achievement achievement = await UnitOfWork.achievementRepository.GetAchievementById(Id, cancellationToken);
             return _mapper.Map<AchievementDTO>(achievement);
         }
+
         public async Task CreateAchievement(AchievementDTO newAchievement, CancellationToken cancellationToken)
         {
             var mapData = _mapper.Map<Achievement>(newAchievement);
@@ -54,7 +54,5 @@ namespace Gamification.BLL.Services
             await UnitOfWork.achievementRepository.DeleteAchievement(achievemenId, cancellationToken);
             await UnitOfWork.SaveChanges(cancellationToken);
         }
-
-
     }
 }
