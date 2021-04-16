@@ -12,6 +12,7 @@ namespace Gamification
         public DbSet<Achievement> Achievements { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
+        public DbSet<Thank> Thanks { get; set; }
 
         public MyContext(DbContextOptions<MyContext> options) : base(options)
         {
@@ -31,6 +32,10 @@ namespace Gamification
 
             modelBuilder.Entity<Role>()
                 .ToTable("Roles");
+
+            modelBuilder.Entity<Thank>()
+                .ToTable("Thanks");
+
         }
     }
 }

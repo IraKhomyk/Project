@@ -27,7 +27,7 @@ namespace Gamification.DAL.Repositories
 
         public async Task<User> GetUserById(Guid userId, CancellationToken cancellationToken)
         {
-            return await _context.Users.FirstOrDefaultAsync(x => x.Id == userId, cancellationToken);
+            return await _context.Users.Include(a => a.Roles).FirstOrDefaultAsync(x => x.Id == userId, cancellationToken);
         }
 
         public async Task<User> CreateUser(User newUser, CancellationToken cancellationToken)

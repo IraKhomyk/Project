@@ -22,7 +22,7 @@ namespace Gamification.Controllers
     public class UserController : ControllerBase
     {
         private IUserService _userService { get; set; }
-        public UserController(IUserService userService, IMapper mapper)
+        public UserController(IUserService userService)
         {
             _userService = userService;
         }
