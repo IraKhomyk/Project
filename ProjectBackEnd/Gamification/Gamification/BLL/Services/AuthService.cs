@@ -18,13 +18,13 @@ namespace Gamification.BLL.Services
     public class AuthService : IAuthService
     {
         private readonly IMapper _mapper;
-        public IUnitOfWork _unitOfWork { get; set; }
+        public IUnitOfWork UnitOfWork { get; set; }
 
         private IOptions<AuthOptions> _authOptions;
 
         public AuthService(IUnitOfWork unitOfWork, IMapper mapper, IOptions<AuthOptions> authOptions)
         {
-            this._unitOfWork = unitOfWork;
+            this.UnitOfWork = unitOfWork;
             this._mapper = mapper;
             _authOptions = authOptions;
         }
@@ -44,7 +44,7 @@ namespace Gamification.BLL.Services
 
         public async Task<User> AuthenticateUser(string email, string password, CancellationToken cancellationToken)
         {
-            return await _unitOfWork.userRepository.AuthenticateUser(email, password, cancellationToken);
+            return await UnitOfWork.userRepository.AuthenticateUser(email, password, cancellationToken);
         }
 
         private string GenerateJWT(User user)

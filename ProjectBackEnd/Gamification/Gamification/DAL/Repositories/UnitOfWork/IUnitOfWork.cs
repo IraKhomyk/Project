@@ -13,6 +13,5 @@ namespace Gamification.DAL.Repository.UnitOfWork
         Task SaveChanges(CancellationToken cancellationToken);
         IAchievementRepository achievementRepository { get; set; }
         IUserRepository userRepository { get; set; }
-        IThankRepository thankRepository { get; set; }
     }
 }

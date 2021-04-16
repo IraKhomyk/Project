@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Gamification.Models
 {
-    public class Thank : BaseEntity
+    public class Thank
     {
         [Required]
         public Guid ToUserId { get; set; }
@@ -19,7 +19,5 @@ namespace Gamification.Models
         public string Text { get; set; }
 
         public DateTime AddedTime { get; set; }
-
-        public ICollection<User> Users { get; set; }
     }
 }
