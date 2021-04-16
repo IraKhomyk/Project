@@ -28,36 +28,74 @@ namespace Gamification.Controllers
         }
       
         [HttpGet]
-        public async Task<IActionResult> GetAllUsers(CancellationToken cancellationToken)
+        public async Task<ActionResult<IEnumerable<UserDTO>>> GetAllUsers(CancellationToken cancellationToken)
         {
-            return Ok(await _userService.GetAllUsers(cancellationToken));
+            try
+            {
+                var users = await _userService.GetAllUsers(cancellationToken);
+                return Ok(users);
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
         }
 
         [HttpGet("{Id}")]
-        public async Task<IActionResult> GetUserById(Guid Id, CancellationToken cancellationToken)
+        public async Task<ActionResult<UserDTO>> GetUserById(Guid Id, CancellationToken cancellationToken)
         {
-            return Ok(await _userService.GetUserById(Id, cancellationToken));
+            try
+            {
+                var user = await _userService.GetUserById(Id, cancellationToken);
+                return Ok(user);
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateUser(CreateUserDTO newUser, CancellationToken cancellationToken)
+        public async Task<ActionResult<CreateUserDTO>> CreateUser(CreateUserDTO newUser, CancellationToken cancellationToken)
         {
-            await _userService.CreateUser(newUser, cancellationToken);
-            return Ok();
+            try
+            {
+                await _userService.CreateUser(newUser, cancellationToken);
+                return Ok();
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateUser(Guid userId, UpdateUserDTO newUser, CancellationToken cancellationToken)
+        public async Task<ActionResult<UpdateUserDTO>> UpdateUser(Guid userId, UpdateUserDTO newUser, CancellationToken cancellationToken)
         {
-            await _userService.UpdateUser(userId, newUser, cancellationToken);
-            return Ok();
+            try
+            {
+                await _userService.UpdateUser(userId, newUser, cancellationToken);
+                return Ok();
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
         }
 
         [HttpDelete]
-        public async Task<IActionResult> DeleteUser(Guid userId, CancellationToken cancellationToken)
+        public async Task<ActionResult<UserDTO>> DeleteUser(Guid userId, CancellationToken cancellationToken)
         {
-            await _userService.DeleteUser(userId, cancellationToken);
-            return NoContent();
+            try
+            {
+                var deletedUser = await _userService.DeleteUser(userId, cancellationToken);
+                return NoContent();
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
+            
         }
     }
 }

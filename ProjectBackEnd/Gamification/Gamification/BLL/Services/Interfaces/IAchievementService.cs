@@ -1,4 +1,5 @@
 ﻿using Gamification.BLL.DTO;
+using Gamification.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,8 @@ namespace Gamification.BLL.Services.Interfaces
     {
         public Task<IEnumerable<AchievementDTO>> GetAllAchievements(CancellationToken cancellationToken);
         public Task<AchievementDTO> GetAchievementById(Guid Id, CancellationToken cancellationToken);
-        public Task CreateAchievement(AchievementDTO newAchievement, CancellationToken cancellationToken);
-        public Task UpdateAchievement(Guid achievementId, AchievementDTO newAchievement, CancellationToken cancellationToken);
-        public Task DeleteAchievement(Guid achievemenId, CancellationToken cancellationToken);
+        public Task<Achievement> CreateAchievement(AchievementDTO newAchievement, CancellationToken cancellationToken);
+        public Task<Achievement> UpdateAchievement(Guid achievementId, AchievementDTO newAchievement, CancellationToken cancellationToken);
+        public Task<Achievement> DeleteAchievement(Guid achievemenId, CancellationToken cancellationToken);
     }
 }

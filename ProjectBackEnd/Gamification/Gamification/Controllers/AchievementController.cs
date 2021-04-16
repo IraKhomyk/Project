@@ -27,36 +27,73 @@ namespace Gamification.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllAchievements(CancellationToken cancellationToken)
+        public async Task<ActionResult<IEnumerable<AchievementDTO>>> GetAllAchievements(CancellationToken cancellationToken)
         {
-            return Ok(await _achievementService.GetAllAchievements(cancellationToken));
+            try
+            {
+                var achievements = await _achievementService.GetAllAchievements(cancellationToken);
+                return Ok(achievements);
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
         }
 
         [HttpGet("{Id}")]
-        public async Task<IActionResult> GetAchievementById(Guid achievementId, CancellationToken cancellationToken)
+        public async Task<ActionResult<AchievementDTO>> GetAchievementById(Guid achievementId, CancellationToken cancellationToken)
         {
-            return Ok(await _achievementService.GetAchievementById(achievementId, cancellationToken));
+            try
+            {
+                var achievement = await _achievementService.GetAchievementById(achievementId, cancellationToken);
+                return Ok(achievement);
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
         }
 
         [HttpPost]
         public async Task<IActionResult> CreateAchievement(AchievementDTO newAchievement, CancellationToken cancellationToken)
         {
-            await _achievementService.CreateAchievement(newAchievement, cancellationToken);
-            return Ok();
+            try
+            {
+                var achievement = await _achievementService.CreateAchievement(newAchievement, cancellationToken);
+                return Ok(achievement);
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
         }
 
         [HttpPut]
         public async Task<IActionResult> UpdateAchievement(Guid achievementId, AchievementDTO newAchievement, CancellationToken cancellationToken)
         {
-            await _achievementService.UpdateAchievement(achievementId, newAchievement, cancellationToken);
-            return Ok();
+            try
+            {
+                var achievement = await _achievementService.UpdateAchievement(achievementId, newAchievement, cancellationToken);
+                return Ok(achievement);
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
         }
 
         [HttpDelete]
         public async Task<IActionResult> DeleteAchievement(Guid achievemenId, CancellationToken cancellationToken)
         {
-            await _achievementService.DeleteAchievement(achievemenId, cancellationToken);
-            return NoContent();
+            try
+            {
+                var deletedAchievement = await _achievementService.DeleteAchievement(achievemenId, cancellationToken);
+                return NoContent();
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
         }
     }
 }

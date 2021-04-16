@@ -26,7 +26,6 @@ namespace Gamification
 
             CreateMap<Role, RoleDTO>();
             CreateMap<RoleDTO, Role>();
-
         }
     }
 }

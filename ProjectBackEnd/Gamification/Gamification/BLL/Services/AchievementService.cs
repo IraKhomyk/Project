@@ -34,25 +34,30 @@ namespace Gamification.BLL.Services
             return _mapper.Map<AchievementDTO>(achievement);
         }
 
-        public async Task CreateAchievement(AchievementDTO newAchievement, CancellationToken cancellationToken)
+        public async Task<Achievement> CreateAchievement(AchievementDTO newAchievement, CancellationToken cancellationToken)
         {
             var mapData = _mapper.Map<Achievement>(newAchievement);
-            await UnitOfWork.achievementRepository.CreateAchievement(mapData, cancellationToken);
+            var achievement = await UnitOfWork.achievementRepository.CreateAchievement(mapData, cancellationToken);
             await UnitOfWork.SaveChanges(cancellationToken);
+
+            return achievement;
         }
 
-        public async Task UpdateAchievement(Guid achievementId, AchievementDTO newAchievement, CancellationToken cancellationToken)
+        public async Task<Achievement> UpdateAchievement(Guid achievementId, AchievementDTO newAchievement, CancellationToken cancellationToken)
         {
 
             var mapData = _mapper.Map<Achievement>(newAchievement);
-            await UnitOfWork.achievementRepository.UpdateAchievement(achievementId, mapData, cancellationToken);
+            var achievement = await UnitOfWork.achievementRepository.UpdateAchievement(achievementId, mapData, cancellationToken);
             await UnitOfWork.SaveChanges(cancellationToken);
+            return achievement;
         }
 
-        public async Task DeleteAchievement(Guid achievemenId, CancellationToken cancellationToken)
+        public async Task<Achievement> DeleteAchievement(Guid achievemenId, CancellationToken cancellationToken)
         {
-            await UnitOfWork.achievementRepository.DeleteAchievement(achievemenId, cancellationToken);
+            var deletedAchievement = await UnitOfWork.achievementRepository.DeleteAchievement(achievemenId, cancellationToken);
             await UnitOfWork.SaveChanges(cancellationToken);
+
+            return deletedAchievement;
         }
     }
 }

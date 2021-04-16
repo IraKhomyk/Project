@@ -31,11 +31,15 @@ namespace Gamification.Models
         [DataType(DataType.Password)]
         [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z])$", ErrorMessage = "Password must meet requirements")]
         public string Password { get; set; }
+
         public string Status { get; set; }
+
         public int Xp { get; set; }
 
         public Guid? AvatarId { get; set; }
+
         public ICollection<Role> Roles { get; set; }
+
         public ICollection<Achievement> Achievements { get; set; }
     }
 }
