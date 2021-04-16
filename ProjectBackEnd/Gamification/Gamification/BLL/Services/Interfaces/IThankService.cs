@@ -10,7 +10,7 @@ namespace Gamification.BLL.Services.Interfaces
 {
     public interface IThankService
     {
-        public Task<Thank> SayThank(Guid fromUserId, ThankDTO newThank, CancellationToken cancellationToken);
-        public Task<ThankDTO> GetLastThank(Guid userId, CancellationToken cancellationToken);
+        public Task<Thank> SayThank(ThankDTO newThank, CancellationToken cancellationToken);
+        public Task<ThankDTO> GetLastThank(CancellationToken cancellationToken);
     }
 }

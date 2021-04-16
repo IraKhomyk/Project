@@ -1,6 +1,7 @@
 ﻿using Gamification.BLL.DTO;
 using Gamification.BLL.Services.Interfaces;
 using Gamification.DAL.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -22,11 +23,11 @@ namespace Gamification.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<ThankDTO>> GetLastThank(Guid userId, CancellationToken cancellationToken)
+        public async Task<ActionResult<ThankDTO>> GetLastThank(CancellationToken cancellationToken)
         {
             try
             {
-                var lastThank = await _thankService.GetLastThank(userId, cancellationToken);
+                var lastThank = await _thankService.GetLastThank(cancellationToken);
                 return Ok(lastThank);
             }
             catch
@@ -36,11 +37,11 @@ namespace Gamification.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ThankDTO>> SayThank(Guid fromUserId, ThankDTO newThank, CancellationToken cancellationToken)
+        public async Task<ActionResult<ThankDTO>> SayThank(ThankDTO newThank, CancellationToken cancellationToken)
         {
             try
             {
-                var thank = await _thankService.SayThank(fromUserId, newThank, cancellationToken);
+                var thank = await _thankService.SayThank(newThank, cancellationToken);
                 return Ok(thank);
             }
             catch

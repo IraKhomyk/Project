@@ -21,17 +21,17 @@ namespace Gamification.BLL.Services.Interfaces
             this._mapper = mapper;
         }
 
-        public async Task<Thank> SayThank(Guid fromUserId, ThankDTO newThank, CancellationToken cancellationToken)
+        public async Task<Thank> SayThank(ThankDTO newThank, CancellationToken cancellationToken)
         {
             var mapData = _mapper.Map<Thank>(newThank);
-            var thank = await _unitOfWork.thankRepository.SayThank(fromUserId, mapData, cancellationToken);
+            var thank = await _unitOfWork.thankRepository.SayThank(mapData, cancellationToken);
 
             return thank;
         }
 
-        public async Task<ThankDTO> GetLastThank(Guid userId, CancellationToken cancellationToken)
+        public async Task<ThankDTO> GetLastThank(CancellationToken cancellationToken)
         {
-            Thank thank = await _unitOfWork.thankRepository.GetLastThank(userId, cancellationToken);
+            Thank thank = await _unitOfWork.thankRepository.GetLastThank(cancellationToken);
 
             return _mapper.Map<ThankDTO>(thank);
         }

@@ -1,5 +1,6 @@
 ﻿using Gamification.BLL.Services.Interfaces;
 using Gamification.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
