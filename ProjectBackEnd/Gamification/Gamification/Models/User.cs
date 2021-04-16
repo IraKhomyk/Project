@@ -41,5 +41,6 @@ namespace Gamification.Models
         public ICollection<Role> Roles { get; set; }
 
         public ICollection<Achievement> Achievements { get; set; }
+        public Thank Thank { get; set; }
     }
 }

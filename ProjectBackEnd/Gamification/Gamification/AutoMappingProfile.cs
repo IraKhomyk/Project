@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Gamification.BLL.DTO;
+using Gamification.DAL.Repositories;
 using Gamification.Models;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,9 @@ namespace Gamification
 
             CreateMap<Role, RoleDTO>();
             CreateMap<RoleDTO, Role>();
+
+            CreateMap<Thank, ThankDTO>();
+            CreateMap<ThankDTO, Thank>();
         }
     }
 }

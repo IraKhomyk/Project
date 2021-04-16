@@ -3,6 +3,7 @@ using Gamification.BLL.DTO;
 using Gamification.BLL.Services.Interfaces;
 using Gamification.DAL.Repository.UnitOfWork;
 using Gamification.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;

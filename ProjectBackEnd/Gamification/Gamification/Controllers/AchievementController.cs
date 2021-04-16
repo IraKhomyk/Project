@@ -13,6 +13,7 @@ using AutoMapper;
 using Gamification.BLL.DTO;
 using Gamification.DAL.Repository.UnitOfWork;
 using Gamification.BLL.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Gamification.Controllers
 {

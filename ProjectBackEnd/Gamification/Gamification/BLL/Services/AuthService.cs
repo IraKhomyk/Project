@@ -56,15 +56,14 @@ namespace Gamification.BLL.Services
 
             var claims = new List<Claim>()
             {
-                new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString())
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
             };
 
             if (user.Roles != null)
             {
                 foreach (var role in user.Roles)
                 {
-                    claims.Add(new Claim("role", role.ToString()));
+                    claims.Add(new Claim(ClaimTypes.Role, role.RoleName));
                 }
             }
 
