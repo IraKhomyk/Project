@@ -57,6 +57,7 @@ namespace Gamification
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IAchievementService, AchievementService>();
             services.AddTransient<IAuthService, AuthService>();
+            services.AddTransient<IThankService, ThankService>();
 
             services.AddCors(options =>
             {
