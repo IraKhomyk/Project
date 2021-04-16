@@ -63,7 +63,7 @@ namespace Gamification.BLL.Services
             {
                 foreach (var role in user.Roles)
                 {
-                    claims.Add(new Claim(ClaimTypes.NameIdentifier, role.RoleName));
+                    claims.Add(new Claim(ClaimTypes.Role, role.RoleName));
                 }
             }
 
