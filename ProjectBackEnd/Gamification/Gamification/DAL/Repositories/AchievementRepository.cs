@@ -28,17 +28,21 @@ namespace Gamification.DAL.Repository
 
         public async Task<Achievement> GetAchievementById(Guid achievementId, CancellationToken cancellationToken)
         {
-            return await _context.Achievements.FirstOrDefaultAsync(x => x.Id == achievementId, cancellationToken);
+            Achievement achievement = await _context.Achievements.FirstOrDefaultAsync(x => x.Id == achievementId, cancellationToken);
+
+            return achievement;
         }
 
-        public async Task CreateAchievement(Achievement achievement, CancellationToken cancellationToken)
+        public async Task<Achievement> CreateAchievement(Achievement achievement, CancellationToken cancellationToken)
         {
             var guid = Guid.NewGuid();
             achievement.Id = guid;
             await _context.Achievements.AddAsync(achievement, cancellationToken);
+
+            return achievement;
         }
 
-        public async Task UpdateAchievement(Guid achievementId, Achievement newAchievement, CancellationToken cancellationToken)
+        public async Task<Achievement> UpdateAchievement(Guid achievementId, Achievement newAchievement, CancellationToken cancellationToken)
         {
             var achievement = await _context.Achievements.FirstOrDefaultAsync(x => x.Id == achievementId, cancellationToken);
             if (achievement != null)
@@ -52,13 +56,17 @@ namespace Gamification.DAL.Repository
                 _context.Achievements.Update(achievement);
                 await _context.SaveChangesAsync();
             }
+
+            return achievement;
         }
 
-        public async Task DeleteAchievement(Guid AchievementId, CancellationToken cancellationToken)
+        public async Task<Achievement> DeleteAchievement(Guid AchievementId, CancellationToken cancellationToken)
         {
             var achievement = await _context.Achievements.FirstOrDefaultAsync(x => x.Id == AchievementId, cancellationToken);
             _context.Achievements.Attach(achievement);
             _context.Achievements.Remove(achievement);
+
+            return achievement;
         }
     }
 }

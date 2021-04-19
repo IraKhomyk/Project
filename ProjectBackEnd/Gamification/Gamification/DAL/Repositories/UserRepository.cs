@@ -20,7 +20,7 @@ namespace Gamification.DAL.Repositories
 
         public async Task<IEnumerable<User>> GetAllUsers(CancellationToken cancellationToken)
         {
-            var users = _context.Users;
+            var users = _context.Users.Include(a => a.Roles);
 
             return await users.ToListAsync(cancellationToken);
         }
@@ -30,14 +30,16 @@ namespace Gamification.DAL.Repositories
             return await _context.Users.FirstOrDefaultAsync(x => x.Id == userId, cancellationToken);
         }
 
-        public async Task CreateUser(User user, CancellationToken cancellationToken)
+        public async Task<User> CreateUser(User newUser, CancellationToken cancellationToken)
         {
             var guid = Guid.NewGuid();
-            user.Id = guid;
-            await _context.Users.AddAsync(user, cancellationToken);
+            newUser.Id = guid;
+            await _context.Users.AddAsync(newUser, cancellationToken);
+            await _context.SaveChangesAsync();
+            return newUser;
         }
 
-        public async Task UpdateUser(Guid userId, User newUser, CancellationToken cancellationToken)
+        public async Task<User> UpdateUser(Guid userId, User newUser, CancellationToken cancellationToken)
         {
             var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == userId, cancellationToken);
             if (user != null)
@@ -52,18 +54,21 @@ namespace Gamification.DAL.Repositories
                 _context.Users.Update(user);
                 await _context.SaveChangesAsync();
             }
+            return user;
         }
 
-        public async Task DeleteUser(Guid userId, CancellationToken cancellationToken)
+        public async Task<User> DeleteUser(Guid userId, CancellationToken cancellationToken)
         {
             var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == userId, cancellationToken);
             _context.Users.Attach(user);
             _context.Users.Remove(user);
+            await _context.SaveChangesAsync(cancellationToken);
+            return user;
         }
 
-        public User AuthenticateUser(string email, string password)
+        public async Task<User> AuthenticateUser(string email, string password, CancellationToken cancellationToken)
         {
-            return _context.Users.SingleOrDefault(x => x.Email == email && x.Password == password);
+            return await _context.Users.Include(a => a.Roles).SingleOrDefaultAsync(x => x.Email == email && x.Password == password, cancellationToken);
         }
     }
 }

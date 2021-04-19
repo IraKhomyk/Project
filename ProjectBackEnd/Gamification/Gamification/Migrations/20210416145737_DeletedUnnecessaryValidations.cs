@@ -2,7 +2,7 @@
 
 namespace Gamification.Migrations
 {
-    public partial class UpdatedUser : Migration
+    public partial class DeletedUnnecessaryValidations : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

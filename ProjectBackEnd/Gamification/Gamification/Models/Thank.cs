@@ -6,10 +6,20 @@ using System.Threading.Tasks;
 
 namespace Gamification.Models
 {
-    public class Role : BaseEntity
+    public class Thank : BaseEntity
     {
         [Required]
-        public string RoleName { get; set; }
+        public Guid ToUserId { get; set; }
+
+        public User FromUser { get; set; }
+
+        [Required]
+        [StringLength(100)]
+        public string Text { get; set; }
+
+        public DateTime AddedTime { get; set; }
+
         public ICollection<User> Users { get; set; }
+
     }
 }
