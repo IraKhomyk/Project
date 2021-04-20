@@ -19,6 +19,7 @@ namespace Gamification.Controllers
 {
     [Route("[controller]")]
     [ApiController]
+    [Authorize]
     public class AchievementController : ControllerBase
     {
         private IAchievementService _achievementService { get; set; }

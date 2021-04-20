@@ -3,6 +3,7 @@ using Gamification.BLL.DTO;
 using Gamification.BLL.Services.Interfaces;
 using Gamification.DAL.Repository.UnitOfWork;
 using Gamification.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -18,15 +19,20 @@ namespace Gamification.BLL.Services
     public class AuthService : IAuthService
     {
         private readonly IMapper _mapper;
-        public IUnitOfWork UnitOfWork { get; set; }
+        public IUnitOfWork _unitOfWork { get; set; }
 
         private IOptions<AuthOptions> _authOptions;
 
-        public AuthService(IUnitOfWork unitOfWork, IMapper mapper, IOptions<AuthOptions> authOptions)
+        public IUserService _userService { get; set; }
+
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public AuthService(IUnitOfWork unitOfWork, IMapper mapper, IOptions<AuthOptions> authOptions, IUserService userService, IHttpContextAccessor httpContextAccessor)
         {
-            this.UnitOfWork = unitOfWork;
+            this._unitOfWork = unitOfWork;
             this._mapper = mapper;
             _authOptions = authOptions;
+            _userService = userService;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public async Task<string> Login(string userName, string password, CancellationToken cancellationToken)
@@ -49,7 +55,7 @@ namespace Gamification.BLL.Services
 
         public async Task<User> AuthenticateUser(string userName, string password, CancellationToken cancellationToken)
         {
-            return await UnitOfWork.userRepository.AuthenticateUser(userName, password, cancellationToken);
+            return await _unitOfWork.userRepository.AuthenticateUser(userName, password, cancellationToken);
         }
 
         private string GenerateJWT(User user)

@@ -20,7 +20,8 @@ namespace Gamification.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    
+    [Authorize]
+
     public class UserController : ControllerBase
     {
         private IUserService _userService { get; set; }
@@ -30,7 +31,6 @@ namespace Gamification.Controllers
         }
       
         [HttpGet]
-        [Authorize]
         public async Task<ActionResult<IEnumerable<UserDTO>>> GetAllUsers(CancellationToken cancellationToken)
         {
             try
@@ -58,7 +58,25 @@ namespace Gamification.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("current")]
+
+        public async Task<ActionResult<UserDTO>> GetCurrentUser(CancellationToken cancellationToken)
+        {
+            try
+            {
+                var user = await _userService.GetCurrentUser(cancellationToken);
+                return Ok(user);
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
+
+        }
+
         [HttpPost]
+
         public async Task<ActionResult<CreateUserDTO>> CreateUser(CreateUserDTO newUser, CancellationToken cancellationToken)
         {
             try

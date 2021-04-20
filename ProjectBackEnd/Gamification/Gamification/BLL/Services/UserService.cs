@@ -25,12 +25,14 @@ namespace Gamification.BLL.Services
         public async Task<IEnumerable<UserDTO>> GetAllUsers(CancellationToken cancellationToken)
         {
             var users = await UnitOfWork.userRepository.GetAllUsers(cancellationToken);
+
             return _mapper.Map<IEnumerable<UserDTO>>(users);
         }
 
         public async Task<UserDTO> GetUserById(Guid Id, CancellationToken cancellationToken)
         {
             User user = await UnitOfWork.userRepository.GetUserById(Id, cancellationToken);
+
             return _mapper.Map<UserDTO>(user);
         }
 
@@ -39,6 +41,7 @@ namespace Gamification.BLL.Services
             var mapData = _mapper.Map<User>(newUser);
             var user = await UnitOfWork.userRepository.CreateUser(mapData, cancellationToken);
             await UnitOfWork.SaveChanges(cancellationToken);
+
             return user;
         }
 
@@ -47,6 +50,7 @@ namespace Gamification.BLL.Services
             User mapData = _mapper.Map<User>(newUser);
             var user = await UnitOfWork.userRepository.UpdateUser(userId, mapData, cancellationToken);
             await UnitOfWork.SaveChanges(cancellationToken);
+
             return user;
         }
 
@@ -54,8 +58,15 @@ namespace Gamification.BLL.Services
         {
             User deletedUser = await UnitOfWork.userRepository.DeleteUser(userId, cancellationToken);
             await UnitOfWork.SaveChanges(cancellationToken);
+
             return deletedUser;
         }
 
+        public async Task<UserDTO> GetCurrentUser(CancellationToken cancellationToken)
+        {
+            User user = await UnitOfWork.userRepository.GetCurrentUser(cancellationToken);
+
+            return _mapper.Map<UserDTO>(user);
+        }
     }
 }

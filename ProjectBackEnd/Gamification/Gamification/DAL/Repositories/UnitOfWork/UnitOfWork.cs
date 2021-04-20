@@ -1,6 +1,7 @@
 ﻿using Gamification.DAL.IRepositories;
 using Gamification.DAL.IRepository;
 using Gamification.DAL.Repositories;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +17,11 @@ namespace Gamification.DAL.Repository.UnitOfWork
         private IThankRepository _thankRepository;
         private MyContext _context;
 
-        public UnitOfWork(MyContext context)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public UnitOfWork(MyContext context, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
+            _httpContextAccessor = httpContextAccessor;
         }
         public IAchievementRepository achievementRepository
         {
@@ -41,7 +44,7 @@ namespace Gamification.DAL.Repository.UnitOfWork
             {
                 if (this._userRepository == null)
                 {
-                    this._userRepository = new UserRepository(_context);
+                    this._userRepository = new UserRepository(_context, _httpContextAccessor);
                 }
                 return _userRepository;
             }

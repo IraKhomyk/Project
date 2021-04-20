@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
@@ -78,8 +79,6 @@ namespace Gamification
                 });
             });
 
-            var key = "This is my secret";
-
             services.AddAuthentication(o =>
             {
                 o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -116,7 +115,7 @@ namespace Gamification
 
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
-
+            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddDbContext<MyContext>(ServiceLifetime.Transient);
             services.AddTransient<IUnitOfWork, UnitOfWork>();

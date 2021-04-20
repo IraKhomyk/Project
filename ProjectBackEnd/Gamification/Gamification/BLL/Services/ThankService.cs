@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Gamification.BLL.DTO;
 using Gamification.DAL.Repositories;
 using Gamification.DAL.Repository.UnitOfWork;
 using Gamification.Models;
@@ -21,17 +22,22 @@ namespace Gamification.BLL.Services.Interfaces
             this._mapper = mapper;
         }
 
-        public async Task<Thank> SayThank(ThankDTO newThank, CancellationToken cancellationToken)
+        public async Task<ThankDTO> SayThank(ThankDTO newThank, CancellationToken cancellationToken)
         {
             var mapData = _mapper.Map<Thank>(newThank);
-            var thank = await _unitOfWork.thankRepository.SayThank(mapData, cancellationToken);
+            User currentUser = await _unitOfWork.userRepository.GetCurrentUser(cancellationToken);
 
-            return thank;
+            var thank = await _unitOfWork.thankRepository.SayThank(currentUser, mapData, cancellationToken);
+
+            return _mapper.Map<ThankDTO>(thank);
         }
 
         public async Task<ThankDTO> GetLastThank(CancellationToken cancellationToken)
         {
-            Thank thank = await _unitOfWork.thankRepository.GetLastThank(cancellationToken);
+            User currentUser = await _unitOfWork.userRepository.GetCurrentUser(cancellationToken);
+            Guid currentUserId = currentUser.Id;
+
+            Thank thank = await _unitOfWork.thankRepository.GetLastThank(currentUserId, cancellationToken);
 
             return _mapper.Map<ThankDTO>(thank);
         }

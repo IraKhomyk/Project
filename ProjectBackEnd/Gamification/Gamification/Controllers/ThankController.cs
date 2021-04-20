@@ -14,6 +14,7 @@ namespace Gamification.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ThankController : ControllerBase
     {
         private IThankService _thankService { get; set; }

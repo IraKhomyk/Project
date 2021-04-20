@@ -15,5 +15,6 @@ namespace Gamification.BLL.Services.Interfaces
         public Task<User> CreateUser(CreateUserDTO newUser, CancellationToken cancellationToken);
         public Task<User> UpdateUser(Guid userId, UpdateUserDTO newUser, CancellationToken cancellationToken);
         public Task<User> DeleteUser(Guid userId, CancellationToken cancellationToken);
+        public Task<UserDTO> GetCurrentUser(CancellationToken cancellationToken);
     }
 }
