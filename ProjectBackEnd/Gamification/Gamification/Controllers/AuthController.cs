@@ -30,7 +30,7 @@ namespace Gamification.Controllers
                 return UnprocessableEntity(ModelState);
             }
 
-            var newToken = await _authService.Login(login.Email, login.Password, cancellationToken);
+            var newToken = await _authService.Login(login.UserName, login.Password, cancellationToken);
 
             if (newToken == null)
             {

@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Reactive.Subjects;
 using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
@@ -29,34 +30,37 @@ namespace Gamification.BLL.Services
             _authOptions = authOptions;
         }
 
-        public async Task<string> Login(string email, string password, CancellationToken cancellationToken)
+        public async Task<string> Login(string userName, string password, CancellationToken cancellationToken)
         {
-            User user = await AuthenticateUser(email, password, cancellationToken);
+            User user = await AuthenticateUser(userName, password, cancellationToken);
             if (user == null)
             {
                 return null;
             }
 
             var token = GenerateJWT(user);
+            var response = new
+            {
+                access_token = token,
+                username = user.UserName
+            };
 
-            return token;
+            return response.ToString();
         }
 
-        public async Task<User> AuthenticateUser(string email, string password, CancellationToken cancellationToken)
+        public async Task<User> AuthenticateUser(string userName, string password, CancellationToken cancellationToken)
         {
-            return await UnitOfWork.userRepository.AuthenticateUser(email, password, cancellationToken);
+            return await UnitOfWork.userRepository.AuthenticateUser(userName, password, cancellationToken);
         }
 
         private string GenerateJWT(User user)
         {
-            var authParams = _authOptions.Value;
-
-            var securityKey = authParams.GetSymmetricSecurityKey();
+            var securityKey = AuthOptions.GetSymmetricSecurityKey();
             var credentialist = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
             var claims = new List<Claim>()
             {
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
+                new Claim(ClaimTypes.NameIdentifier, user.UserName.ToString())
             };
 
             if (user.Roles != null)
@@ -67,10 +71,9 @@ namespace Gamification.BLL.Services
                 }
             }
 
-            var token = new JwtSecurityToken(authParams.Issuer,
-                authParams.Audience,
-                claims,
-                expires: DateTime.Now.AddSeconds(authParams.TokenLifeTime),
+            var token = new JwtSecurityToken(
+                claims: claims, 
+                expires: DateTime.Now.AddDays(AuthOptions.TokenLifeTime),
                 signingCredentials: credentialist);
 
             return new JwtSecurityTokenHandler().WriteToken(token);

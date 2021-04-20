@@ -20,6 +20,7 @@ namespace Gamification.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    
     public class UserController : ControllerBase
     {
         private IUserService _userService { get; set; }
@@ -29,6 +30,7 @@ namespace Gamification.Controllers
         }
       
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<UserDTO>>> GetAllUsers(CancellationToken cancellationToken)
         {
             try

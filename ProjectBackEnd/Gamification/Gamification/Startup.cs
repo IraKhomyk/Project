@@ -13,10 +13,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Gamification
@@ -48,6 +50,33 @@ namespace Gamification
                     Scheme = "Bearer"
                 });
 
+                var key = "This is my secret";
+
+                services.AddAuthentication(o =>
+                {
+                    o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    o.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
+                   .AddJwtBearer(options =>
+                    {
+                        options.RequireHttpsMetadata = false;
+                        options.SaveToken = true;
+                        options.TokenValidationParameters = new TokenValidationParameters
+                        {
+
+                            ValidateIssuer = false,
+                           // ValidIssuer = AuthOptions.Issuer,
+
+                            ValidateAudience = false,
+                           // ValidAudience = AuthOptions.Audience,
+                            ValidateLifetime = true,
+
+                            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(key)),
+                            ValidateIssuerSigningKey = true,
+                        };
+                    });
+                services.AddControllersWithViews();
+
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
                     {
@@ -73,6 +102,7 @@ namespace Gamification
 
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
+           
 
             services.AddDbContext<MyContext>(ServiceLifetime.Transient);
             services.AddTransient<IUnitOfWork, UnitOfWork>();
@@ -102,6 +132,7 @@ namespace Gamification
             var authOptionsConfiguration = Configuration.GetSection("Auth");
             services.Configure<AuthOptions>(authOptionsConfiguration);
 
+            services.AddAuthorization();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
