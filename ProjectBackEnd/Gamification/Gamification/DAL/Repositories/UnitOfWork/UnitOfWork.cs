@@ -29,7 +29,7 @@ namespace Gamification.DAL.Repository.UnitOfWork
             {
                 if (this._achievementRepository == null)
                 {
-                    this._achievementRepository = new AchievementRepository(_context);
+                    this._achievementRepository = new AchievementRepository(_context, _httpContextAccessor);
                 }
                 return _achievementRepository;
             }

@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using Gamification.DAL.IRepository;
 using Gamification.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -13,10 +15,13 @@ namespace Gamification.DAL.Repository
     public class AchievementRepository : IAchievementRepository
     {
         private MyContext _context;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public AchievementRepository(MyContext context)
+        public AchievementRepository(MyContext context, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
+            _httpContextAccessor = httpContextAccessor;
+
         }
 
         public async Task<IEnumerable<Achievement>> GetAllAchievements(CancellationToken cancellationToken)
@@ -67,6 +72,14 @@ namespace Gamification.DAL.Repository
             _context.Achievements.Remove(achievement);
 
             return achievement;
+        }
+
+        public async Task<User> GetAllUserAchievements(CancellationToken cancellationToken)
+        {
+            var userId = Guid.Parse(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
+            var userAchievements = await _context.Users.Include(a => a.Achievements).FirstOrDefaultAsync(x => x.Id == userId, cancellationToken);
+
+            return userAchievements;
         }
     }
 }
