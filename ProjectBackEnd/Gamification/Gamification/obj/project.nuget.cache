@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "kIc8e7S2dezsn1+ZTrLfT9VMN2Au888REgw7vzPAme5dG7EYIdwiStFk60BXdic3rpJNOj+6t0fv3enRHGi/Uw==",
+  "dgSpecHash": "qzrToXMNAqso5k7jOc7rY7dp8psTGe2oobWWsgDPzCx5jeHtaLL8QPVvTjgwc8S59lQRFGGa+r6wORf3tOgIJw==",
   "success": true,
   "projectFilePath": "C:\\Users\\flagman\\Desktop\\Project\\ProjectBackEnd\\Gamification\\Gamification\\Gamification.csproj",
   "expectedPackageFiles": [
@@ -73,7 +73,6 @@
     "C:\\Users\\flagman\\.nuget\\packages\\system.net.primitives\\4.3.0\\system.net.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\flagman\\.nuget\\packages\\system.private.datacontractserialization\\4.3.0\\system.private.datacontractserialization.4.3.0.nupkg.sha512",
     "C:\\Users\\flagman\\.nuget\\packages\\system.private.uri\\4.3.2\\system.private.uri.4.3.2.nupkg.sha512",
-    "C:\\Users\\flagman\\.nuget\\packages\\system.reactive\\5.0.0\\system.reactive.5.0.0.nupkg.sha512",
     "C:\\Users\\flagman\\.nuget\\packages\\system.reflection\\4.3.0\\system.reflection.4.3.0.nupkg.sha512",
     "C:\\Users\\flagman\\.nuget\\packages\\system.reflection.emit\\4.7.0\\system.reflection.emit.4.7.0.nupkg.sha512",
     "C:\\Users\\flagman\\.nuget\\packages\\system.reflection.emit.ilgeneration\\4.3.0\\system.reflection.emit.ilgeneration.4.3.0.nupkg.sha512",

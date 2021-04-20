@@ -35,8 +35,20 @@ namespace Gamification
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                    });
+            });
 
-            services.AddControllers();
+            services.AddControllers()
+                            .AddNewtonsoftJson(options =>
+                                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             services.AddSwaggerGen(c =>
             {
@@ -49,33 +61,6 @@ namespace Gamification
                     Type = SecuritySchemeType.ApiKey,
                     Scheme = "Bearer"
                 });
-
-                var key = "This is my secret";
-
-                services.AddAuthentication(o =>
-                {
-                    o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                    o.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                })
-                   .AddJwtBearer(options =>
-                    {
-                        options.RequireHttpsMetadata = false;
-                        options.SaveToken = true;
-                        options.TokenValidationParameters = new TokenValidationParameters
-                        {
-
-                            ValidateIssuer = false,
-                           // ValidIssuer = AuthOptions.Issuer,
-
-                            ValidateAudience = false,
-                           // ValidAudience = AuthOptions.Audience,
-                            ValidateLifetime = true,
-
-                            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(key)),
-                            ValidateIssuerSigningKey = true,
-                        };
-                    });
-                services.AddControllersWithViews();
 
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
@@ -93,6 +78,35 @@ namespace Gamification
                 });
             });
 
+            var key = "This is my secret";
+
+            services.AddAuthentication(o =>
+            {
+                o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                o.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+                   .AddJwtBearer(options =>
+                   {
+                       options.RequireHttpsMetadata = false;
+                       options.SaveToken = true;
+                       options.TokenValidationParameters = new TokenValidationParameters
+                       {
+
+                           ValidateIssuer = false,
+                           //ValidIssuer = AuthOptions.Issuer,
+
+                           ValidateAudience = false,
+                           // ValidAudience = AuthOptions.Audience,
+                           ValidateLifetime = true,
+
+                           IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
+                           ValidateIssuerSigningKey = true,
+                           ClockSkew = TimeSpan.Zero,
+                       };
+                   });
+
+            services.AddAuthorization();
+
             services.AddDbContext<MyContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MyConnection")));
 
             var mapperConfig = new MapperConfiguration(mc =>
@@ -102,7 +116,7 @@ namespace Gamification
 
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
-           
+
 
             services.AddDbContext<MyContext>(ServiceLifetime.Transient);
             services.AddTransient<IUnitOfWork, UnitOfWork>();
@@ -112,27 +126,11 @@ namespace Gamification
             services.AddTransient<IAuthService, AuthService>();
             services.AddTransient<IThankService, ThankService>();
 
-            services.AddCors(options =>
-            {
-                options.AddDefaultPolicy(
-                    builder =>
-                    {
-                        builder.AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader();
-                    });
-            });
-
-            services.AddControllersWithViews()
-                .AddNewtonsoftJson(options =>
-                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             var authOptionsConfiguration = Configuration.GetSection("Auth");
             services.Configure<AuthOptions>(authOptionsConfiguration);
-
-            services.AddAuthorization();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

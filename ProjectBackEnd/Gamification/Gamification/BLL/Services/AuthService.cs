@@ -9,7 +9,6 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
-using System.Reactive.Subjects;
 using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
@@ -60,7 +59,7 @@ namespace Gamification.BLL.Services
 
             var claims = new List<Claim>()
             {
-                new Claim(ClaimTypes.NameIdentifier, user.UserName.ToString())
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
             };
 
             if (user.Roles != null)
@@ -71,9 +70,10 @@ namespace Gamification.BLL.Services
                 }
             }
 
-            var token = new JwtSecurityToken(
-                claims: claims, 
-                expires: DateTime.Now.AddDays(AuthOptions.TokenLifeTime),
+            var token = new JwtSecurityToken(AuthOptions.Issuer,
+                AuthOptions.Audience,
+                claims,
+                expires: DateTime.Now.AddHours(AuthOptions.TokenLifeTime),
                 signingCredentials: credentialist);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
