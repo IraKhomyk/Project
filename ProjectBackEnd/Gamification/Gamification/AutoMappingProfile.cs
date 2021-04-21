@@ -33,6 +33,9 @@ namespace Gamification
 
             CreateMap<User, UserAchievementsDTO>();
             CreateMap<UserAchievementsDTO, User>();
+
+            CreateMap<User, AuthenticationUserDTO>();
+            CreateMap<AuthenticationUserDTO, User>();
         }
     }
 }

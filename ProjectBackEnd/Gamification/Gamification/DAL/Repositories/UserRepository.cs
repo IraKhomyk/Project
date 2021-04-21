@@ -23,19 +23,19 @@ namespace Gamification.DAL.Repositories
             _httpContextAccessor = httpContextAccessor;
         }
 
-        public async Task<IEnumerable<User>> GetAllUsers(CancellationToken cancellationToken)
+        public async Task<IEnumerable<User>> GetAllUsersAsync(CancellationToken cancellationToken)
         {
             var users = _context.Users.Include(a => a.Roles);
 
             return await users.ToListAsync(cancellationToken);
         }
 
-        public async Task<User> GetUserById(Guid userId, CancellationToken cancellationToken)
+        public async Task<User> GetUserByIdAsync(Guid userId, CancellationToken cancellationToken)
         {
             return await _context.Users.Include(a => a.Roles).Include(b=>b.Thank).FirstOrDefaultAsync(x => x.Id == userId, cancellationToken);
         }
 
-        public async Task<User> CreateUser(User newUser, CancellationToken cancellationToken)
+        public async Task<User> CreateUserAsync(User newUser, CancellationToken cancellationToken)
         {
             var guid = Guid.NewGuid();
             newUser.Id = guid;
@@ -44,7 +44,7 @@ namespace Gamification.DAL.Repositories
             return newUser;
         }
 
-        public async Task<User> UpdateUser(Guid userId, User newUser, CancellationToken cancellationToken)
+        public async Task<User> UpdateUserAsync(Guid userId, User newUser, CancellationToken cancellationToken)
         {
             var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == userId, cancellationToken);
             if (user != null)
@@ -62,7 +62,7 @@ namespace Gamification.DAL.Repositories
             return user;
         }
 
-        public async Task<User> DeleteUser(Guid userId, CancellationToken cancellationToken)
+        public async Task<User> DeleteUserAsync(Guid userId, CancellationToken cancellationToken)
         {
             var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == userId, cancellationToken);
             _context.Users.Attach(user);
@@ -71,15 +71,35 @@ namespace Gamification.DAL.Repositories
             return user;
         }
 
-        public async Task<User> AuthenticateUser(string userName, string password, CancellationToken cancellationToken)
+        public async Task<User> AuthenticateUserAsync(string userName, string password, CancellationToken cancellationToken)
         {
             return await _context.Users.Include(a => a.Roles).SingleOrDefaultAsync(x => x.UserName == userName && x.Password == password, cancellationToken);
         }
 
-        public async Task<User> GetCurrentUser(CancellationToken cancellationToken)
+        public async Task<User> GetCurrentUserAsync(CancellationToken cancellationToken)
         {
             var userId = Guid.Parse(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
-            User user = await GetUserById(userId, cancellationToken);
+            User user = await GetUserByIdAsync(userId, cancellationToken);
+
+            return user;
+        }
+
+        public async Task<IEnumerable<Role>> GetUserRolesAsync(Guid userId, CancellationToken cancellationToken)
+        {
+            User user = await _context.Users.Include(x=>x.Roles).FirstOrDefaultAsync(x => x.Id == userId, cancellationToken);
+
+            if(user != null)
+            {
+                var roles = user.Roles;
+                return roles;
+            }
+
+            return null;
+        }
+
+        public async Task<User> GetUserByRefreshTokenAsync(Guid refreshTokenId, CancellationToken cancellationToken)
+        {
+            User user = await _context.Users.FirstOrDefaultAsync(u => u.JwtRefreshTokens.Any(t => t.RefreshToken == refreshTokenId), cancellationToken);
 
             return user;
         }

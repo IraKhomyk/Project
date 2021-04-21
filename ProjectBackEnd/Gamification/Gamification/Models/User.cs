@@ -42,5 +42,6 @@ namespace Gamification.Models
 
         public ICollection<Achievement> Achievements { get; set; }
         public Thank Thank { get; set; }
+        public List<JwtRefreshToken> JwtRefreshTokens { get; set; }
     }
 }

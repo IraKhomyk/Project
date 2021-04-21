@@ -10,7 +10,8 @@ namespace Gamification.BLL.Services.Interfaces
 {
     public interface IAuthService
     {
-        public Task<string> Login(string password, string email, CancellationToken cancellationToken);
-        public Task<User> AuthenticateUser(string email, string password, CancellationToken cancellationToken);
+        public Task<AuthenticationUserDTO> AuthenticateAsync(string password, string email, CancellationToken cancellationToken);
+        public Task<User> AuthenticateUserAsync(string email, string password, CancellationToken cancellationToken);
+        public Task<AuthenticationUserDTO> RefreshTokenAsync(Guid tokenId, CancellationToken cancellationToken);
     }
 }
