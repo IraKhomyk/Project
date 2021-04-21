@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -18,9 +19,12 @@ namespace Gamification.Controllers
     public class ThankController : ControllerBase
     {
         private IThankService _thankService { get; set; }
-        public ThankController(IThankService thankService)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public ThankController(IThankService thankService, IHttpContextAccessor httpContextAccessor)
         {
             _thankService = thankService;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         [HttpGet]
@@ -28,7 +32,9 @@ namespace Gamification.Controllers
         {
             try
             {
-                var lastThank = await _thankService.GetLastThankAsync(cancellationToken);
+                Guid userId = Guid.Parse(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+                ThankDTO lastThank = await _thankService.GetLastThankAsync(userId, cancellationToken);
                 return Ok(lastThank);
             }
             catch
@@ -42,7 +48,9 @@ namespace Gamification.Controllers
         {
             try
             {
-                var thank = await _thankService.SayThankAsync(newThank, cancellationToken);
+                Guid userId = Guid.Parse(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+                ThankDTO thank = await _thankService.SayThankAsync(userId, newThank, cancellationToken);
                 return Ok(thank);
             }
             catch

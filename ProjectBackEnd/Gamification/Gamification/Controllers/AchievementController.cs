@@ -47,7 +47,7 @@ namespace Gamification.Controllers
         {
             try
             {
-                var achievement = await _achievementService.GetAchievementByIdAsync(achievementId, cancellationToken);
+                AchievementDTO achievement = await _achievementService.GetAchievementByIdAsync(achievementId, cancellationToken);
                 return Ok(achievement);
             }
             catch
@@ -61,7 +61,7 @@ namespace Gamification.Controllers
         {
             try
             {
-                var achievement = await _achievementService.CreateAchievementAsync(newAchievement, cancellationToken);
+                Achievement achievement = await _achievementService.CreateAchievementAsync(newAchievement, cancellationToken);
                 return Ok(achievement);
             }
             catch
@@ -75,7 +75,7 @@ namespace Gamification.Controllers
         {
             try
             {
-                var achievement = await _achievementService.UpdateAchievementAsync(achievementId, newAchievement, cancellationToken);
+                Achievement achievement = await _achievementService.UpdateAchievementAsync(achievementId, newAchievement, cancellationToken);
                 return Ok(achievement);
             }
             catch
@@ -89,7 +89,7 @@ namespace Gamification.Controllers
         {
             try
             {
-                var deletedAchievement = await _achievementService.DeleteAchievementAsync(achievemenId, cancellationToken);
+                await _achievementService.DeleteAchievementAsync(achievemenId, cancellationToken);
                 return NoContent();
             }
             catch

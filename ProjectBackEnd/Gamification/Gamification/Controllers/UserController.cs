@@ -49,30 +49,13 @@ namespace Gamification.Controllers
         {
             try
             {
-                var user = await _userService.GetUserByIdAsync(Id, cancellationToken);
+                UserDTO user = await _userService.GetUserByIdAsync(Id, cancellationToken);
                 return Ok(user);
             }
             catch
             {
                 return StatusCode(500);
             }
-        }
-
-        [HttpGet]
-        [Route("current")]
-
-        public async Task<ActionResult<UserDTO>> GetCurrentUserAsync(CancellationToken cancellationToken)
-        {
-            try
-            {
-                var user = await _userService.GetCurrentUserAsync(cancellationToken);
-                return Ok(user);
-            }
-            catch
-            {
-                return StatusCode(500);
-            }
-
         }
 
         [HttpPost]
@@ -81,8 +64,8 @@ namespace Gamification.Controllers
         {
             try
             {
-                await _userService.CreateUserAsync(newUser, cancellationToken);
-                return Ok();
+                User user = await _userService.CreateUserAsync(newUser, cancellationToken);
+                return Ok(user);
             }
             catch
             {
@@ -95,8 +78,8 @@ namespace Gamification.Controllers
         {
             try
             {
-                await _userService.UpdateUserAsync(userId, newUser, cancellationToken);
-                return Ok();
+                User user = await _userService.UpdateUserAsync(userId, newUser, cancellationToken);
+                return Ok(user);
             }
             catch
             {
@@ -109,7 +92,7 @@ namespace Gamification.Controllers
         {
             try
             {
-                var deletedUser = await _userService.DeleteUserAsync(userId, cancellationToken);
+                await _userService.DeleteUserAsync(userId, cancellationToken);
                 return NoContent();
             }
             catch

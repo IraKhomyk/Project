@@ -14,7 +14,7 @@ namespace Gamification.BLL.Services.Interfaces
     public class ThankService : IThankService
     {
         private readonly IMapper _mapper;
-        public IUnitOfWork _unitOfWork { get; set; }
+        private IUnitOfWork _unitOfWork { get; set; }
 
         public ThankService(IUnitOfWork unitOfWork, IMapper mapper)
         {
@@ -22,19 +22,19 @@ namespace Gamification.BLL.Services.Interfaces
             this._mapper = mapper;
         }
 
-        public async Task<ThankDTO> SayThankAsync(ThankDTO newThank, CancellationToken cancellationToken)
+        public async Task<ThankDTO> SayThankAsync(Guid userId, ThankDTO newThank, CancellationToken cancellationToken)
         {
-            var mapData = _mapper.Map<Thank>(newThank);
-            User currentUser = await _unitOfWork.userRepository.GetCurrentUserAsync(cancellationToken);
+            Thank mapData = _mapper.Map<Thank>(newThank);
+            User currentUser = await _unitOfWork.userRepository.GetCurrentUserAsync(userId, cancellationToken);
 
-            var thank = await _unitOfWork.thankRepository.SayThankAsync(currentUser, mapData, cancellationToken);
+            Thank thank = await _unitOfWork.thankRepository.SayThankAsync(currentUser, mapData, cancellationToken);
 
             return _mapper.Map<ThankDTO>(thank);
         }
 
-        public async Task<ThankDTO> GetLastThankAsync(CancellationToken cancellationToken)
+        public async Task<ThankDTO> GetLastThankAsync(Guid userId, CancellationToken cancellationToken)
         {
-            User currentUser = await _unitOfWork.userRepository.GetCurrentUserAsync(cancellationToken);
+            User currentUser = await _unitOfWork.userRepository.GetCurrentUserAsync(userId, cancellationToken);
             Guid currentUserId = currentUser.Id;
 
             Thank thank = await _unitOfWork.thankRepository.GetLastThankAsync(currentUserId, cancellationToken);

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -19,10 +20,13 @@ namespace Gamification.Controllers
         private IAchievementService _achievementService { get; set; }
         private IUserService _userService { get; set; }
 
-        public ProfileController(IAchievementService achievementService, IUserService userService)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public ProfileController(IAchievementService achievementService, IUserService userService, IHttpContextAccessor httpContextAccessor)
         {
             _achievementService = achievementService;
             _userService = userService;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         [HttpGet]
@@ -31,7 +35,9 @@ namespace Gamification.Controllers
         {
             try
             {
-                UserDTO currentUser = await _userService.GetCurrentUserAsync(cancellationToken);
+                Guid userId = Guid.Parse(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+                UserDTO currentUser = await _userService.GetCurrentUserAsync(userId, cancellationToken);
                 return Ok(currentUser);
             }
             catch
@@ -46,7 +52,9 @@ namespace Gamification.Controllers
         {
             try
             {
-                UserAchievementsDTO achievements = await _achievementService.GetAllUserAchievementsAsync(cancellationToken);
+                Guid userId = Guid.Parse(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+                UserAchievementsDTO achievements = await _achievementService.GetAllUserAchievementsAsync(userId, cancellationToken);
                 return Ok(achievements);
             }
             catch

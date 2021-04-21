@@ -19,7 +19,7 @@ namespace Gamification.BLL.Services
     public class AuthService : IAuthService
     {
         private readonly IMapper _mapper;
-        public IUnitOfWork _unitOfWork { get; set; }
+        private IUnitOfWork _unitOfWork { get; set; }
 
         private IOptions<AuthOptions> _authOptions;
 
@@ -61,7 +61,7 @@ namespace Gamification.BLL.Services
                 authenticationUser.RefreshTokenExpiration = refreshToken.Expires;
                 user.JwtRefreshTokens.Add(refreshToken);
                 await _unitOfWork.userRepository.UpdateUserAsync(user.Id, user, cancellationToken);
-                await _unitOfWork.SaveChanges(cancellationToken);
+                await _unitOfWork.SaveChangesAsync(cancellationToken);
             }
 
             return authenticationUser;
@@ -96,7 +96,7 @@ namespace Gamification.BLL.Services
                 AuthOptions.Issuer,
                 AuthOptions.Audience,
                 claims,
-                expires: DateTime.Now.AddHours(AuthOptions.TokenLifeTime),
+                expires: DateTime.Now.AddMinutes(AuthOptions.TokenLifeTime),
                 signingCredentials: credentialist);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
@@ -140,7 +140,7 @@ namespace Gamification.BLL.Services
             var newRefreshToken = CreateRefreshToken();
             user.JwtRefreshTokens.Add(newRefreshToken);
             await _unitOfWork.userRepository.UpdateUserAsync(user.Id, user, cancellationToken);
-            await _unitOfWork.SaveChanges(cancellationToken);
+            await _unitOfWork.SaveChangesAsync(cancellationToken);
 
             //Generates new jwt
             authenticationUser.IsAuthenticated = true;

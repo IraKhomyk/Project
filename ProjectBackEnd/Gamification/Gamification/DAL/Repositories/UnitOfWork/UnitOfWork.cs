@@ -17,11 +17,9 @@ namespace Gamification.DAL.Repository.UnitOfWork
         private IThankRepository _thankRepository;
         private MyContext _context;
 
-        private readonly IHttpContextAccessor _httpContextAccessor;
         public UnitOfWork(MyContext context, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
-            _httpContextAccessor = httpContextAccessor;
         }
         public IAchievementRepository achievementRepository
         {
@@ -29,7 +27,7 @@ namespace Gamification.DAL.Repository.UnitOfWork
             {
                 if (this._achievementRepository == null)
                 {
-                    this._achievementRepository = new AchievementRepository(_context, _httpContextAccessor);
+                    this._achievementRepository = new AchievementRepository(_context);
                 }
                 return _achievementRepository;
             }
@@ -44,7 +42,7 @@ namespace Gamification.DAL.Repository.UnitOfWork
             {
                 if (this._userRepository == null)
                 {
-                    this._userRepository = new UserRepository(_context, _httpContextAccessor);
+                    this._userRepository = new UserRepository(_context);
                 }
                 return _userRepository;
             }
@@ -70,7 +68,7 @@ namespace Gamification.DAL.Repository.UnitOfWork
             }
         }
 
-        public async Task SaveChanges(CancellationToken cancellationToken)
+        public async Task SaveChangesAsync(CancellationToken cancellationToken)
         {
             await _context.SaveChangesAsync(cancellationToken);
         }

@@ -15,7 +15,7 @@ namespace Gamification.BLL.Services.Interfaces
         public Task<Achievement> CreateAchievementAsync(AchievementDTO newAchievement, CancellationToken cancellationToken);
         public Task<Achievement> UpdateAchievementAsync(Guid achievementId, AchievementDTO newAchievement, CancellationToken cancellationToken);
         public Task<Achievement> DeleteAchievementAsync(Guid achievemenId, CancellationToken cancellationToken);
-        public Task<UserAchievementsDTO> GetAllUserAchievementsAsync(CancellationToken cancellationToken);
+        public Task<UserAchievementsDTO> GetAllUserAchievementsAsync(Guid userId, CancellationToken cancellationToken);
 
     }
 }

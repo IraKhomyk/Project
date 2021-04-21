@@ -10,10 +10,10 @@ namespace Gamification
     public class AuthOptions
     {
 
-        public const string Issuer = "MyAuthServer"; 
-        public const string Audience = "MyAuthClient"; 
-        const string Secret = "mysupersecret_secretkey!123"; 
-        public const int TokenLifeTime = 1; 
+        public const string Issuer = "AuthServer"; 
+        public const string Audience = "AuthClient"; 
+        const string Secret = "secret_secretkey!123"; 
+        public const int TokenLifeTime = 10; 
         public static SymmetricSecurityKey GetSymmetricSecurityKey()
         {
             return new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Secret));

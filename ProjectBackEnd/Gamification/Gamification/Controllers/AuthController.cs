@@ -31,7 +31,7 @@ namespace Gamification.Controllers
                 return UnprocessableEntity(ModelState);
             }
 
-            var userNewToken = await _authService.AuthenticateAsync(login.UserName, login.Password, cancellationToken);
+            AuthenticationUserDTO userNewToken = await _authService.AuthenticateAsync(login.UserName, login.Password, cancellationToken);
 
             if (userNewToken == null)
             {
@@ -50,7 +50,7 @@ namespace Gamification.Controllers
                 return UnprocessableEntity(ModelState);
             }
 
-            var userRefreshToken = await _authService.RefreshTokenAsync(refreshToken, cancellationToken);
+            AuthenticationUserDTO userRefreshToken = await _authService.RefreshTokenAsync(refreshToken, cancellationToken);
 
             if (userRefreshToken == null)
             {

@@ -29,7 +29,7 @@ namespace Gamification.DAL.Repositories
 
         public async Task<Thank> SayThankAsync(User currentUser, Thank newThank, CancellationToken cancellationToken)
         {
-            var guid = Guid.NewGuid();
+            Guid guid = Guid.NewGuid();
             newThank.FromUser = currentUser;
             newThank.Id = guid;
             newThank.AddedTime = DateTime.Now;

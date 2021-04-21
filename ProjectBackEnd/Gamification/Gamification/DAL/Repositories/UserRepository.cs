@@ -15,12 +15,9 @@ namespace Gamification.DAL.Repositories
     {
         private MyContext _context;
 
-        private readonly IHttpContextAccessor _httpContextAccessor;
-        
-        public UserRepository(MyContext context, IHttpContextAccessor httpContextAccessor)
+        public UserRepository(MyContext context)
         {
             _context = context;
-            _httpContextAccessor = httpContextAccessor;
         }
 
         public async Task<IEnumerable<User>> GetAllUsersAsync(CancellationToken cancellationToken)
@@ -32,21 +29,25 @@ namespace Gamification.DAL.Repositories
 
         public async Task<User> GetUserByIdAsync(Guid userId, CancellationToken cancellationToken)
         {
-            return await _context.Users.Include(a => a.Roles).Include(b=>b.Thank).FirstOrDefaultAsync(x => x.Id == userId, cancellationToken);
+            User user = await _context.Users.Include(a => a.Roles).Include(b => b.Thank).FirstOrDefaultAsync(x => x.Id == userId, cancellationToken);
+
+            return user;
         }
 
         public async Task<User> CreateUserAsync(User newUser, CancellationToken cancellationToken)
         {
-            var guid = Guid.NewGuid();
+            Guid guid = Guid.NewGuid();
             newUser.Id = guid;
             await _context.Users.AddAsync(newUser, cancellationToken);
             await _context.SaveChangesAsync();
+
             return newUser;
         }
 
         public async Task<User> UpdateUserAsync(Guid userId, User newUser, CancellationToken cancellationToken)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == userId, cancellationToken);
+            User user = await _context.Users.FirstOrDefaultAsync(x => x.Id == userId, cancellationToken);
+
             if (user != null)
             {
                 user.Password = user.Password;
@@ -59,12 +60,13 @@ namespace Gamification.DAL.Repositories
                 _context.Users.Update(user);
                 await _context.SaveChangesAsync();
             }
+
             return user;
         }
 
         public async Task<User> DeleteUserAsync(Guid userId, CancellationToken cancellationToken)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == userId, cancellationToken);
+            User user = await _context.Users.FirstOrDefaultAsync(x => x.Id == userId, cancellationToken);
             _context.Users.Attach(user);
             _context.Users.Remove(user);
             await _context.SaveChangesAsync(cancellationToken);
@@ -73,12 +75,13 @@ namespace Gamification.DAL.Repositories
 
         public async Task<User> AuthenticateUserAsync(string userName, string password, CancellationToken cancellationToken)
         {
-            return await _context.Users.Include(a => a.Roles).SingleOrDefaultAsync(x => x.UserName == userName && x.Password == password, cancellationToken);
+            User authenticatedUser = await _context.Users.Include(a => a.Roles).SingleOrDefaultAsync(x => x.UserName == userName && x.Password == password, cancellationToken);
+
+            return authenticatedUser;
         }
 
-        public async Task<User> GetCurrentUserAsync(CancellationToken cancellationToken)
+        public async Task<User> GetCurrentUserAsync(Guid userId, CancellationToken cancellationToken)
         {
-            var userId = Guid.Parse(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
             User user = await GetUserByIdAsync(userId, cancellationToken);
 
             return user;
