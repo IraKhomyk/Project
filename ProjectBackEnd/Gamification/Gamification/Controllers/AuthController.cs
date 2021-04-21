@@ -1,4 +1,5 @@
-﻿using Gamification.BLL.Services.Interfaces;
+﻿using Gamification.BLL.DTO;
+using Gamification.BLL.Services.Interfaces;
 using Gamification.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Gamification.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/authenticate")]
     [ApiController]
     public class AuthController : ControllerBase
     {
@@ -23,21 +24,40 @@ namespace Gamification.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login([FromBody] Login login, CancellationToken cancellationToken)
+        public async Task<ActionResult<AuthenticationUserDTO>> AuthenticateAsync([FromBody] Login login, CancellationToken cancellationToken)
         {
             if (!ModelState.IsValid)
             {
                 return UnprocessableEntity(ModelState);
             }
 
-            var newToken = await _authService.Login(login.UserName, login.Password, cancellationToken);
+            var userNewToken = await _authService.AuthenticateAsync(login.UserName, login.Password, cancellationToken);
 
-            if (newToken == null)
+            if (userNewToken == null)
             {
                 return Unauthorized();
             }
 
-            return Ok(newToken);
+            return Ok(userNewToken);
+        }
+
+        [HttpPost]
+        [Route("refresh")]
+        public async Task<ActionResult<AuthenticationUserDTO>> RefreshTokenAsync(Guid refreshToken, CancellationToken cancellationToken)
+        {
+            if (!ModelState.IsValid)
+            {
+                return UnprocessableEntity(ModelState);
+            }
+
+            var userRefreshToken = await _authService.RefreshTokenAsync(refreshToken, cancellationToken);
+
+            if (userRefreshToken == null)
+            {
+                return Unauthorized();
+            }
+
+            return Ok(userRefreshToken);
         }
     }
 }

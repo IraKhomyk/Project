@@ -20,14 +20,14 @@ namespace Gamification.DAL.Repositories
             _context = context;
         }
 
-        public async Task<Thank> GetLastThank(Guid currentUserId, CancellationToken cancellationToken)
+        public async Task<Thank> GetLastThankAsync(Guid currentUserId, CancellationToken cancellationToken)
         {
             Thank lastThank = await _context.Thanks.OrderByDescending(x => x.AddedTime).FirstOrDefaultAsync(x => x.ToUserId == currentUserId, cancellationToken);
 
             return lastThank;
         }
 
-        public async Task<Thank> SayThank(User currentUser, Thank newThank, CancellationToken cancellationToken)
+        public async Task<Thank> SayThankAsync(User currentUser, Thank newThank, CancellationToken cancellationToken)
         {
             var guid = Guid.NewGuid();
             newThank.FromUser = currentUser;

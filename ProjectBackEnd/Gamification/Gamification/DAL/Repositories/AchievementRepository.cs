@@ -24,21 +24,21 @@ namespace Gamification.DAL.Repository
 
         }
 
-        public async Task<IEnumerable<Achievement>> GetAllAchievements(CancellationToken cancellationToken)
+        public async Task<IEnumerable<Achievement>> GetAllAchievementsAsync(CancellationToken cancellationToken)
         {
             var achievements = _context.Achievements;
 
             return await achievements.ToListAsync(cancellationToken);
         }
 
-        public async Task<Achievement> GetAchievementById(Guid achievementId, CancellationToken cancellationToken)
+        public async Task<Achievement> GetAchievementByIdAsync(Guid achievementId, CancellationToken cancellationToken)
         {
             Achievement achievement = await _context.Achievements.FirstOrDefaultAsync(x => x.Id == achievementId, cancellationToken);
 
             return achievement;
         }
 
-        public async Task<Achievement> CreateAchievement(Achievement achievement, CancellationToken cancellationToken)
+        public async Task<Achievement> CreateAchievementAsync(Achievement achievement, CancellationToken cancellationToken)
         {
             var guid = Guid.NewGuid();
             achievement.Id = guid;
@@ -47,7 +47,7 @@ namespace Gamification.DAL.Repository
             return achievement;
         }
 
-        public async Task<Achievement> UpdateAchievement(Guid achievementId, Achievement newAchievement, CancellationToken cancellationToken)
+        public async Task<Achievement> UpdateAchievementAsync(Guid achievementId, Achievement newAchievement, CancellationToken cancellationToken)
         {
             var achievement = await _context.Achievements.FirstOrDefaultAsync(x => x.Id == achievementId, cancellationToken);
             if (achievement != null)
@@ -65,7 +65,7 @@ namespace Gamification.DAL.Repository
             return achievement;
         }
 
-        public async Task<Achievement> DeleteAchievement(Guid AchievementId, CancellationToken cancellationToken)
+        public async Task<Achievement> DeleteAchievementAsync(Guid AchievementId, CancellationToken cancellationToken)
         {
             var achievement = await _context.Achievements.FirstOrDefaultAsync(x => x.Id == AchievementId, cancellationToken);
             _context.Achievements.Attach(achievement);
@@ -74,7 +74,7 @@ namespace Gamification.DAL.Repository
             return achievement;
         }
 
-        public async Task<User> GetAllUserAchievements(CancellationToken cancellationToken)
+        public async Task<User> GetAllUserAchievementsAsync(CancellationToken cancellationToken)
         {
             var userId = Guid.Parse(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
             var userAchievements = await _context.Users.Include(a => a.Achievements).FirstOrDefaultAsync(x => x.Id == userId, cancellationToken);

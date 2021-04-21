@@ -9,7 +9,7 @@ namespace Gamification.DAL.IRepositories
 {
     public interface IThankRepository
     {
-        public Task<Thank> GetLastThank(Guid currentUserId, CancellationToken cancellationToken);
-        public Task<Thank> SayThank(User currentUser, Thank newThank, CancellationToken cancellationToken);
+        public Task<Thank> GetLastThankAsync(Guid currentUserId, CancellationToken cancellationToken);
+        public Task<Thank> SayThankAsync(User currentUser, Thank newThank, CancellationToken cancellationToken);
     }
 }

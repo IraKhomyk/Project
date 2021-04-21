@@ -25,37 +25,53 @@ namespace Gamification.BLL.Services
 
         public IUserService _userService { get; set; }
 
-        private readonly IHttpContextAccessor _httpContextAccessor;
-        public AuthService(IUnitOfWork unitOfWork, IMapper mapper, IOptions<AuthOptions> authOptions, IUserService userService, IHttpContextAccessor httpContextAccessor)
+        public AuthService(IUnitOfWork unitOfWork, IMapper mapper, IOptions<AuthOptions> authOptions, IUserService userService)
         {
-            this._unitOfWork = unitOfWork;
-            this._mapper = mapper;
+            _unitOfWork = unitOfWork;
+            _mapper = mapper;
             _authOptions = authOptions;
             _userService = userService;
-            _httpContextAccessor = httpContextAccessor;
         }
 
-        public async Task<string> Login(string userName, string password, CancellationToken cancellationToken)
+        public async Task<AuthenticationUserDTO> AuthenticateAsync(string userName, string password, CancellationToken cancellationToken)
         {
-            User user = await AuthenticateUser(userName, password, cancellationToken);
+            User user = await AuthenticateUserAsync(userName, password, cancellationToken);
             if (user == null)
             {
                 return null;
             }
 
             var token = GenerateJWT(user);
-            var response = new
-            {
-                access_token = token,
-                username = user.UserName
-            };
 
-            return response.ToString();
+            var authenticationUser = _mapper.Map<AuthenticationUserDTO>(user);
+
+            authenticationUser.IsAuthenticated = true;
+            authenticationUser.Token = token;
+
+            if (user.JwtRefreshTokens.Any(a => a.IsActive))
+            {
+                var activeRefreshToken = user.JwtRefreshTokens.Where(a => a.IsActive == true).FirstOrDefault();
+                authenticationUser.RefreshToken = activeRefreshToken.RefreshToken;
+                authenticationUser.RefreshTokenExpiration = activeRefreshToken.Expires;
+            }
+            else
+            {
+                var refreshToken = CreateRefreshToken();
+                authenticationUser.RefreshToken = refreshToken.RefreshToken;
+                authenticationUser.RefreshTokenExpiration = refreshToken.Expires;
+                user.JwtRefreshTokens.Add(refreshToken);
+                await _unitOfWork.userRepository.UpdateUserAsync(user.Id, user, cancellationToken);
+                await _unitOfWork.SaveChanges(cancellationToken);
+            }
+
+            return authenticationUser;
         }
 
-        public async Task<User> AuthenticateUser(string userName, string password, CancellationToken cancellationToken)
+        public async Task<User> AuthenticateUserAsync(string userName, string password, CancellationToken cancellationToken)
         {
-            return await _unitOfWork.userRepository.AuthenticateUser(userName, password, cancellationToken);
+            User user = await _unitOfWork.userRepository.AuthenticateUserAsync(userName, password, cancellationToken);
+
+            return user;
         }
 
         private string GenerateJWT(User user)
@@ -76,13 +92,63 @@ namespace Gamification.BLL.Services
                 }
             }
 
-            var token = new JwtSecurityToken(AuthOptions.Issuer,
+            var token = new JwtSecurityToken(
+                AuthOptions.Issuer,
                 AuthOptions.Audience,
                 claims,
                 expires: DateTime.Now.AddHours(AuthOptions.TokenLifeTime),
                 signingCredentials: credentialist);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+        private JwtRefreshToken CreateRefreshToken()
+        {
+            return new JwtRefreshToken
+            {
+                RefreshToken = Guid.NewGuid(),
+                Expires = DateTime.UtcNow.AddDays(10),
+                Created = DateTime.UtcNow
+            };
+        }
+
+        public async Task<AuthenticationUserDTO> RefreshTokenAsync(Guid tokenId, CancellationToken cancellationToken)
+        {
+            User user = await _unitOfWork.userRepository.GetUserByRefreshTokenAsync(tokenId, cancellationToken);
+            var authenticationUser = _mapper.Map<AuthenticationUserDTO>(user);
+
+            if (user == null)
+            {
+                authenticationUser.IsAuthenticated = false;
+                return authenticationUser;
+            }
+
+            var token = GenerateJWT(user);
+
+            var refreshToken = user.JwtRefreshTokens.Single(x => x.RefreshToken == tokenId);
+
+            if (!refreshToken.IsActive)
+            {
+                authenticationUser.IsAuthenticated = false;
+                return authenticationUser;
+            }
+
+            //Revoke Current Refresh Token
+            refreshToken.Revoked = DateTime.UtcNow;
+
+            //Generate new Refresh Token and save to Database
+            var newRefreshToken = CreateRefreshToken();
+            user.JwtRefreshTokens.Add(newRefreshToken);
+            await _unitOfWork.userRepository.UpdateUserAsync(user.Id, user, cancellationToken);
+            await _unitOfWork.SaveChanges(cancellationToken);
+
+            //Generates new jwt
+            authenticationUser.IsAuthenticated = true;
+            authenticationUser.Token = token;
+            authenticationUser.RefreshToken = newRefreshToken.RefreshToken;
+            authenticationUser.RefreshTokenExpiration = newRefreshToken.Expires;
+
+            return authenticationUser;
         }
     }
 }

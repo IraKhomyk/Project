@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Gamification.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/profile")]
     [ApiController]
     [Authorize]
     public class ProfileController : ControllerBase
@@ -27,11 +27,11 @@ namespace Gamification.Controllers
 
         [HttpGet]
         [Route("current")]
-        public async Task<ActionResult<UserDTO>> GetCurrentUser(CancellationToken cancellationToken)
+        public async Task<ActionResult<UserDTO>> GetCurrentUserAsync(CancellationToken cancellationToken)
         {
             try
             {
-                UserDTO currentUser = await _userService.GetCurrentUser(cancellationToken);
+                UserDTO currentUser = await _userService.GetCurrentUserAsync(cancellationToken);
                 return Ok(currentUser);
             }
             catch
@@ -42,11 +42,11 @@ namespace Gamification.Controllers
 
         [HttpGet]
         [Route("achievements")]
-        public async Task<ActionResult<UserDTO>> GetAllUserAchievements(CancellationToken cancellationToken)
+        public async Task<ActionResult<UserDTO>> GetAllUserAchievementsAsync(CancellationToken cancellationToken)
         {
             try
             {
-                UserAchievementsDTO achievements = await _achievementService.GetAllUserAchievements(cancellationToken);
+                UserAchievementsDTO achievements = await _achievementService.GetAllUserAchievementsAsync(cancellationToken);
                 return Ok(achievements);
             }
             catch

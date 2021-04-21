@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Gamification.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/thank")]
     [ApiController]
     [Authorize]
     public class ThankController : ControllerBase
@@ -24,11 +24,11 @@ namespace Gamification.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<ThankDTO>> GetLastThank(CancellationToken cancellationToken)
+        public async Task<ActionResult<ThankDTO>> GetLastThankAsync(CancellationToken cancellationToken)
         {
             try
             {
-                var lastThank = await _thankService.GetLastThank(cancellationToken);
+                var lastThank = await _thankService.GetLastThankAsync(cancellationToken);
                 return Ok(lastThank);
             }
             catch
@@ -38,11 +38,11 @@ namespace Gamification.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ThankDTO>> SayThank(ThankDTO newThank, CancellationToken cancellationToken)
+        public async Task<ActionResult<ThankDTO>> SayThankAsync(ThankDTO newThank, CancellationToken cancellationToken)
         {
             try
             {
-                var thank = await _thankService.SayThank(newThank, cancellationToken);
+                var thank = await _thankService.SayThankAsync(newThank, cancellationToken);
                 return Ok(thank);
             }
             catch

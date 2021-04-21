@@ -9,12 +9,15 @@ namespace Gamification.DAL.IRepositories
 {
     public interface IUserRepository
     {
-        public Task<IEnumerable<User>> GetAllUsers(CancellationToken cancellationToken);
-        public Task<User> GetUserById(Guid userId, CancellationToken cancellationToken);
-        public Task<User> CreateUser(User user, CancellationToken cancellationToken);
-        public Task<User> UpdateUser(Guid userId, User user, CancellationToken cancellationToken);
-        public Task<User> DeleteUser(Guid userId, CancellationToken cancellationToken);
-        public Task<User> AuthenticateUser(string userName, string password, CancellationToken cancellationToken);
-        public Task<User> GetCurrentUser(CancellationToken cancellationToken);
+        public Task<IEnumerable<User>> GetAllUsersAsync(CancellationToken cancellationToken);
+        public Task<User> GetUserByIdAsync(Guid userId, CancellationToken cancellationToken);
+        public Task<User> CreateUserAsync(User user, CancellationToken cancellationToken);
+        public Task<User> UpdateUserAsync(Guid userId, User user, CancellationToken cancellationToken);
+        public Task<User> DeleteUserAsync(Guid userId, CancellationToken cancellationToken);
+        public Task<User> AuthenticateUserAsync(string userName, string password, CancellationToken cancellationToken);
+        public Task<User> GetCurrentUserAsync(CancellationToken cancellationToken);
+        public Task<IEnumerable<Role>> GetUserRolesAsync(Guid userId, CancellationToken cancellationToken);
+        public Task<User> GetUserByRefreshTokenAsync(Guid userId, CancellationToken cancellationToken);
+
     }
 }
