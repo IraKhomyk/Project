@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/shared/models/user.model';
-type userShortInfo = Pick<User, 'firstName'>;
+import { UserMock } from 'src/app/shared/models/user.model';
+type userShortInfo = Pick<UserMock, 'firstName'>;
 
 @Component({
   selector: 'app-greeting',

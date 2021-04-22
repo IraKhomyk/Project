@@ -27,10 +27,6 @@ namespace Gamification.Models
         public string UserName { get; set; }
 
         [Required]
-        [StringLength(60, ErrorMessage = "User lastname cannot be longer that 60 characters")]
-        public string UserName { get; set; }
-
-        [Required]
         [StringLength(32, MinimumLength = 8)]
         [DataType(DataType.Password)]
         [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z])$", ErrorMessage = "Password must meet requirements")]

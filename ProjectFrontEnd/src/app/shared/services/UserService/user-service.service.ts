@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { UserWithAchievements } from '../../models/user-with-achievements.model';
-import { User } from '../../models/user.model';
+import { UserMock } from '../../models/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserServiceService {
-  users: Array<User> = [
+  users: Array<UserMock> = [
     {
       firstName: 'Ira',
       lastName: 'Khomyk',
