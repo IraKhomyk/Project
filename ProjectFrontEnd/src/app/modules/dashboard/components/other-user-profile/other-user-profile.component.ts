@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { AchievementServiceService } from 'src/app/services/AchievementService/achievement-service.service';
-import { UserServiceService } from 'src/app/services/UserService/user-service.service';
+import { AchievementServiceService } from 'src/app/shared/services/AchievementService/achievement-service.service';
+import { UserServiceService } from 'src/app/shared/services/UserService/user-service.service';
 
 @Component({
   selector: 'app-other-user-profile',

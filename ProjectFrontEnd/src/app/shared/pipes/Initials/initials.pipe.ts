@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { UserWithAchievements } from '../../../models/user-with-achievements.model';
+import { UserWithAchievements } from '../../models/user-with-achievements.model';
 
 @Pipe({
   name: 'initials'

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UserServiceService } from 'src/app/services/UserService/user-service.service';
+import { UserServiceService } from 'src/app/shared/services/UserService/user-service.service';
 
 @Component({
   selector: 'app-exoft-achievements',

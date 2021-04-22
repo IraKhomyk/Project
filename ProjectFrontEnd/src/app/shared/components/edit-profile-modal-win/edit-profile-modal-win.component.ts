@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { UserServiceService } from 'src/app/services/UserService/user-service.service';
+import { UserServiceService } from 'src/app/shared/services/UserService/user-service.service';
 
 @Component({
   selector: 'app-edit-profile-modal-win',

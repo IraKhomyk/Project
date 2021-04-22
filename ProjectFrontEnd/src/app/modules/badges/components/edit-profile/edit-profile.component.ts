@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { UserServiceService } from 'src/app/services/UserService/user-service.service';
-import { EditProfileModalWinComponent } from 'src/app/shared/edit-profile/edit-profile-modal-win/edit-profile-modal-win.component';
+import { UserServiceService } from 'src/app/shared/services/UserService/user-service.service';
+import { EditProfileModalWinComponent } from 'src/app/shared/components/edit-profile-modal-win/edit-profile-modal-win.component';
 
 @Component({
   selector: 'app-edit-profile',

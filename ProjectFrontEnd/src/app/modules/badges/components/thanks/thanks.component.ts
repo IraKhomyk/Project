@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { User } from 'src/app/models/user.model';
-import { UserServiceService } from 'src/app/services/UserService/user-service.service';
+import { User } from 'src/app/shared/models/user.model';
+import { UserServiceService } from 'src/app/shared/services/UserService/user-service.service';
 
 @Component({
   selector: 'app-thanks',

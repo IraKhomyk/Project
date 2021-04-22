@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { AchievementServiceService } from 'src/app/services/AchievementService/achievement-service.service';
-import { UserServiceService } from 'src/app/services/UserService/user-service.service';
+import { AchievementServiceService } from 'src/app/shared/services/AchievementService/achievement-service.service';
+import { UserServiceService } from 'src/app/shared/services/UserService/user-service.service';
 
 @Component({
   selector: 'app-say-thanks',
@@ -13,8 +13,8 @@ export class SayThanksComponent {
   constructor(
     public dialogRef: MatDialogRef<SayThanksComponent>,
     @Inject(MAT_DIALOG_DATA) public data: string,
-    public readonly userServiceService: UserServiceService,
-    public readonly achievementServiceService: AchievementServiceService) { }
+    public readonly userService: UserServiceService,
+    public readonly achievementService: AchievementServiceService) { }
 
   onNoClick(): void {
     this.dialogRef.close();

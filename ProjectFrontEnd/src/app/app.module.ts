@@ -6,11 +6,11 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { DashboardModule } from './modules/dashboard/dashboard.module';
-import { MaterialModule } from './shared/material/material.module';
+import { MaterialModule } from './shared/modules/material.module';
 import { CommonModule } from '@angular/common';
-import { MainMenuModule } from './shared/main-menu/main-menu.module';
+import { LayoutModule } from './modules/layout/layout.module';
 import { BadgesModule } from './modules/badges/badges/badges.module';
-import { SignInModule } from './modules/sign-in-page/sign-in/sign-in.module';
+import { AuthModule } from './modules/auth/components/auth.module';
 
 
 @NgModule({
@@ -23,10 +23,10 @@ import { SignInModule } from './modules/sign-in-page/sign-in/sign-in.module';
     BrowserAnimationsModule,
     CommonModule,
     MaterialModule,
-    MainMenuModule,
+    LayoutModule,
     DashboardModule,
     BadgesModule,
-    SignInModule
+    AuthModule
   ],
 
   providers: [],

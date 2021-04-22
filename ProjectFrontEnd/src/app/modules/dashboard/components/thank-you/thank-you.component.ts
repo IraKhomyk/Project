@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { UserServiceService } from 'src/app/services/UserService/user-service.service';
-import { SayThanksComponent } from '../say-thanks/say-thanks.component';
+import { UserServiceService } from 'src/app/shared/services/UserService/user-service.service';
+import { SayThanksComponent } from '../../../../shared/components/say-thanks/say-thanks.component';
 
 @Component({
   selector: 'app-thank-you',

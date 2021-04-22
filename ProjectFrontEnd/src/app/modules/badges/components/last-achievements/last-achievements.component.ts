@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { RequestAchievementComponent } from 'src/app/modules/dashboard/components/request-achievement/request-achievement.component';
-import { AchievementServiceService } from 'src/app/services/AchievementService/achievement-service.service';
+import { RequestAchievementComponent } from 'src/app/shared/components/request-achievement/request-achievement.component';
+import { AchievementServiceService } from 'src/app/shared/services/AchievementService/achievement-service.service';
 
 @Component({
   selector: 'app-last-achievements',

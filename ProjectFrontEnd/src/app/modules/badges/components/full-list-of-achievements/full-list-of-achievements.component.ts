@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AchievementServiceService } from 'src/app/services/AchievementService/achievement-service.service';
+import { AchievementServiceService } from 'src/app/shared/services/AchievementService/achievement-service.service';
 
 @Component({
   selector: 'app-full-list-of-achievements',

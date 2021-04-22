@@ -4,17 +4,17 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { LeftSidebarComponent } from './components/left-sidebar/left-sidebar.component';
-import { MaterialModule } from '../material/material.module';
-import { PipesModule } from '../pipes/pipes.module';
-import { EditProfileModalWinComponent } from '../edit-profile/edit-profile-modal-win/edit-profile-modal-win.component';
+import { MaterialModule } from '../../shared/modules/material.module';
+import { PipesModule } from '../../shared/pipes/pipes.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LayoutComponent } from './layout.component';
 
 
 @NgModule({
   declarations: [
     HeaderComponent,
     LeftSidebarComponent,
-    EditProfileModalWinComponent,
+    LayoutComponent,
   ],
   imports: [
     CommonModule,
@@ -26,8 +26,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   exports: [
     HeaderComponent,
     LeftSidebarComponent,
-    EditProfileModalWinComponent
   ]
 })
-export class MainMenuModule { }
+export class LayoutModule { }
 
