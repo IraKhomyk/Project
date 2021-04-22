@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace Gamification.Models
 {
-    public class UserRole : BaseEntity
+    public class Login
     {
         [Required]
-        public Guid UserId { get; set; }
-        public User User { get; set; }
+        [EmailAddress]
+        public string Email { get; set; }
         [Required]
-        public Guid RoleId { get; set; }
-        public Role Role { get; set; }
+        public string Password { get; set; }
     }
 }

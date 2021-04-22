@@ -52,7 +52,6 @@ C:\Users\flagman\Desktop\Project\ProjectBackEnd\Gamification\Gamification\bin\De
 C:\Users\flagman\Desktop\Project\ProjectBackEnd\Gamification\Gamification\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\flagman\Desktop\Project\ProjectBackEnd\Gamification\Gamification\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\flagman\Desktop\Project\ProjectBackEnd\Gamification\Gamification\bin\Debug\net5.0\Microsoft.OpenApi.dll
-C:\Users\flagman\Desktop\Project\ProjectBackEnd\Gamification\Gamification\bin\Debug\net5.0\Newtonsoft.Json.dll
 C:\Users\flagman\Desktop\Project\ProjectBackEnd\Gamification\Gamification\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\flagman\Desktop\Project\ProjectBackEnd\Gamification\Gamification\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\flagman\Desktop\Project\ProjectBackEnd\Gamification\Gamification\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -89,4 +88,9 @@ C:\Users\flagman\Desktop\Project\ProjectBackEnd\Gamification\Gamification\obj\De
 C:\Users\flagman\Desktop\Project\ProjectBackEnd\Gamification\Gamification\obj\Debug\net5.0\Gamification.pdb
 C:\Users\flagman\Desktop\Project\ProjectBackEnd\Gamification\Gamification\obj\Debug\net5.0\Gamification.genruntimeconfig.cache
 C:\Users\flagman\Desktop\Project\ProjectBackEnd\Gamification\Gamification\bin\Debug\net5.0\AutoMapper.dll
+C:\Users\flagman\Desktop\Project\ProjectBackEnd\Gamification\Gamification\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\flagman\Desktop\Project\ProjectBackEnd\Gamification\Gamification\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\flagman\Desktop\Project\ProjectBackEnd\Gamification\Gamification\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\flagman\Desktop\Project\ProjectBackEnd\Gamification\Gamification\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\Users\flagman\Desktop\Project\ProjectBackEnd\Gamification\Gamification\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
 C:\Users\flagman\Desktop\Project\ProjectBackEnd\Gamification\Gamification\obj\Debug\net5.0\Gamification.csprojAssemblyReference.cache

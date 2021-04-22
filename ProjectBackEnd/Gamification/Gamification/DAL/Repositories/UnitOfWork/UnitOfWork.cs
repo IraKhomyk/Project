@@ -13,6 +13,7 @@ namespace Gamification.DAL.Repository.UnitOfWork
     {
         private IAchievementRepository _achievementRepository;
         private IUserRepository _userRepository;
+        private IThankRepository _thankRepository;
         private MyContext _context;
 
         public UnitOfWork(MyContext context)
@@ -43,6 +44,22 @@ namespace Gamification.DAL.Repository.UnitOfWork
                     this._userRepository = new UserRepository(_context);
                 }
                 return _userRepository;
+            }
+            set
+            {
+
+            }
+        }
+
+        public IThankRepository thankRepository
+        {
+            get
+            {
+                if (this._thankRepository == null)
+                {
+                    this._thankRepository = new ThankRepository(_context);
+                }
+                return _thankRepository;
             }
             set
             {

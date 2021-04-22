@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Gamification.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20210410070354_AddedUserRolesTable")]
-    partial class AddedUserRolesTable
+    [Migration("20210416142000_CreatedTableThank")]
+    partial class CreatedTableThank
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,21 @@ namespace Gamification.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.4")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("AchievementUser", b =>
+                {
+                    b.Property<Guid>("AchievementsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AchievementsId1")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("AchievementsId", "AchievementsId1");
+
+                    b.HasIndex("AchievementsId1");
+
+                    b.ToTable("AchievementUser");
+                });
 
             modelBuilder.Entity("Gamification.Models.Achievement", b =>
                 {
@@ -59,6 +74,33 @@ namespace Gamification.Migrations
                     b.ToTable("Roles");
                 });
 
+            modelBuilder.Entity("Gamification.Models.Thank", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("AddedTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("FromUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<Guid>("ToUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FromUserId");
+
+                    b.ToTable("Thanks");
+                });
+
             modelBuilder.Entity("Gamification.Models.User", b =>
                 {
                     b.Property<Guid>("Id")
@@ -90,108 +132,89 @@ namespace Gamification.Migrations
                     b.Property<string>("Status")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("ThankId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
+
                     b.Property<int>("Xp")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ThankId");
+
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Gamification.Models.UserAchievement", b =>
+            modelBuilder.Entity("RoleUser", b =>
                 {
-                    b.Property<Guid>("AchievementId")
+                    b.Property<Guid>("RolesId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("UserId")
+                    b.Property<Guid>("UsersId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("AddedTime")
-                        .HasColumnType("datetime2");
+                    b.HasKey("RolesId", "UsersId");
 
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                    b.HasIndex("UsersId");
 
-                    b.HasKey("AchievementId", "UserId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserAchievements");
+                    b.ToTable("RoleUser");
                 });
 
-            modelBuilder.Entity("Gamification.Models.UserRole", b =>
+            modelBuilder.Entity("AchievementUser", b =>
                 {
-                    b.Property<Guid>("RoleId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("RoleId", "UserId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserRoles");
-                });
-
-            modelBuilder.Entity("Gamification.Models.UserAchievement", b =>
-                {
-                    b.HasOne("Gamification.Models.Achievement", "Achievement")
-                        .WithMany("UserAchievements")
-                        .HasForeignKey("AchievementId")
+                    b.HasOne("Gamification.Models.Achievement", null)
+                        .WithMany()
+                        .HasForeignKey("AchievementsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Gamification.Models.User", "User")
-                        .WithMany("UserAchievements")
-                        .HasForeignKey("UserId")
+                    b.HasOne("Gamification.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("AchievementsId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Achievement");
-
-                    b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Gamification.Models.UserRole", b =>
+            modelBuilder.Entity("Gamification.Models.Thank", b =>
                 {
-                    b.HasOne("Gamification.Models.Role", "Role")
-                        .WithMany("UserRoles")
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("Gamification.Models.User", "FromUser")
+                        .WithMany()
+                        .HasForeignKey("FromUserId");
 
-                    b.HasOne("Gamification.Models.User", "User")
-                        .WithMany("UserRoles")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Role");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Gamification.Models.Achievement", b =>
-                {
-                    b.Navigation("UserAchievements");
-                });
-
-            modelBuilder.Entity("Gamification.Models.Role", b =>
-                {
-                    b.Navigation("UserRoles");
+                    b.Navigation("FromUser");
                 });
 
             modelBuilder.Entity("Gamification.Models.User", b =>
                 {
-                    b.Navigation("UserAchievements");
+                    b.HasOne("Gamification.Models.Thank", "Thank")
+                        .WithMany("Users")
+                        .HasForeignKey("ThankId");
 
-                    b.Navigation("UserRoles");
+                    b.Navigation("Thank");
+                });
+
+            modelBuilder.Entity("RoleUser", b =>
+                {
+                    b.HasOne("Gamification.Models.Role", null)
+                        .WithMany()
+                        .HasForeignKey("RolesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Gamification.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UsersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Gamification.Models.Thank", b =>
+                {
+                    b.Navigation("Users");
                 });
 #pragma warning restore 612, 618
         }

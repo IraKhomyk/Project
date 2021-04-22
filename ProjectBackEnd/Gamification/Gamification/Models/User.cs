@@ -23,6 +23,9 @@ namespace Gamification.Models
         [StringLength(60, ErrorMessage = "User lastname cannot be longer that 60 characters")]
         public string LastName { get; set; }
 
+        [StringLength(60, ErrorMessage = "User lastname cannot be longer that 60 characters")]
+        public string UserName { get; set; }
+
         [Required]
         [StringLength(60, ErrorMessage = "User lastname cannot be longer that 60 characters")]
         public string UserName { get; set; }
@@ -34,13 +37,13 @@ namespace Gamification.Models
         public string Password { get; set; }
         public string Status { get; set; }
 
-        [Required]
         public int Xp { get; set; }
 
         public Guid? AvatarId { get; set; }
-        public ICollection<UserRole> UserRoles { get; set; }
-        public ICollection<UserAchievement> UserAchievements { get; set; }
 
+        public ICollection<Role> Roles { get; set; }
 
+        public ICollection<Achievement> Achievements { get; set; }
+        public Thank Thank { get; set; }
     }
 }

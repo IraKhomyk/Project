@@ -9,6 +9,11 @@ using Microsoft.Extensions.Logging;
 using System.Threading;
 using Microsoft.EntityFrameworkCore;
 using Gamification.DAL.IRepository;
+using AutoMapper;
+using Gamification.BLL.DTO;
+using Gamification.DAL.Repository.UnitOfWork;
+using Gamification.BLL.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Gamification.Controllers
 {
@@ -16,24 +21,80 @@ namespace Gamification.Controllers
     [ApiController]
     public class AchievementController : ControllerBase
     {
-        private readonly IAchievementRepository _achievementRepository;
-        public AchievementController(IAchievementRepository achievementRepository)
+        private IAchievementService _achievementService { get; set; }
+        public AchievementController(IAchievementService achievementService)
         {
-            _achievementRepository = achievementRepository;
+            _achievementService = achievementService;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllAchievements(CancellationToken cancellationToken)
+        public async Task<ActionResult<IEnumerable<AchievementDTO>>> GetAllAchievements(CancellationToken cancellationToken)
         {
-            var achievements = _achievementRepository.GetAllAchievements(cancellationToken);
-            return Ok(await achievements);
+            try
+            {
+                var achievements = await _achievementService.GetAllAchievements(cancellationToken);
+                return Ok(achievements);
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
         }
 
         [HttpGet("{Id}")]
-        public async Task<ActionResult<Achievement>> GetAchievementById(int Id, CancellationToken cancellationToken)
+        public async Task<ActionResult<AchievementDTO>> GetAchievementById(Guid achievementId, CancellationToken cancellationToken)
         {
-            var achievement = _achievementRepository.GetAchievementById(Id, cancellationToken);
-            return Ok(await achievement);
+            try
+            {
+                var achievement = await _achievementService.GetAchievementById(achievementId, cancellationToken);
+                return Ok(achievement);
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateAchievement(AchievementDTO newAchievement, CancellationToken cancellationToken)
+        {
+            try
+            {
+                var achievement = await _achievementService.CreateAchievement(newAchievement, cancellationToken);
+                return Ok(achievement);
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateAchievement(Guid achievementId, AchievementDTO newAchievement, CancellationToken cancellationToken)
+        {
+            try
+            {
+                var achievement = await _achievementService.UpdateAchievement(achievementId, newAchievement, cancellationToken);
+                return Ok(achievement);
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteAchievement(Guid achievemenId, CancellationToken cancellationToken)
+        {
+            try
+            {
+                var deletedAchievement = await _achievementService.DeleteAchievement(achievemenId, cancellationToken);
+                return NoContent();
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
         }
     }
 }
