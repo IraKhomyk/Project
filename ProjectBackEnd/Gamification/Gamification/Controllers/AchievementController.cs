@@ -17,8 +17,9 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Gamification.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/achievement")]
     [ApiController]
+    [Authorize]
     public class AchievementController : ControllerBase
     {
         private IAchievementService _achievementService { get; set; }
@@ -28,11 +29,11 @@ namespace Gamification.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<AchievementDTO>>> GetAllAchievements(CancellationToken cancellationToken)
+        public async Task<ActionResult<IEnumerable<AchievementDTO>>> GetAllAchievementsAsync(CancellationToken cancellationToken)
         {
             try
             {
-                var achievements = await _achievementService.GetAllAchievements(cancellationToken);
+                var achievements = await _achievementService.GetAllAchievementsAsync(cancellationToken);
                 return Ok(achievements);
             }
             catch
@@ -42,11 +43,11 @@ namespace Gamification.Controllers
         }
 
         [HttpGet("{Id}")]
-        public async Task<ActionResult<AchievementDTO>> GetAchievementById(Guid achievementId, CancellationToken cancellationToken)
+        public async Task<ActionResult<AchievementDTO>> GetAchievementByIdAsync(Guid achievementId, CancellationToken cancellationToken)
         {
             try
             {
-                var achievement = await _achievementService.GetAchievementById(achievementId, cancellationToken);
+                AchievementDTO achievement = await _achievementService.GetAchievementByIdAsync(achievementId, cancellationToken);
                 return Ok(achievement);
             }
             catch
@@ -56,11 +57,11 @@ namespace Gamification.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateAchievement(AchievementDTO newAchievement, CancellationToken cancellationToken)
+        public async Task<IActionResult> CreateAchievementAsync(AchievementDTO newAchievement, CancellationToken cancellationToken)
         {
             try
             {
-                var achievement = await _achievementService.CreateAchievement(newAchievement, cancellationToken);
+                Achievement achievement = await _achievementService.CreateAchievementAsync(newAchievement, cancellationToken);
                 return Ok(achievement);
             }
             catch
@@ -70,11 +71,11 @@ namespace Gamification.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateAchievement(Guid achievementId, AchievementDTO newAchievement, CancellationToken cancellationToken)
+        public async Task<IActionResult> UpdateAchievementAsync(Guid achievementId, AchievementDTO newAchievement, CancellationToken cancellationToken)
         {
             try
             {
-                var achievement = await _achievementService.UpdateAchievement(achievementId, newAchievement, cancellationToken);
+                Achievement achievement = await _achievementService.UpdateAchievementAsync(achievementId, newAchievement, cancellationToken);
                 return Ok(achievement);
             }
             catch
@@ -84,11 +85,11 @@ namespace Gamification.Controllers
         }
 
         [HttpDelete]
-        public async Task<IActionResult> DeleteAchievement(Guid achievemenId, CancellationToken cancellationToken)
+        public async Task<IActionResult> DeleteAchievementAsync(Guid achievemenId, CancellationToken cancellationToken)
         {
             try
             {
-                var deletedAchievement = await _achievementService.DeleteAchievement(achievemenId, cancellationToken);
+                await _achievementService.DeleteAchievementAsync(achievemenId, cancellationToken);
                 return NoContent();
             }
             catch

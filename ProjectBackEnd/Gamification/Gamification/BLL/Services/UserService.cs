@@ -14,48 +14,66 @@ namespace Gamification.BLL.Services
     public class UserService : IUserService
     {
         private readonly IMapper _mapper;
-        public IUnitOfWork UnitOfWork { get; set; }
+        private IUnitOfWork _unitOfWork { get; set; }
 
         public UserService(IUnitOfWork unitOfWork, IMapper mapper)
         {
-            this.UnitOfWork = unitOfWork;
+            this._unitOfWork = unitOfWork;
             this._mapper = mapper;
         }
 
-        public async Task<IEnumerable<UserDTO>> GetAllUsers(CancellationToken cancellationToken)
+        public async Task<IEnumerable<UserDTO>> GetAllUsersAsync(CancellationToken cancellationToken)
         {
-            var users = await UnitOfWork.userRepository.GetAllUsers(cancellationToken);
+            var users = await _unitOfWork.userRepository.GetAllUsersAsync(cancellationToken);
+
             return _mapper.Map<IEnumerable<UserDTO>>(users);
         }
 
-        public async Task<UserDTO> GetUserById(Guid Id, CancellationToken cancellationToken)
+        public async Task<UserDTO> GetUserByIdAsync(Guid Id, CancellationToken cancellationToken)
         {
-            User user = await UnitOfWork.userRepository.GetUserById(Id, cancellationToken);
+            User user = await _unitOfWork.userRepository.GetUserByIdAsync(Id, cancellationToken);
+
             return _mapper.Map<UserDTO>(user);
         }
 
-        public async Task<User> CreateUser(CreateUserDTO newUser, CancellationToken cancellationToken)
-        {
-            var mapData = _mapper.Map<User>(newUser);
-            var user = await UnitOfWork.userRepository.CreateUser(mapData, cancellationToken);
-            await UnitOfWork.SaveChanges(cancellationToken);
-            return user;
-        }
-
-        public async Task<User> UpdateUser(Guid userId, UpdateUserDTO newUser, CancellationToken cancellationToken)
+        public async Task<User> CreateUserAsync(CreateUserDTO newUser, CancellationToken cancellationToken)
         {
             User mapData = _mapper.Map<User>(newUser);
-            var user = await UnitOfWork.userRepository.UpdateUser(userId, mapData, cancellationToken);
-            await UnitOfWork.SaveChanges(cancellationToken);
+            User user = await _unitOfWork.userRepository.CreateUserAsync(mapData, cancellationToken);
+            await _unitOfWork.SaveChangesAsync(cancellationToken);
+
             return user;
         }
 
-        public async Task<User> DeleteUser(Guid userId, CancellationToken cancellationToken)
+        public async Task<User> UpdateUserAsync(Guid userId, UpdateUserDTO newUser, CancellationToken cancellationToken)
         {
-            User deletedUser = await UnitOfWork.userRepository.DeleteUser(userId, cancellationToken);
-            await UnitOfWork.SaveChanges(cancellationToken);
+            User mapData = _mapper.Map<User>(newUser);
+            User user = await _unitOfWork.userRepository.UpdateUserAsync(userId, mapData, cancellationToken);
+            await _unitOfWork.SaveChangesAsync(cancellationToken);
+
+            return user;
+        }
+
+        public async Task<User> DeleteUserAsync(Guid userId, CancellationToken cancellationToken)
+        {
+            User deletedUser = await _unitOfWork.userRepository.DeleteUserAsync(userId, cancellationToken);
+            await _unitOfWork.SaveChangesAsync(cancellationToken);
+
             return deletedUser;
         }
 
+        public async Task<UserDTO> GetCurrentUserAsync(Guid userId, CancellationToken cancellationToken)
+        {
+            User user = await _unitOfWork.userRepository.GetCurrentUserAsync(userId, cancellationToken);
+
+            return _mapper.Map<UserDTO>(user);
+        }
+
+        public async Task<AuthenticationUserDTO> GetUserByRefreshTokenAsync(Guid refreshTokenId, CancellationToken cancellationToken)
+        {
+            User user = await _unitOfWork.userRepository.GetUserByRefreshTokenAsync(refreshTokenId, cancellationToken);
+
+            return _mapper.Map<AuthenticationUserDTO>(user);
+        }
     }
 }

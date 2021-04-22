@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Gamification.BLL.DTO;
 using Gamification.DAL.Repositories;
 using Gamification.DAL.Repository.UnitOfWork;
 using Gamification.Models;
@@ -13,7 +14,7 @@ namespace Gamification.BLL.Services.Interfaces
     public class ThankService : IThankService
     {
         private readonly IMapper _mapper;
-        public IUnitOfWork _unitOfWork { get; set; }
+        private IUnitOfWork _unitOfWork { get; set; }
 
         public ThankService(IUnitOfWork unitOfWork, IMapper mapper)
         {
@@ -21,17 +22,22 @@ namespace Gamification.BLL.Services.Interfaces
             this._mapper = mapper;
         }
 
-        public async Task<Thank> SayThank(ThankDTO newThank, CancellationToken cancellationToken)
+        public async Task<ThankDTO> SayThankAsync(Guid userId, ThankDTO newThank, CancellationToken cancellationToken)
         {
-            var mapData = _mapper.Map<Thank>(newThank);
-            var thank = await _unitOfWork.thankRepository.SayThank(mapData, cancellationToken);
+            Thank mapData = _mapper.Map<Thank>(newThank);
+            User currentUser = await _unitOfWork.userRepository.GetCurrentUserAsync(userId, cancellationToken);
 
-            return thank;
+            Thank thank = await _unitOfWork.thankRepository.SayThankAsync(currentUser, mapData, cancellationToken);
+
+            return _mapper.Map<ThankDTO>(thank);
         }
 
-        public async Task<ThankDTO> GetLastThank(CancellationToken cancellationToken)
+        public async Task<ThankDTO> GetLastThankAsync(Guid userId, CancellationToken cancellationToken)
         {
-            Thank thank = await _unitOfWork.thankRepository.GetLastThank(cancellationToken);
+            User currentUser = await _unitOfWork.userRepository.GetCurrentUserAsync(userId, cancellationToken);
+            Guid currentUserId = currentUser.Id;
+
+            Thank thank = await _unitOfWork.thankRepository.GetLastThankAsync(currentUserId, cancellationToken);
 
             return _mapper.Map<ThankDTO>(thank);
         }

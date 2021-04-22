@@ -10,7 +10,7 @@ namespace Gamification.DAL.Repository.UnitOfWork
 {
     public interface IUnitOfWork
     {
-        Task SaveChanges(CancellationToken cancellationToken);
+        Task SaveChangesAsync(CancellationToken cancellationToken);
         IAchievementRepository achievementRepository { get; set; }
         IUserRepository userRepository { get; set; }
         IThankRepository thankRepository { get; set; }

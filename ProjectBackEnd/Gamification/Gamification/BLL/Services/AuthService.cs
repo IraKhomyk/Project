@@ -3,6 +3,7 @@ using Gamification.BLL.DTO;
 using Gamification.BLL.Services.Interfaces;
 using Gamification.DAL.Repository.UnitOfWork;
 using Gamification.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -18,20 +19,23 @@ namespace Gamification.BLL.Services
     public class AuthService : IAuthService
     {
         private readonly IMapper _mapper;
-        public IUnitOfWork UnitOfWork { get; set; }
+        private IUnitOfWork _unitOfWork { get; set; }
 
         private IOptions<AuthOptions> _authOptions;
 
-        public AuthService(IUnitOfWork unitOfWork, IMapper mapper, IOptions<AuthOptions> authOptions)
+        public IUserService _userService { get; set; }
+
+        public AuthService(IUnitOfWork unitOfWork, IMapper mapper, IOptions<AuthOptions> authOptions, IUserService userService)
         {
-            this.UnitOfWork = unitOfWork;
-            this._mapper = mapper;
+            _unitOfWork = unitOfWork;
+            _mapper = mapper;
             _authOptions = authOptions;
+            _userService = userService;
         }
 
-        public async Task<string> Login(string email, string password, CancellationToken cancellationToken)
+        public async Task<AuthenticationUserDTO> AuthenticateAsync(string userName, string password, CancellationToken cancellationToken)
         {
-            User user = await AuthenticateUser(email, password, cancellationToken);
+            User user = await AuthenticateUserAsync(userName, password, cancellationToken);
             if (user == null)
             {
                 return null;
@@ -39,19 +43,40 @@ namespace Gamification.BLL.Services
 
             var token = GenerateJWT(user);
 
-            return token;
+            var authenticationUser = _mapper.Map<AuthenticationUserDTO>(user);
+
+            authenticationUser.IsAuthenticated = true;
+            authenticationUser.Token = token;
+
+            if (user.JwtRefreshTokens.Any(a => a.IsActive))
+            {
+                var activeRefreshToken = user.JwtRefreshTokens.Where(a => a.IsActive == true).FirstOrDefault();
+                authenticationUser.RefreshToken = activeRefreshToken.RefreshToken;
+                authenticationUser.RefreshTokenExpiration = activeRefreshToken.Expires;
+            }
+            else
+            {
+                var refreshToken = CreateRefreshToken();
+                authenticationUser.RefreshToken = refreshToken.RefreshToken;
+                authenticationUser.RefreshTokenExpiration = refreshToken.Expires;
+                user.JwtRefreshTokens.Add(refreshToken);
+                await _unitOfWork.userRepository.UpdateUserAsync(user.Id, user, cancellationToken);
+                await _unitOfWork.SaveChangesAsync(cancellationToken);
+            }
+
+            return authenticationUser;
         }
 
-        public async Task<User> AuthenticateUser(string email, string password, CancellationToken cancellationToken)
+        public async Task<User> AuthenticateUserAsync(string userName, string password, CancellationToken cancellationToken)
         {
-            return await UnitOfWork.userRepository.AuthenticateUser(email, password, cancellationToken);
+            User user = await _unitOfWork.userRepository.AuthenticateUserAsync(userName, password, cancellationToken);
+
+            return user;
         }
 
         private string GenerateJWT(User user)
         {
-            var authParams = _authOptions.Value;
-
-            var securityKey = authParams.GetSymmetricSecurityKey();
+            var securityKey = AuthOptions.GetSymmetricSecurityKey();
             var credentialist = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
             var claims = new List<Claim>()
@@ -67,13 +92,63 @@ namespace Gamification.BLL.Services
                 }
             }
 
-            var token = new JwtSecurityToken(authParams.Issuer,
-                authParams.Audience,
+            var token = new JwtSecurityToken(
+                AuthOptions.Issuer,
+                AuthOptions.Audience,
                 claims,
-                expires: DateTime.Now.AddSeconds(authParams.TokenLifeTime),
+                expires: DateTime.Now.AddMinutes(AuthOptions.TokenLifeTime),
                 signingCredentials: credentialist);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+        private JwtRefreshToken CreateRefreshToken()
+        {
+            return new JwtRefreshToken
+            {
+                RefreshToken = Guid.NewGuid(),
+                Expires = DateTime.UtcNow.AddDays(10),
+                Created = DateTime.UtcNow
+            };
+        }
+
+        public async Task<AuthenticationUserDTO> RefreshTokenAsync(Guid tokenId, CancellationToken cancellationToken)
+        {
+            User user = await _unitOfWork.userRepository.GetUserByRefreshTokenAsync(tokenId, cancellationToken);
+            var authenticationUser = _mapper.Map<AuthenticationUserDTO>(user);
+
+            if (user == null)
+            {
+                authenticationUser.IsAuthenticated = false;
+                return authenticationUser;
+            }
+
+            var token = GenerateJWT(user);
+
+            var refreshToken = user.JwtRefreshTokens.Single(x => x.RefreshToken == tokenId);
+
+            if (!refreshToken.IsActive)
+            {
+                authenticationUser.IsAuthenticated = false;
+                return authenticationUser;
+            }
+
+            //Revoke Current Refresh Token
+            refreshToken.Revoked = DateTime.UtcNow;
+
+            //Generate new Refresh Token and save to Database
+            var newRefreshToken = CreateRefreshToken();
+            user.JwtRefreshTokens.Add(newRefreshToken);
+            await _unitOfWork.userRepository.UpdateUserAsync(user.Id, user, cancellationToken);
+            await _unitOfWork.SaveChangesAsync(cancellationToken);
+
+            //Generates new jwt
+            authenticationUser.IsAuthenticated = true;
+            authenticationUser.Token = token;
+            authenticationUser.RefreshToken = newRefreshToken.RefreshToken;
+            authenticationUser.RefreshTokenExpiration = newRefreshToken.Expires;
+
+            return authenticationUser;
         }
     }
 }

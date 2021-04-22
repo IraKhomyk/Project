@@ -18,8 +18,10 @@ using System.Threading.Tasks;
 
 namespace Gamification.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/user")]
     [ApiController]
+    [Authorize]
+
     public class UserController : ControllerBase
     {
         private IUserService _userService { get; set; }
@@ -29,11 +31,11 @@ namespace Gamification.Controllers
         }
       
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<UserDTO>>> GetAllUsers(CancellationToken cancellationToken)
+        public async Task<ActionResult<IEnumerable<UserDTO>>> GetAllUsersAsync(CancellationToken cancellationToken)
         {
             try
             {
-                var users = await _userService.GetAllUsers(cancellationToken);
+                var users = await _userService.GetAllUsersAsync(cancellationToken);
                 return Ok(users);
             }
             catch
@@ -43,11 +45,11 @@ namespace Gamification.Controllers
         }
 
         [HttpGet("{Id}")]
-        public async Task<ActionResult<UserDTO>> GetUserById(Guid Id, CancellationToken cancellationToken)
+        public async Task<ActionResult<UserDTO>> GetUserByIdAsync(Guid Id, CancellationToken cancellationToken)
         {
             try
             {
-                var user = await _userService.GetUserById(Id, cancellationToken);
+                UserDTO user = await _userService.GetUserByIdAsync(Id, cancellationToken);
                 return Ok(user);
             }
             catch
@@ -57,12 +59,13 @@ namespace Gamification.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<CreateUserDTO>> CreateUser(CreateUserDTO newUser, CancellationToken cancellationToken)
+
+        public async Task<ActionResult<CreateUserDTO>> CreateUserAsync(CreateUserDTO newUser, CancellationToken cancellationToken)
         {
             try
             {
-                await _userService.CreateUser(newUser, cancellationToken);
-                return Ok();
+                User user = await _userService.CreateUserAsync(newUser, cancellationToken);
+                return Ok(user);
             }
             catch
             {
@@ -71,12 +74,12 @@ namespace Gamification.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult<UpdateUserDTO>> UpdateUser(Guid userId, UpdateUserDTO newUser, CancellationToken cancellationToken)
+        public async Task<ActionResult<UpdateUserDTO>> UpdateUserAsync(Guid userId, UpdateUserDTO newUser, CancellationToken cancellationToken)
         {
             try
             {
-                await _userService.UpdateUser(userId, newUser, cancellationToken);
-                return Ok();
+                User user = await _userService.UpdateUserAsync(userId, newUser, cancellationToken);
+                return Ok(user);
             }
             catch
             {
@@ -85,11 +88,11 @@ namespace Gamification.Controllers
         }
 
         [HttpDelete]
-        public async Task<ActionResult<UserDTO>> DeleteUser(Guid userId, CancellationToken cancellationToken)
+        public async Task<ActionResult<UserDTO>> DeleteUserAsync(Guid userId, CancellationToken cancellationToken)
         {
             try
             {
-                var deletedUser = await _userService.DeleteUser(userId, cancellationToken);
+                await _userService.DeleteUserAsync(userId, cancellationToken);
                 return NoContent();
             }
             catch

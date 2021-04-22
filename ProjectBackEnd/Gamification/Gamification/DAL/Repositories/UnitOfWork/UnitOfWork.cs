@@ -1,6 +1,7 @@
 ﻿using Gamification.DAL.IRepositories;
 using Gamification.DAL.IRepository;
 using Gamification.DAL.Repositories;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace Gamification.DAL.Repository.UnitOfWork
         private IThankRepository _thankRepository;
         private MyContext _context;
 
-        public UnitOfWork(MyContext context)
+        public UnitOfWork(MyContext context, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
         }
@@ -67,7 +68,7 @@ namespace Gamification.DAL.Repository.UnitOfWork
             }
         }
 
-        public async Task SaveChanges(CancellationToken cancellationToken)
+        public async Task SaveChangesAsync(CancellationToken cancellationToken)
         {
             await _context.SaveChangesAsync(cancellationToken);
         }
