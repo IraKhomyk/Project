@@ -63,11 +63,11 @@ namespace Gamification.BLL.Services
             return deletedAchievement;
         }
 
-        public async Task<AchievementDTO> GetAllUserAchievementsAsync(Guid userId, CancellationToken cancellationToken)
+        public async Task<IEnumerable<AchievementDTO>> GetAllUserAchievementsAsync(Guid userId, CancellationToken cancellationToken)
         {
             var userAchievements = await _unitOfWork.achievementRepository.GetAllUserAchievementsAsync(userId, cancellationToken);
 
-            return _mapper.Map<AchievementDTO>(userAchievements);
+            return _mapper.Map<IEnumerable<AchievementDTO>>(userAchievements);
         }
     }
 }

@@ -54,7 +54,13 @@ namespace Gamification.Controllers
             {
                 Guid userId = Guid.Parse(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
 
-                AchievementDTO achievements = await _achievementService.GetAllUserAchievementsAsync(userId, cancellationToken);
+                var achievements = await _achievementService.GetAllUserAchievementsAsync(userId, cancellationToken);
+
+                if(achievements == null)
+                {
+                    return NoContent();
+                }
+
                 return Ok(achievements);
             }
             catch

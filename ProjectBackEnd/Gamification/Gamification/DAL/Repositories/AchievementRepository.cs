@@ -78,6 +78,12 @@ namespace Gamification.DAL.Repository
             if (user != null)
             {
                 var achievements = user.Achievements;
+
+                if(achievements == null)
+                {
+                    return null;
+                }
+
                 return achievements;
             }
 

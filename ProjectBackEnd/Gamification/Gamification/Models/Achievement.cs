@@ -11,6 +11,6 @@ namespace Gamification.Models
         public string Description { get; set; }
         public int Xp { get; set; }
         public int IconId { get; set; }
-        public ICollection<User> Achievements { get; set; }
+        public ICollection<User> Users { get; set; }
     }
 }
