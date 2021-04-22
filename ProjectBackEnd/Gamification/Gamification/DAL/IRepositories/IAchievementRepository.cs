@@ -14,6 +14,6 @@ namespace Gamification.DAL.IRepository
         public Task<Achievement> CreateAchievementAsync(Achievement achievement, CancellationToken cancellationToken);
         public Task<Achievement> UpdateAchievementAsync(Guid achievementId, Achievement achievement, CancellationToken cancellationToken);
         public Task<Achievement> DeleteAchievementAsync(Guid AchievementId, CancellationToken cancellationToken);
-        public Task<User> GetAllUserAchievementsAsync(Guid userId, CancellationToken cancellationToken);
+        public Task<IEnumerable<Achievement>> GetAllUserAchievementsAsync(Guid userId, CancellationToken cancellationToken);
     }
 }

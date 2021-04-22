@@ -71,11 +71,17 @@ namespace Gamification.DAL.Repository
             return achievement;
         }
 
-        public async Task<User> GetAllUserAchievementsAsync(Guid userId, CancellationToken cancellationToken)
+        public async Task<IEnumerable<Achievement>> GetAllUserAchievementsAsync(Guid userId, CancellationToken cancellationToken)
         {
-            User userAchievements = await _context.Users.Include(a => a.Achievements).FirstOrDefaultAsync(x => x.Id == userId, cancellationToken);
+            User user = await _context.Users.Include(a => a.Achievements).FirstOrDefaultAsync(x => x.Id == userId, cancellationToken);
 
-            return userAchievements;
+            if (user != null)
+            {
+                var achievements = user.Achievements;
+                return achievements;
+            }
+
+            return null;
         }
     }
 }

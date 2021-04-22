@@ -48,13 +48,13 @@ namespace Gamification.Controllers
 
         [HttpGet]
         [Route("achievements")]
-        public async Task<ActionResult<UserDTO>> GetAllUserAchievementsAsync(CancellationToken cancellationToken)
+        public async Task<ActionResult<AchievementDTO>> GetAllUserAchievementsAsync(CancellationToken cancellationToken)
         {
             try
             {
                 Guid userId = Guid.Parse(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
 
-                UserAchievementsDTO achievements = await _achievementService.GetAllUserAchievementsAsync(userId, cancellationToken);
+                AchievementDTO achievements = await _achievementService.GetAllUserAchievementsAsync(userId, cancellationToken);
                 return Ok(achievements);
             }
             catch
