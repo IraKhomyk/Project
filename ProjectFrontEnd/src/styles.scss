@@ -184,12 +184,13 @@ body {
 
   .mat-form-field.mat-form-field-invalid .mat-form-field-label {
     color: white;
-    font-size: 10px;
+    font-size: 15px;
   }
 
   .mat-input-element {
     color: white;
-    font-size: 10px;
+    font-size: 20px;
+    background-color: transparent;
   }
 
   .mat-form-field-appearance-legacy .mat-form-field-label {
@@ -197,7 +198,6 @@ body {
   }
 
   .mat-card {
-    background: white;
     color: white;
     display: contents;
     margin-top: 0;

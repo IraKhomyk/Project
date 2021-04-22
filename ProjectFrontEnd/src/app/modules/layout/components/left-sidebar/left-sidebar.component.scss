@@ -1,4 +1,4 @@
-.sidebar-content{
+.sidebar-content {
     height: 100%;
 }
 
@@ -10,7 +10,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
+    margin: 10%;
+    
     img {
         border-radius: 50%;
         width: 200px;
@@ -32,29 +33,36 @@
     display: flex;
     justify-content: center;
     color: white;
-    font-size: 20px;
-    font-weight: 300;
+    font-size: 30px;
+    margin: 2%;
+    padding: 5%;
+    width: 100%;
 }
 
 .sidebar-button-column {
-    margin: 15px;
     display: flex;
     justify-content: center;
     flex-direction: column;
+    padding: 5%;
+    width: 100%;
+    height: 100%;
 }
 
 .mat-raised-button {
-    background-color: rgb(41, 173, 41);
+    background-color: #5ea002;
     color: white;
 }
 
 .left-sidebar-sumary {
     display: flex;
     justify-content: center;
+    padding: 7%;
+    width: 100%;
+    height: 100%;
 }
 
 .left-sidebar-sumary-green {
-    color: rgb(41, 173, 41);
+    color: #5ea002;
 }
 
 .left-sidebar-sumary-white {
@@ -65,14 +73,17 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
+    width: 100%;
+    padding: 5%;
 }
+
 .sidebar-container {
     background-color: #323232;
 }
 
 .sidebar-container .mat-tab-label-active {
-    border-bottom: 5px solid rgb(41, 173, 41);
-    color: rgb(41, 173, 41);
+    border-bottom: 5px solid #5ea002;
+    color: #5ea002;
 }
 
 .sidebar-container .mat-tab-link {

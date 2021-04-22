@@ -26,6 +26,8 @@ import { LayoutComponent } from './layout.component';
   exports: [
     HeaderComponent,
     LeftSidebarComponent,
+    LayoutComponent,
+
   ]
 })
 export class LayoutModule { }

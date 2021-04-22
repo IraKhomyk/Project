@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { UserMock } from 'src/app/shared/models/user.model';
 import { UserServiceService } from 'src/app/shared/services/UserService/user-service.service';
 
 @Component({

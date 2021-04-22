@@ -1,4 +1,4 @@
-<mat-card class="sign-in-container">
+<mat-card class="sign-in-container" *ngIf="!(user$ | async)" >
   <div class=context>
     <div class="body">
       <form [formGroup]="signInForm" class="sign-in-form">
@@ -19,7 +19,7 @@
     </div>
 
     <div class="sign-in-button">
-      <button class="btn text-uppercase" mat-button>
+      <button class="btn text-uppercase" (click)="authenticate()" mat-button>
         sign in
       </button>
     </div>

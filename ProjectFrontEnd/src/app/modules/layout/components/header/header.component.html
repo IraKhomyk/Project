@@ -29,31 +29,29 @@
             </div>
 
             <nav mat-tab-nav-bar>
-                <div class="navigationCenter">
-                    <a class="active" mat-tab-link *ngFor="let route of routers" (click)="activeLink = route"
+                <div class="navigation-center">
+                    <span class="active" mat-tab-link *ngFor="let route of routers" (click)="activeLink = route"
                         [active]="activeLink == route" routerLink={{route.link}} routerLinkActive="active">
                         {{route.name}}
-                    </a>
+                    </span>
                 </div>
             </nav>
 
             <div>
                 <div class="right-sidebar">
-                    <a>
                         <div class="circle">
-                            <img *ngIf="userService.users[0].photoUrl" src={{userService.users[0].photoUrl}}>
+                            <img *ngIf="authUserService.authUser.avatarId" src={{userService.users[0].photoUrl}}>
 
-                            <div *ngIf="!userService.users[0].photoUrl" class="initials">
-                                {{userService.users[0] | initials}}
+                            <div *ngIf="!authUserService.authUser.avatarId" class="initials">
+                                {{authUserService.authUser | initials}}
                             </div>
                         </div>
 
                         <button mat-icon-button [matMenuTriggerFor]="menu">
-                            {{userService.users[0].firstName}}
-                            {{userService.users[0].lastName}}
+                            {{authUserService.authUser.firstName}}
+                            {{authUserService.authUser.lastName}}
                             <mat-icon>arrow_drop_down</mat-icon>
                         </button>
-                    </a>
                 </div>
 
                 <mat-menu #menu="matMenu">

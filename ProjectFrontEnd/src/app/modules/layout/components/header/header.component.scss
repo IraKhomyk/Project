@@ -3,7 +3,7 @@
   background-color: #323232;
 }
 
-nav a {
+nav span {
   color: white;
 }
 
@@ -31,7 +31,7 @@ mat-sidenav mat-toolbar {
   color: white;
 }
 
-mat-sidenav a mat-icon {
+mat-sidenav span mat-icon {
   display: flex;
   justify-content: center;
   flex-direction: row;
@@ -50,7 +50,7 @@ mat-sidenav a mat-icon {
   background: inherit;
 }
 
-.navigationCenter {
+.navigation-center {
   display: flex;
   justify-content: center;
   flex-direction: row;
@@ -106,9 +106,7 @@ mat-sidenav a mat-icon {
 
   .initials {
     color: white;
-    font-size: 20px;
-    line-height: 19px;
-    letter-spacing: 0.2625px;
+    font-size: 15px;
   }
 }
 
@@ -117,12 +115,27 @@ mat-sidenav a mat-icon {
   justify-content: center;
 }
 
-.right-sidebar a {
+.right-sidebar {
   color: white;
   display: flex;
   justify-content: center;
+  box-sizing: border-box;
+  padding: 0 16px;
+  width: 100%;
   flex-direction: row;
-  margin-right: 50px;
+  align-items: center;
+  white-space: nowrap;
+  padding-right: 100px;
+}
+
+.user-menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  margin-right: 100%;
+  padding: 50%;
+  width: 100%;
 }
 
 .mat-tab-label-active {

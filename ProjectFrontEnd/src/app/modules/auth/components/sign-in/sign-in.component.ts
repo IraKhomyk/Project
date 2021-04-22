@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { take } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'app-sign-in',
@@ -8,10 +12,22 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./sign-in.component.scss']
 })
 export class SignInComponent {
-  constructor(private router: Router) { }
   signInForm: FormGroup = new FormGroup({
-    "username": new FormControl(),
-    "password": new FormControl()
+    "username": new FormControl("", Validators.required),
+    "password": new FormControl("", Validators.required)
   });
 
+  user$!: Subject<User>;
+  
+  constructor(private router: Router, private authService: AuthService ) { 
+    this.user$ = this.authService.user$;
+  }
+
+  authenticate(): void {
+    if (this.signInForm.valid) {
+      this.authService.authenticate(this.signInForm.value.username, this.signInForm.value.password).pipe(take(1)).subscribe(res => {
+        this.router.navigate(['']);
+      });
+    }
+  }
 }

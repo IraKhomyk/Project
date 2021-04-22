@@ -34,6 +34,7 @@ namespace Gamification.Models
         public string Status { get; set; }
 
         public int Xp { get; set; }
+        public int Badges { get; set; }
 
         public Guid? AvatarId { get; set; }
 
