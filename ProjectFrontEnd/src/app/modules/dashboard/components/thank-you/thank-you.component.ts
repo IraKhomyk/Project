@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { User } from 'src/app/models/user.model';
+import { UserServiceService } from 'src/app/services/UserService/user-service.service';
 import { SayThanksComponent } from '../say-thanks/say-thanks.component';
 
 @Component({
@@ -10,19 +10,8 @@ import { SayThanksComponent } from '../say-thanks/say-thanks.component';
 })
 export class ThankYouComponent {
 
-  user: User = {
-    firstName: 'Dima',
-    lastName: 'Khomyk',
-    email: 'dima@gmail.com',
-    password: 'ira!2345',
-    status: ':)',
-    photoUrl: '',
-    badges: 6,
-    exp: 120,
-    color: 'rgb(40, 120, 224)',
-  }
-
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog,
+    public readonly userServiceService: UserServiceService) { }
 
   sayThanks(): void {
     const dialogRef = this.dialog.open(SayThanksComponent, {

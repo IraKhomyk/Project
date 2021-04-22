@@ -22,7 +22,7 @@
         }
 
         .name-title {
-            margin-left: 35px;
+            margin-left: 5%;
         }
 
         .line {
@@ -58,20 +58,22 @@ $MaxWidth: 10px;
     .circle {
         border-radius: 50%;
         border: 1px solid rgb(255, 255, 255);
-        width: 30px;
-        height: 30px;
+        width: 35px;
+        height: 35px;
         display: flex;
         justify-content: center;
         align-items: center;
+        padding: 1%;
+        background-color: rgb(83, 83, 83);
 
         img {
             border-radius: 50%;
-            width: 30px;
-            height: 30px;
+            width: 35px;
+            height: 35px;
         }
 
         .initials {
-            color: white;
+            color: #5ea002;
             font-size: 15px;
             line-height: 19px;
             letter-spacing: 0.2625px;
@@ -79,11 +81,10 @@ $MaxWidth: 10px;
     }
 
     .leveling {
-        .user-name {
-            margin-left: 25px;
-        }
+        padding-top: 10px;
+
         .user-xp {
-            margin-left: 50px;
+            margin-left: 80px;
         }
     }
 }

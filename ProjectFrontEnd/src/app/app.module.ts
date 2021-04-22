@@ -9,14 +9,14 @@ import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { MaterialModule } from './shared/material/material.module';
 import { CommonModule } from '@angular/common';
 import { MainMenuModule } from './shared/main-menu/main-menu.module';
-
+import { BadgesModule } from './modules/badges/badges/badges.module';
+import { SignInModule } from './modules/sign-in-page/sign-in/sign-in.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
   ],
-
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -25,6 +25,8 @@ import { MainMenuModule } from './shared/main-menu/main-menu.module';
     MaterialModule,
     MainMenuModule,
     DashboardModule,
+    BadgesModule,
+    SignInModule
   ],
 
   providers: [],

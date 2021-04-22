@@ -2,22 +2,25 @@
     <div>
         <span class="top-chart-text text-uppercase">top chart</span>
     </div>
+
     <div class="info-title">
         <span class="name-title">
             Name
         </span>
+
         <span class="total-title">
             Total XP
         </span>
+
         <div class="line"></div>
     </div>
 
     <mat-list class="display-chart">
         <table class="leveling">
-            <tr *ngFor="let user of usersWithAchiv">
+            <tr *ngFor="let user of userServiceService.usersWithAchivements">
                 <td class="leveling">
                     <button mat-button (click)="otherProfile()">
-                        <div class="circle" [ngStyle]="{'background-color': user.color}">
+                        <div class="circle">
                             <img *ngIf="user.photoUrl" src={{user.photoUrl}}>
 
                             <div *ngIf="!user.photoUrl" class="initials">
@@ -28,13 +31,19 @@
                 </td>
 
                 <td>
-                    <span class="user-name"> {{user.firstName}}</span>
+                    <span class="user-name">
+                        {{user.firstName}}
+                    </span>
                     <br>
-                    <span class="user-name">{{user.lastName}}</span>
+                    <span class="user-name">
+                        {{user.lastName}}
+                    </span>
                 </td>
 
                 <td>
-                    <span class="user-xp">{{user.XP}}</span>
+                    <span class="user-xp">
+                        {{user.xp}}
+                    </span>
                 </td>
 
                 <td class="leveling">

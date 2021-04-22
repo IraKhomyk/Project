@@ -1,0 +1,30 @@
+<mat-card class="sign-in-container">
+  <div class=context>
+    <div class="body">
+      <form [formGroup]="signInForm" class="sign-in-form">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="USERNAME" id="username" formControlName="username" required>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="PASSWORD" id="password" formControlName="password" required>
+        </mat-form-field>
+      </form>
+    </div>
+
+    <div class="forgot-password-button">
+      <button class="btn text-uppercase" mat-button>
+        <span>forgot password?</span>
+      </button>
+    </div>
+
+    <div class="sign-in-button">
+      <button class="btn text-uppercase" mat-button>
+        sign in
+      </button>
+    </div>
+
+    
+  </div>
+  <img class="exoft-logo-image" src="./../../../../assets/exoft-logo-image.png">
+</mat-card>

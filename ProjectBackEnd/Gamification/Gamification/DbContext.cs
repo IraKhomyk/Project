@@ -17,7 +17,6 @@ namespace Gamification
         public MyContext(DbContextOptions<MyContext> options) : base(options)
         {
         }
-
         public MyContext()
         {
         }

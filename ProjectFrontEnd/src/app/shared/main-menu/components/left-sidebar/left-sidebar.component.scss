@@ -1,5 +1,5 @@
-* {
-    margin: 10px;
+.sidebar-content{
+    height: 100%;
 }
 
 .circle {
@@ -31,6 +31,9 @@
 .user-name {
     display: flex;
     justify-content: center;
+    color: white;
+    font-size: 20px;
+    font-weight: 300;
 }
 
 .sidebar-button-column {

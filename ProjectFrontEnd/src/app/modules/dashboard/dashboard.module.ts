@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from 'src/app/shared/material/material.module';
-import { BadgesComponent } from './components/badges/badges.component';
 
+import { BadgesComponent } from './components/badges/badges.component';
 import { ChallengesComponent } from './components/challenges/challenges.component';
 import { ExoftAchievementsComponent } from './components/exoft-achievements/exoft-achievements.component';
 import { GreetingComponent } from './components/greeting/greeting.component';
@@ -15,7 +15,7 @@ import { PipesModule } from 'src/app/shared/pipes/pipes.module';
 import { RequestAchievementComponent } from './components/request-achievement/request-achievement.component';
 import { SayThanksComponent } from './components/say-thanks/say-thanks.component';
 import { OtherUserProfileComponent } from './components/other-user-profile/other-user-profile.component';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -35,6 +35,8 @@ import { OtherUserProfileComponent } from './components/other-user-profile/other
     MaterialModule,
     RouterModule,
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     PipesModule.forRoot(),
   ],
 })
