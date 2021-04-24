@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AuthUserService } from 'src/app/core/services/auth-user.service';
 import { UserServiceService } from 'src/app/shared/services/UserService/user-service.service';
 
 @Component({
@@ -23,7 +24,8 @@ export class EditProfileModalWinComponent {
   constructor(
     public dialogRef: MatDialogRef<EditProfileModalWinComponent>,
     @Inject(MAT_DIALOG_DATA) public data: string,
-    public readonly userService: UserServiceService) { }
+    public readonly userService: UserServiceService,
+    public readonly authUserService: AuthUserService) { }
 
 
   onNoClick(): void {

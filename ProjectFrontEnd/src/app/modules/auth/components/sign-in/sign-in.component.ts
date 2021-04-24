@@ -17,9 +17,11 @@ export class SignInComponent {
     "password": new FormControl("", Validators.required)
   });
 
+  errorMessage: string;
+
   user$!: Subject<User>;
-  
-  constructor(private router: Router, private authService: AuthService ) { 
+
+  constructor(private router: Router, private authService: AuthService) {
     this.user$ = this.authService.user$;
   }
 
@@ -27,7 +29,12 @@ export class SignInComponent {
     if (this.signInForm.valid) {
       this.authService.authenticate(this.signInForm.value.username, this.signInForm.value.password).pipe(take(1)).subscribe(res => {
         this.router.navigate(['']);
+      }, err => {
+        this.errorMessage = err && err.error;
       });
+    } else {
+      this.errorMessage = 'Please enter valid data';
     }
   }
 }
+

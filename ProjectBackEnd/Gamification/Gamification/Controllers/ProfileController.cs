@@ -31,13 +31,15 @@ namespace Gamification.Controllers
 
         [HttpGet]
         [Route("current")]
-        public async Task<ActionResult<UserDTO>> GetCurrentUserAsync(CancellationToken cancellationToken)
+        public async Task<ActionResult<AuthenticationUserDTO>> GetCurrentUserAsync(CancellationToken cancellationToken)
         {
             try
             {
                 Guid userId = Guid.Parse(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
 
-                UserDTO currentUser = await _userService.GetCurrentUserAsync(userId, cancellationToken);
+                AuthenticationUserDTO currentUser = await _userService.GetCurrentUserAsync(userId, cancellationToken);
+
+                currentUser.Token = _httpContextAccessor.HttpContext.Request.Cookies["accessToken"];
                 return Ok(currentUser);
             }
             catch

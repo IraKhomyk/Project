@@ -136,6 +136,9 @@ namespace Gamification.Migrations
                     b.Property<Guid?>("ThankId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Token")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("UserName")
                         .HasMaxLength(60)
                         .HasColumnType("nvarchar(60)");

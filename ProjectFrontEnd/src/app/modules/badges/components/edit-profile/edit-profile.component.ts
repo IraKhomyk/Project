@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { UserServiceService } from 'src/app/shared/services/UserService/user-service.service';
 import { EditProfileModalWinComponent } from 'src/app/shared/components/edit-profile-modal-win/edit-profile-modal-win.component';
+import { AuthUserService } from 'src/app/core/services/auth-user.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -12,7 +13,7 @@ export class EditProfileComponent {
 
   constructor(
     public dialog: MatDialog,
-    public readonly userService: UserServiceService) { }
+    public readonly authUserService: AuthUserService) { }
 
   editProfile(): void {
     const dialogRef = this.dialog.open(EditProfileModalWinComponent, {

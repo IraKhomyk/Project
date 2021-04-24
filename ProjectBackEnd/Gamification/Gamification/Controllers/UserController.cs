@@ -59,7 +59,7 @@ namespace Gamification.Controllers
         }
 
         [HttpPost]
-
+        [AllowAnonymous]
         public async Task<ActionResult<CreateUserDTO>> CreateUserAsync(CreateUserDTO newUser, CancellationToken cancellationToken)
         {
             try

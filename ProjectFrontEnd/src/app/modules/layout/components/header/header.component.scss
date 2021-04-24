@@ -79,6 +79,7 @@ mat-sidenav span mat-icon {
 
 .mat-icon-button {
   color: white;
+  width: 100%;
 }
 
 .example-header-image {
@@ -93,7 +94,6 @@ mat-sidenav span mat-icon {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 10px;
 
   img {
     border-radius: 50%;
@@ -117,15 +117,13 @@ mat-sidenav span mat-icon {
 
 .right-sidebar {
   color: white;
-  display: flex;
+  display: -webkit-inline-box;
   justify-content: center;
   box-sizing: border-box;
-  padding: 0 16px;
   width: 100%;
   flex-direction: row;
   align-items: center;
   white-space: nowrap;
-  padding-right: 100px;
 }
 
 .user-menu {

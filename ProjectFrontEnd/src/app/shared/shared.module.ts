@@ -6,6 +6,7 @@ import { EditProfileModalWinComponent } from './components/edit-profile-modal-wi
 import { MaterialModule } from './modules/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PipesModule } from './pipes/pipes.module';
+import { LeaveMessaggeComponent } from './components/leave-messagge/leave-messagge.component';
 
 
 
@@ -14,6 +15,7 @@ import { PipesModule } from './pipes/pipes.module';
     SayThanksComponent,
     RequestAchievementComponent,
     EditProfileModalWinComponent,
+    LeaveMessaggeComponent,
   ],
   imports: [
     CommonModule,

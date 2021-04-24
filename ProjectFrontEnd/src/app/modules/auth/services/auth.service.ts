@@ -1,9 +1,10 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable } from "rxjs";
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { User } from "../models/user";
-import { tap } from 'rxjs/operators';
+import { tap, switchMap } from 'rxjs/operators';
 import { AuthUserService } from "src/app/core/services/auth-user.service";
+import { environment } from "src/environments/environment";
 
 @Injectable({
     providedIn: 'root'
@@ -11,9 +12,7 @@ import { AuthUserService } from "src/app/core/services/auth-user.service";
 export class AuthService {
     user$: BehaviorSubject<User> = new BehaviorSubject(null as unknown as User);
 
-    private apiUrl = 'https://localhost:44395/api/';
-
-    constructor(private httpClient: HttpClient, private readonly authUserService:AuthUserService) { }
+    constructor(private httpClient: HttpClient, private readonly authUserService: AuthUserService) { }
 
     authenticate(userName: string, password: string): Observable<User> {
         const body = {
@@ -21,11 +20,68 @@ export class AuthService {
             password
         };
 
-        return this.httpClient.post<User>(`${this.apiUrl}authenticate`, body).pipe(tap(user => {
+        return this.httpClient.post<User>(`${environment.apiUrl}authenticate`, body, { withCredentials: true }).pipe(tap(user => {
             this.user$.next(user);
+            localStorage.setItem("accessToken", user.token);
+            localStorage.setItem('refreshToken', user.refreshToken);
             this.authUserService.authUser = user;
-            console.log( this.authUserService.authUser);
         }));
-
     }
+
+    // isAuthenticated(): Observable<User> {
+    //     return this.httpClient.get<User>(`${environment.apiUrl}profile/current`, { withCredentials: true })
+    //         .pipe(
+    //             tap(user => {
+    //                 localStorage.setItem("accessToken", user.token);
+    //                 this.authUserService.authUser = user;
+    //             }));
+    // }
+
+    getCurrentUser(): Observable<User> {
+        return this.user$.pipe(
+            switchMap(user => {
+                // check if we already have user data
+                if (user) {
+                    return of(user);
+                }
+
+                const token = localStorage.getItem('accessToken');
+                // if there is token then fetch the current user
+                if (token) {
+                    return this.fetchCurrentUser();
+                }
+
+                return of(null);
+            })
+        );
+    }
+
+    fetchCurrentUser(): Observable<User> {
+        debugger;
+        return this.httpClient.get<User>(`${environment.apiUrl}profile/current`, { withCredentials: true })
+            .pipe(
+                tap(user => {
+                    this.user$.next(user);
+                    this.authUserService.authUser = user;
+                })
+            );
+    }
+
+    refreshToken(): Observable<User> {
+        const refreshToken = localStorage.getItem('refreshToken');
+        debugger;
+        return this.httpClient.post<User>(`${environment.apiUrl}authenticate/refresh-token`, { withCredentials: true })
+            .pipe(
+                tap(response => {
+                    localStorage.setItem('accessToken', response.token);
+                    localStorage.setItem('refreshToken', response.refreshToken);
+                })
+            );
+    }
+
+    logout(): void {
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
+        this.user$.next(null);
+      }
 }

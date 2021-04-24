@@ -11,7 +11,7 @@ export class RequestAchievementComponent {
   selectAchievement = 'Achievement';
 
   requestForm: FormGroup = new FormGroup({
-    "achievement": new FormControl(),
+    "achievement": new FormControl("", Validators.required),
     "message": new FormControl("", Validators.required),
   });
 

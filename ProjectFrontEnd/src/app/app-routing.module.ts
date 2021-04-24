@@ -14,6 +14,11 @@ const routes: Routes = [
     path: 'login',
     component: SignInComponent
   },
+  // {
+  //   path: '',
+  //   redirectTo: '/login',
+  //   pathMatch: 'full'
+  // },
   {
     path: '',
     component: LayoutComponent,
@@ -27,7 +32,7 @@ const routes: Routes = [
       {
         path: 'dashboard',
         component: DashboardComponent,
-        
+
       },
       {
         path: 'orders',

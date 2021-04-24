@@ -6,7 +6,6 @@
             </span>
         </button>
     </div>
-
     <div class="body">
         <div class="user-info">
             <div class="circle">
@@ -16,7 +15,9 @@
                     {{userService.users[1] | initials}}
                 </div>
             </div>
-
+            <div *ngIf="dialogValue">
+                <b>Value From Dialog</b>: {{dialogValue}}
+              </div>
             <div class="user-name">
                 {{userService.users[1].firstName}}
                 {{userService.users[1].lastName}}
@@ -41,7 +42,7 @@
         </div>
     </div>
     <div class="say-thanks-button">
-        <button class="btn" mat-button>
+        <button class="btn" mat-button (click)="thanks()">
             SAY THANKS
         </button>
     </div>

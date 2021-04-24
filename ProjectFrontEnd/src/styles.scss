@@ -104,7 +104,7 @@ body {
     display: block;
     width: 100%;
     height: 100%;
-    background-color: #534f4f;
+    background-color: #3d4147;
     color: white;
     border-radius: 20px;
   }
@@ -171,7 +171,7 @@ body {
   max-height: inherit;
   padding: 0px;
   margin: 0px;
-  background-color: #534f4f;
+  background-color: #3d4147;
   border-radius: 20px;
 }
 
@@ -248,6 +248,24 @@ body {
   }
 
 }
+//----------------------------------confirm logout modal window
+.confirm-logout-container{
+  
+  .mat-dialog-container {
+    display: block;
+    overflow: auto;
+    outline: 0;
+    width: 100%;
+    height: 100%;
+    min-height: inherit;
+    max-height: inherit;
+    padding: 0px;
+    border-radius: 0px;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+}
 
 //----------------------------------profile modal window
 .edit-profile-modal-win {
@@ -298,4 +316,31 @@ body {
     background: transparent;
     color: white;
   }
+}
+
+//-------------------------------------leave messagge container
+.leave-message-container{
+
+  .mat-input-element {
+    caret-color: white;;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+  background-color: white;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+  background-color: white;
+}
+
+.mat-form-field-ripple {
+  background-color: white;
+}
+
+.mat-dialog-container {
+  box-shadow: none;
+  background: transparent;
+  color: transparent;
+}
+
 }

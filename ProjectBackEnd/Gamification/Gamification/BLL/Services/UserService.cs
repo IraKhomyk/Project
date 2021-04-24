@@ -62,11 +62,11 @@ namespace Gamification.BLL.Services
             return deletedUser;
         }
 
-        public async Task<UserDTO> GetCurrentUserAsync(Guid userId, CancellationToken cancellationToken)
+        public async Task<AuthenticationUserDTO> GetCurrentUserAsync(Guid userId, CancellationToken cancellationToken)
         {
             User user = await _unitOfWork.userRepository.GetCurrentUserAsync(userId, cancellationToken);
 
-            return _mapper.Map<UserDTO>(user);
+            return _mapper.Map<AuthenticationUserDTO>(user);
         }
 
         public async Task<AuthenticationUserDTO> GetUserByRefreshTokenAsync(Guid refreshTokenId, CancellationToken cancellationToken)

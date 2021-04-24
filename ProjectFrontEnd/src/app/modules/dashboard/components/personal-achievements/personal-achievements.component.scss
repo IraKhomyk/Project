@@ -1,5 +1,7 @@
+@import "../../../../../assets/const-styles/const-styles.scss";
+
 .app-personal-achievements-container {
-    background-color: #424750;
+    background-color: var(--main-bg-color);
     font-size: 15px;
     font-family: Roboto, "Helvetica Neue", sans-serif;
     height: 100%;
