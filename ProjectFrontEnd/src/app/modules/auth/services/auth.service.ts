@@ -23,7 +23,6 @@ export class AuthService {
 
         return this.httpClient.post<User>(`${environment.apiUrl}authenticate`, body, { withCredentials: true }).pipe(tap(user => {
             this.user$.next(user);
-            localStorage.setItem("userId", user.id);
             localStorage.setItem("accessToken", user.token);
             localStorage.setItem('refreshToken', user.refreshToken);
             this.authUserService.authUser = user;

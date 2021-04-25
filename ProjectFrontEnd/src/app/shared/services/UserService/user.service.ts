@@ -26,6 +26,7 @@ export class UserService {
     };
 
     const userId = this.authUserService.authUser.id;
+    
     return this.httpClient.put<User>(`${environment.apiUrl}user?userId=${userId}`, body, { withCredentials: true }).pipe(tap(user => {
       this.authService.user$.next(user);
       this.authUserService.authUser = user;
