@@ -1,19 +1,16 @@
 ﻿using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Gamification
 {
     public class AuthOptions
     {
-        public string Issuer {get; set;}
-        public string Audience { get; set; } 
-        public string Secret { get; set; }
-        public int TokenLifeTime { get; set; }
-        public SymmetricSecurityKey GetSymmetricSecurityKey()
+
+        public const string Issuer = "AuthServer"; 
+        public const string Audience = "AuthClient"; 
+        const string Secret = "secret_secretkey!123"; 
+        public const int TokenLifeTime = 10; 
+        public static SymmetricSecurityKey GetSymmetricSecurityKey()
         {
             return new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Secret));
         }

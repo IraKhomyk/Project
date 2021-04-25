@@ -2,10 +2,6 @@
 using Gamification.BLL.DTO;
 using Gamification.DAL.Repositories;
 using Gamification.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Gamification
 {
@@ -30,6 +26,12 @@ namespace Gamification
 
             CreateMap<Thank, ThankDTO>();
             CreateMap<ThankDTO, Thank>();
+
+            CreateMap<User, UserAchievementsDTO>();
+            CreateMap<UserAchievementsDTO, User>();
+
+            CreateMap<User, AuthenticationUserDTO>();
+            CreateMap<AuthenticationUserDTO, User>();
         }
     }
 }

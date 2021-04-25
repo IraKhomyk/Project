@@ -1,10 +1,8 @@
-﻿using AutoMapper;
-using Gamification.DAL.IRepository;
+﻿using Gamification.DAL.IRepository;
 using Gamification.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -19,32 +17,32 @@ namespace Gamification.DAL.Repository
             _context = context;
         }
 
-        public async Task<IEnumerable<Achievement>> GetAllAchievements(CancellationToken cancellationToken)
+        public async Task<IEnumerable<Achievement>> GetAllAchievementsAsync(CancellationToken cancellationToken)
         {
             var achievements = _context.Achievements;
 
             return await achievements.ToListAsync(cancellationToken);
         }
 
-        public async Task<Achievement> GetAchievementById(Guid achievementId, CancellationToken cancellationToken)
+        public async Task<Achievement> GetAchievementByIdAsync(Guid achievementId, CancellationToken cancellationToken)
         {
             Achievement achievement = await _context.Achievements.FirstOrDefaultAsync(x => x.Id == achievementId, cancellationToken);
 
             return achievement;
         }
 
-        public async Task<Achievement> CreateAchievement(Achievement achievement, CancellationToken cancellationToken)
+        public async Task<Achievement> CreateAchievementAsync(Achievement achievement, CancellationToken cancellationToken)
         {
-            var guid = Guid.NewGuid();
+            Guid guid = Guid.NewGuid();
             achievement.Id = guid;
             await _context.Achievements.AddAsync(achievement, cancellationToken);
 
             return achievement;
         }
 
-        public async Task<Achievement> UpdateAchievement(Guid achievementId, Achievement newAchievement, CancellationToken cancellationToken)
+        public async Task<Achievement> UpdateAchievementAsync(Guid achievementId, Achievement newAchievement, CancellationToken cancellationToken)
         {
-            var achievement = await _context.Achievements.FirstOrDefaultAsync(x => x.Id == achievementId, cancellationToken);
+            Achievement achievement = await _context.Achievements.FirstOrDefaultAsync(x => x.Id == achievementId, cancellationToken);
             if (achievement != null)
             {
                 achievement.Id = achievementId;
@@ -60,13 +58,25 @@ namespace Gamification.DAL.Repository
             return achievement;
         }
 
-        public async Task<Achievement> DeleteAchievement(Guid AchievementId, CancellationToken cancellationToken)
+        public async Task<Achievement> DeleteAchievementAsync(Guid AchievementId, CancellationToken cancellationToken)
         {
-            var achievement = await _context.Achievements.FirstOrDefaultAsync(x => x.Id == AchievementId, cancellationToken);
+            Achievement achievement = await _context.Achievements.FirstOrDefaultAsync(x => x.Id == AchievementId, cancellationToken);
             _context.Achievements.Attach(achievement);
             _context.Achievements.Remove(achievement);
 
             return achievement;
+        }
+
+        public async Task<IEnumerable<Achievement>> GetAllUserAchievementsAsync(Guid userId, CancellationToken cancellationToken)
+        {
+            User user = await _context.Users.Include(a => a.Achievements).FirstOrDefaultAsync(x => x.Id == userId, cancellationToken);
+
+            if (user == null)
+            {
+                return null;
+            }
+
+            return user?.Achievements != null ? user.Achievements : null;
         }
     }
 }

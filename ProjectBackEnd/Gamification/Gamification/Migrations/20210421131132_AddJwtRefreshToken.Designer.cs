@@ -4,14 +4,16 @@ using Gamification;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Gamification.Migrations
 {
     [DbContext(typeof(MyContext))]
-    partial class MyContextModelSnapshot : ModelSnapshot
+    [Migration("20210421131132_AddJwtRefreshToken")]
+    partial class AddJwtRefreshToken
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,12 +26,12 @@ namespace Gamification.Migrations
                     b.Property<Guid>("AchievementsId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("UsersId")
+                    b.Property<Guid>("AchievementsId1")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("AchievementsId", "UsersId");
+                    b.HasKey("AchievementsId", "AchievementsId1");
 
-                    b.HasIndex("UsersId");
+                    b.HasIndex("AchievementsId1");
 
                     b.ToTable("AchievementUser");
                 });
@@ -172,7 +174,7 @@ namespace Gamification.Migrations
 
                     b.HasOne("Gamification.Models.User", null)
                         .WithMany()
-                        .HasForeignKey("UsersId")
+                        .HasForeignKey("AchievementsId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -210,9 +212,6 @@ namespace Gamification.Migrations
 
                             b1.Property<Guid>("RefreshToken")
                                 .HasColumnType("uniqueidentifier");
-
-                            b1.Property<DateTime?>("Revoked")
-                                .HasColumnType("datetime2");
 
                             b1.HasKey("UserId", "Id");
 

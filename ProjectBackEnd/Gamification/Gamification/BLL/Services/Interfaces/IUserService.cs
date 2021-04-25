@@ -2,7 +2,6 @@
 using Gamification.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -10,10 +9,12 @@ namespace Gamification.BLL.Services.Interfaces
 {
     public interface IUserService
     {
-        public Task<IEnumerable<UserDTO>> GetAllUsers(CancellationToken cancellationToken);
-        public Task<UserDTO> GetUserById(Guid Id, CancellationToken cancellationToken);
-        public Task<User> CreateUser(CreateUserDTO newUser, CancellationToken cancellationToken);
-        public Task<User> UpdateUser(Guid userId, UpdateUserDTO newUser, CancellationToken cancellationToken);
-        public Task<User> DeleteUser(Guid userId, CancellationToken cancellationToken);
+        public Task<IEnumerable<UserDTO>> GetAllUsersAsync(CancellationToken cancellationToken);
+        public Task<UserDTO> GetUserByIdAsync(Guid Id, CancellationToken cancellationToken);
+        public Task<User> CreateUserAsync(CreateUserDTO newUser, CancellationToken cancellationToken);
+        public Task<User> UpdateUserAsync(Guid userId, UpdateUserDTO newUser, CancellationToken cancellationToken);
+        public Task<User> DeleteUserAsync(Guid userId, CancellationToken cancellationToken);
+        public Task<UserDTO> GetCurrentUserAsync(Guid userId, CancellationToken cancellationToken);
+        public Task<AuthenticationUserDTO> GetUserByRefreshTokenAsync(Guid userId, CancellationToken cancellationToken);
     }
 }

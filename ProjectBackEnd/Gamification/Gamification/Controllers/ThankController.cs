@@ -1,33 +1,37 @@
-﻿using Gamification.BLL.DTO;
-using Gamification.BLL.Services.Interfaces;
+﻿using Gamification.BLL.Services.Interfaces;
 using Gamification.DAL.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Gamification.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/thank")]
     [ApiController]
+    [Authorize]
     public class ThankController : ControllerBase
     {
         private IThankService _thankService { get; set; }
-        public ThankController(IThankService thankService)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public ThankController(IThankService thankService, IHttpContextAccessor httpContextAccessor)
         {
             _thankService = thankService;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         [HttpGet]
-        public async Task<ActionResult<ThankDTO>> GetLastThank(CancellationToken cancellationToken)
+        public async Task<ActionResult<ThankDTO>> GetLastThankAsync(CancellationToken cancellationToken)
         {
             try
             {
-                var lastThank = await _thankService.GetLastThank(cancellationToken);
+                Guid userId = Guid.Parse(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+                ThankDTO lastThank = await _thankService.GetLastThankAsync(userId, cancellationToken);
                 return Ok(lastThank);
             }
             catch
@@ -37,11 +41,13 @@ namespace Gamification.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ThankDTO>> SayThank(ThankDTO newThank, CancellationToken cancellationToken)
+        public async Task<ActionResult<ThankDTO>> SayThankAsync(ThankDTO newThank, CancellationToken cancellationToken)
         {
             try
             {
-                var thank = await _thankService.SayThank(newThank, cancellationToken);
+                Guid userId = Guid.Parse(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+                ThankDTO thank = await _thankService.SayThankAsync(userId, newThank, cancellationToken);
                 return Ok(thank);
             }
             catch
