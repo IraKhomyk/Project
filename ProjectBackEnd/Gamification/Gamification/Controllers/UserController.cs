@@ -78,7 +78,7 @@ namespace Gamification.Controllers
         {
             try
             {
-                User user = await _userService.UpdateUserAsync(userId, newUser, cancellationToken);
+                UpdateUserDTO user = await _userService.UpdateUserAsync(userId, newUser, cancellationToken);
                 return Ok(user);
             }
             catch

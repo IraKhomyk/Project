@@ -20,7 +20,7 @@
             </div>
 
             <div class="sidebar-button-column">
-                <button mat-raised-button>Log out</button>
+                <button mat-raised-button (click)="confirm()">Log out</button>
             </div>
         </div>
 
@@ -39,14 +39,14 @@
                 </span>
             </div>
         </div>
-        
+
         <mat-sidenav-container class="sidebar-container">
             <nav mat-tab-nav-bar>
                 <div class="left-sidebar-nav">
                     <a class="active" mat-tab-link *ngFor="let route of routers" (click)="activeLink = route"
-                    [active]="activeLink == route" routerLink={{route.link}} routerLinkActive="active">
-                    {{route.name}}
-                </a>
+                        [active]="activeLink == route" routerLink={{route.link}} routerLinkActive="active">
+                        {{route.name}}
+                    </a>
                 </div>
             </nav>
         </mat-sidenav-container>

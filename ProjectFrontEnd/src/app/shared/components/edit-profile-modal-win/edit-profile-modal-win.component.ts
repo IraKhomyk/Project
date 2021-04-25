@@ -1,8 +1,10 @@
 import { Component, Inject } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { AuthUserService } from 'src/app/core/services/auth-user.service';
-import { UserServiceService } from 'src/app/shared/services/UserService/user-service.service';
+import { Router } from '@angular/router';
+import { take } from 'rxjs/operators';
+import { AuthUserService } from 'src/app/shared/services/AuthUser/auth-user.service';
+import { UserService } from '../../services/UserService/user.service';
 
 @Component({
   selector: 'app-edit-profile-modal-win',
@@ -11,32 +13,39 @@ import { UserServiceService } from 'src/app/shared/services/UserService/user-ser
 })
 export class EditProfileModalWinComponent {
 
-  private readonly passwordRegex: RegExp = /^(?=\D*\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}$/;
+  errorMessage: string;
 
   profileForm: FormGroup = new FormGroup({
     "firstName": new FormControl("", Validators.required),
     "lastName": new FormControl("", Validators.required),
     "email": new FormControl("", [Validators.required, Validators.email]),
-    "password": new FormControl("", [Validators.required, this.passwordValidator.bind(this)]),
     "status": new FormControl("")
   });
 
   constructor(
     public dialogRef: MatDialogRef<EditProfileModalWinComponent>,
     @Inject(MAT_DIALOG_DATA) public data: string,
-    public readonly userService: UserServiceService,
-    public readonly authUserService: AuthUserService) { }
+    public readonly userService: UserService,
+    public readonly authUserService: AuthUserService,
+    private readonly router: Router) { }
 
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
-  private passwordValidator(control: AbstractControl): ValidationErrors | null {
-    if (control?.value) {
-      const isValid = this.passwordRegex.test(control.value);
-      return !isValid ? { invalidPassword: true } : null;
+  updateUser(): void {
+    if (this.profileForm.valid) {
+      this.userService.updateUser(this.profileForm.value.firstName, this.profileForm.value.lastName,
+        this.profileForm.value.email, this.profileForm.value.status)
+        .pipe(take(1)).subscribe(res => {
+          this.router.navigate(['']);
+        }, err => {
+          this.errorMessage = err && err.error;
+        });
+    } else {
+      this.errorMessage = 'Please enter valid data';
     }
-    return null;
   }
+
 }

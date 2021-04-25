@@ -56,7 +56,6 @@ namespace Gamification.DAL.Repositories
                 user.LastName = newUser.LastName;
                 user.Email = newUser.Email;
                 user.Status = newUser.Status;
-                user.UserName = newUser.UserName;
                 _context.Users.Update(user);
                 await _context.SaveChangesAsync();
             }
@@ -82,7 +81,10 @@ namespace Gamification.DAL.Repositories
 
         public async Task<User> GetCurrentUserAsync(Guid userId, CancellationToken cancellationToken)
         {
-            User user = await GetUserByIdAsync(userId, cancellationToken);
+           /* User user = await _context.Users.Include(a => a.Roles)
+                .Include(r=> r.JwtRefreshTokens)
+                .FirstOrDefaultAsync(x => x.Id == userId, cancellationToken);*/
+           User user = await GetUserByIdAsync(userId, cancellationToken);
 
             return user;
         }
@@ -102,7 +104,7 @@ namespace Gamification.DAL.Repositories
 
         public async Task<User> GetUserByRefreshTokenAsync(Guid refreshTokenId, CancellationToken cancellationToken)
         {
-            User user = await _context.Users.FirstOrDefaultAsync(u => u.JwtRefreshTokens.Any(t => t.RefreshToken == refreshTokenId), cancellationToken);
+            User user = await _context.Users.Include(x => x.Roles).Include(x => x.JwtRefreshTokens).FirstOrDefaultAsync(u => u.JwtRefreshTokens.Any(t => t.RefreshToken == refreshTokenId), cancellationToken);
 
             return user;
         }

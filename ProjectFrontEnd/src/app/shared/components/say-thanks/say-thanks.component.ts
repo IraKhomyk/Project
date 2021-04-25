@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AchievementServiceService } from 'src/app/shared/services/AchievementService/achievement-service.service';
-import { UserServiceService } from 'src/app/shared/services/UserService/user-service.service';
+import { UserServiceService } from 'src/app/shared/services/UserServiceMock/user-service.service';
 import { LeaveMessaggeComponent } from '../leave-messagge/leave-messagge.component';
 
 @Component({

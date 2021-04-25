@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { UserServiceService } from 'src/app/shared/services/UserService/user-service.service';
+import { UserServiceService } from 'src/app/shared/services/UserServiceMock/user-service.service';
 import { OtherUserProfileComponent } from '../other-user-profile/other-user-profile.component';
 
 @Component({

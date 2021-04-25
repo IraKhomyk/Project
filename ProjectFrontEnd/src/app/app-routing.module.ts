@@ -5,7 +5,7 @@ import { AuthGuard } from './core/guards/auth.guard';
 
 import { SignInComponent } from './modules/auth/components/sign-in/sign-in.component';
 import { LayoutComponent } from './modules/layout/layout.component';
-import { DashboardComponent } from './modules/dashboard/dashboard.component';
+import { DashboardComponent } from './modules/dashboard/dashboard/dashboard.component';
 import { BadgesComponent } from './modules/badges/badges/badges.component';
 import { GreetingComponent } from './modules/dashboard/components/greeting/greeting.component';
 
@@ -14,11 +14,6 @@ const routes: Routes = [
     path: 'login',
     component: SignInComponent
   },
-  // {
-  //   path: '',
-  //   redirectTo: '/login',
-  //   pathMatch: 'full'
-  // },
   {
     path: '',
     component: LayoutComponent,
@@ -46,7 +41,11 @@ const routes: Routes = [
   }
 ];
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot(routes)
+  ],
+  exports: [
+    RouterModule
+  ]
 })
 export class AppRoutingModule { }

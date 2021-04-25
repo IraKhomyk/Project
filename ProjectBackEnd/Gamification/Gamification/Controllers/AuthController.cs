@@ -63,7 +63,7 @@ namespace Gamification.Controllers
 
             try
             {
-                var refreshToken = Request.Cookies["refreshToken"];
+               var refreshToken = _httpContextAccessor.HttpContext.Request.Cookies["refreshToken"];
                 var response = await _authService.RefreshTokenAsync(Guid.Parse(refreshToken), cancellationToken);
                 if (!string.IsNullOrEmpty(response.RefreshToken.ToString()))
                 {

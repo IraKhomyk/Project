@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UserServiceService } from 'src/app/shared/services/UserService/user-service.service';
+import { UserServiceService } from 'src/app/shared/services/UserServiceMock/user-service.service';
 
 @Component({
   selector: 'app-thanks',
@@ -7,6 +7,5 @@ import { UserServiceService } from 'src/app/shared/services/UserService/user-ser
   styleUrls: ['./thanks.component.scss']
 })
 export class ThanksComponent {
-
   constructor(public readonly userService: UserServiceService) { }
 }

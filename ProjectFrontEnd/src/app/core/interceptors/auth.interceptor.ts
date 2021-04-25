@@ -11,24 +11,8 @@ export class AuthInterceptor implements HttpInterceptor {
   private refreshingInProgress: boolean;
   private accessTokenSubject: BehaviorSubject<string> = new BehaviorSubject<string>(null);
 
-  constructor(private authService: AuthService,
-    private router: Router) { }
-
-  // intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-  //   return this.authService.user$.pipe(switchMap((user) => {
-  //     const token = localStorage.getItem("accessToken");
-
-  //     if (!user || !token) {
-  //       return next.handle(req);
-  //     }
-
-  //     const setHeaders = {
-  //       authorization: `Bearer ${token}`
-  //     };
-
-  //     return next.handle(req.clone({ setHeaders }));
-  //   }));
-  // }
+  constructor(private readonly authService: AuthService,
+    private readonly router: Router) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const accessToken = localStorage.getItem('accessToken');
@@ -40,11 +24,10 @@ export class AuthInterceptor implements HttpInterceptor {
           // get refresh tokens
           const refreshToken = localStorage.getItem('refreshToken');
 
-          // if there are tokens then send refresh token request
+          // if there are tokens, send refresh token request
           if (refreshToken && accessToken) {
             return this.refreshToken(req, next);
           }
-
           // otherwise logout and redirect to login page
           return this.logoutAndRedirect(err);
         }
@@ -54,13 +37,14 @@ export class AuthInterceptor implements HttpInterceptor {
           // logout and redirect to login page
           return this.logoutAndRedirect(err);
         }
-        // if error has status neither 401 nor 403 then just return this error
+        // if error has status neither 401 nor 403 - return error
         return throwError(err);
       })
     );
   }
 
   private refreshToken(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    const refreshToken = localStorage.getItem('refreshToken');
     if (!this.refreshingInProgress) {
       this.refreshingInProgress = true;
       this.accessTokenSubject.next(null);

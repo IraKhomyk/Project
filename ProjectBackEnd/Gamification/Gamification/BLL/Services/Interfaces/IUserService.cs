@@ -13,7 +13,7 @@ namespace Gamification.BLL.Services.Interfaces
         public Task<IEnumerable<UserDTO>> GetAllUsersAsync(CancellationToken cancellationToken);
         public Task<UserDTO> GetUserByIdAsync(Guid Id, CancellationToken cancellationToken);
         public Task<User> CreateUserAsync(CreateUserDTO newUser, CancellationToken cancellationToken);
-        public Task<User> UpdateUserAsync(Guid userId, UpdateUserDTO newUser, CancellationToken cancellationToken);
+        public Task<UpdateUserDTO> UpdateUserAsync(Guid userId, UpdateUserDTO newUser, CancellationToken cancellationToken);
         public Task<User> DeleteUserAsync(Guid userId, CancellationToken cancellationToken);
         public Task<AuthenticationUserDTO> GetCurrentUserAsync(Guid userId, CancellationToken cancellationToken);
         public Task<AuthenticationUserDTO> GetUserByRefreshTokenAsync(Guid userId, CancellationToken cancellationToken);

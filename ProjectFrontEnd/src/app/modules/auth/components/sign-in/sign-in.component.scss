@@ -9,7 +9,7 @@ mat-card {
     box-shadow: none;
 }
 
-.mat-card:not([class*=mat-elevation-z]) {
+.mat-card:not([class*="mat-elevation-z"]) {
     box-shadow: none;
 }
 
@@ -58,7 +58,7 @@ mat-form-field {
     }
 }
 
-.sign-in-form{
+.sign-in-form {
     margin-top: 4%;
     height: 50%;
     padding: 5%;

@@ -21,7 +21,8 @@ export class SignInComponent {
 
   user$!: Subject<User>;
 
-  constructor(private router: Router, private authService: AuthService) {
+  constructor(private router: Router,
+     private readonly authService: AuthService) {
     this.user$ = this.authService.user$;
   }
 

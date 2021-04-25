@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { UserServiceService } from 'src/app/shared/services/UserService/user-service.service';
 import { EditProfileModalWinComponent } from 'src/app/shared/components/edit-profile-modal-win/edit-profile-modal-win.component';
-import { AuthUserService } from 'src/app/core/services/auth-user.service';
+import { AuthUserService } from 'src/app/shared/services/AuthUser/auth-user.service';
+import { ConfirmLogoutComponent } from 'src/app/modules/auth/components/confirm-logout/confirm-logout.component';
 
 @Component({
   selector: 'app-left-sidebar',
@@ -25,6 +25,7 @@ export class LeftSidebarComponent {
     name: 'Orders'
   }
   ];
+
   activeLink = this.routers[0];
 
   constructor(public dialog: MatDialog,
@@ -36,5 +37,14 @@ export class LeftSidebarComponent {
       width: '500px',
       height: '600px',
     })
+  }
+
+  confirm(): void {
+    const dialogRef = this.dialog.open(ConfirmLogoutComponent, {
+      panelClass: 'confirm-logout-container',
+      width: '400px',
+      height: '200px',
+      data: {}
+    });
   }
 }

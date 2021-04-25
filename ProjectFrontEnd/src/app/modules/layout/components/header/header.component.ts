@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { EditProfileModalWinComponent } from 'src/app/shared/components/edit-profile-modal-win/edit-profile-modal-win.component';
-import { AuthUserService } from 'src/app/core/services/auth-user.service';
-import { AuthService } from 'src/app/modules/auth/services/auth.service';
-import { Router } from '@angular/router';
+import { AuthUserService } from 'src/app/shared/services/AuthUser/auth-user.service';
 import { ConfirmLogoutComponent } from 'src/app/modules/auth/components/confirm-logout/confirm-logout.component';
 
 @Component({
@@ -30,9 +28,7 @@ export class HeaderComponent {
   activeLink = this.routers[0];
 
   constructor(public dialog: MatDialog,
-    public readonly authUserService: AuthUserService,
-    private readonly authService: AuthService,
-    private readonly router: Router) { }
+    public readonly authUserService: AuthUserService) { }
 
   editProfile(): void {
     const dialogRef = this.dialog.open(EditProfileModalWinComponent, {

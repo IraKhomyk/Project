@@ -40,6 +40,9 @@ namespace Gamification.Controllers
                 AuthenticationUserDTO currentUser = await _userService.GetCurrentUserAsync(userId, cancellationToken);
 
                 currentUser.Token = _httpContextAccessor.HttpContext.Request.Cookies["accessToken"];
+                currentUser.RefreshToken = Guid.Parse(_httpContextAccessor.HttpContext.Request.Cookies["refreshToken"]);
+
+                SetRefreshTokenInCookie(currentUser.RefreshToken.ToString(), currentUser.Token);
                 return Ok(currentUser);
             }
             catch
@@ -70,5 +73,18 @@ namespace Gamification.Controllers
                 return StatusCode(500);
             }
         }
+        private void SetRefreshTokenInCookie(string refreshToken, string accessToken)
+        {
+            var cookieOptions = new CookieOptions
+            {
+                HttpOnly = true,
+                Expires = DateTime.UtcNow.AddDays(10),
+                SameSite = SameSiteMode.None,
+                Secure = true
+            };
+            Response.Cookies.Append("refreshToken", refreshToken, cookieOptions);
+            Response.Cookies.Append("accessToken", accessToken, cookieOptions);
+        }
+
     }
 }

@@ -112,6 +112,7 @@ body {
   .mat-select-panel {
     background-color: gray;
   }
+
   .mat-select {
     display: inline-block;
     width: 100%;
@@ -206,11 +207,12 @@ body {
     flex-direction: column;
   }
 
-  .mat-card>:first-child, .mat-card-content>:first-child {
+  .mat-card > :first-child,
+  .mat-card-content > :first-child {
     margin-top: 0;
     height: 97%;
     box-shadow: none;
-}
+  }
 
   .mat-form-field-appearance-legacy .mat-form-field-underline {
     background-color: white;
@@ -234,7 +236,7 @@ body {
     border-radius: 0%;
   }
 
-  .context{
+  .context {
     height: 100%;
     background-color: #3d4147;
     border-top: 10px solid #5ea002;
@@ -246,11 +248,9 @@ body {
     border-bottom-left-radius: 5%;
     border-bottom-right-radius: 5%;
   }
-
 }
 //----------------------------------confirm logout modal window
-.confirm-logout-container{
-  
+.confirm-logout-container {
   .mat-dialog-container {
     display: block;
     overflow: auto;
@@ -263,8 +263,7 @@ body {
     border-radius: 0px;
     background-color: transparent;
     box-shadow: none;
-}
-
+  }
 }
 
 //----------------------------------profile modal window
@@ -318,29 +317,27 @@ body {
   }
 }
 
-//-------------------------------------leave messagge container
-.leave-message-container{
-
+//----------------------------------leave messagge container
+.leave-message-container {
   .mat-input-element {
-    caret-color: white;;
-}
+    caret-color: white;
+  }
 
-.mat-form-field-appearance-legacy .mat-form-field-underline {
-  background-color: white;
-}
+  .mat-form-field-appearance-legacy .mat-form-field-underline {
+    background-color: white;
+  }
 
-.mat-form-field-appearance-legacy .mat-form-field-underline {
-  background-color: white;
-}
+  .mat-form-field-appearance-legacy .mat-form-field-underline {
+    background-color: white;
+  }
 
-.mat-form-field-ripple {
-  background-color: white;
-}
+  .mat-form-field-ripple {
+    background-color: white;
+  }
 
-.mat-dialog-container {
-  box-shadow: none;
-  background: transparent;
-  color: transparent;
-}
-
+  .mat-dialog-container {
+    box-shadow: none;
+    background: transparent;
+    color: transparent;
+  }
 }
