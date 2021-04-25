@@ -1,12 +1,8 @@
-﻿using AutoMapper;
-using Gamification.DAL.IRepository;
+﻿using Gamification.DAL.IRepository;
 using Gamification.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -75,19 +71,12 @@ namespace Gamification.DAL.Repository
         {
             User user = await _context.Users.Include(a => a.Achievements).FirstOrDefaultAsync(x => x.Id == userId, cancellationToken);
 
-            if (user != null)
+            if (user == null)
             {
-                var achievements = user.Achievements;
-
-                if(achievements == null)
-                {
-                    return null;
-                }
-
-                return achievements;
+                return null;
             }
 
-            return null;
+            return user?.Achievements != null ? user.Achievements : null;
         }
     }
 }

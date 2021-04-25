@@ -1,17 +1,10 @@
 ﻿using Gamification.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
 using System.Threading;
-using Microsoft.EntityFrameworkCore;
-using Gamification.DAL.IRepository;
-using AutoMapper;
 using Gamification.BLL.DTO;
-using Gamification.DAL.Repository.UnitOfWork;
 using Gamification.BLL.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 
