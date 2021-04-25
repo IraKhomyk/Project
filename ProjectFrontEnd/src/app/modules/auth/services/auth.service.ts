@@ -12,7 +12,7 @@ import { environment } from "src/environments/environment";
 export class AuthService {
     user$: BehaviorSubject<User> = new BehaviorSubject(null as unknown as User);
 
-    constructor(private httpClient: HttpClient,
+    constructor(private readonly httpClient: HttpClient,
         private readonly authUserService: AuthUserService) { }
 
     authenticate(userName: string, password: string): Observable<User> {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserMock } from 'src/app/shared/models/user.model';
+import { AuthUserService } from 'src/app/shared/services/AuthUser/auth-user.service';
 type userShortInfo = Pick<UserMock, 'firstName'>;
 
 @Component({
@@ -14,9 +15,11 @@ export class GreetingComponent implements OnInit {
 
   greet: string;
 
+  constructor(public readonly authUserService:AuthUserService) { }
+
   ngOnInit(): void {
     this.getGreeting();
-  }
+  } 
 
   getGreeting(): void {
     const myDate = new Date();

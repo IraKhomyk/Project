@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { take } from 'rxjs/operators';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { User } from '../../models/user';
 
 @Component({
@@ -12,9 +12,11 @@ import { User } from '../../models/user';
   styleUrls: ['./sign-in.component.scss']
 })
 export class SignInComponent {
+  private readonly passwordRegex: RegExp = /^(?=\D*\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}$/;
+
   signInForm: FormGroup = new FormGroup({
     "username": new FormControl("", Validators.required),
-    "password": new FormControl("", Validators.required)
+    "password": new FormControl("", [Validators.required, this.passwordValidator.bind(this)])
   });
 
   errorMessage: string;
@@ -28,7 +30,8 @@ export class SignInComponent {
 
   authenticate(): void {
     if (this.signInForm.valid) {
-      this.authService.authenticate(this.signInForm.value.username, this.signInForm.value.password).pipe(take(1)).subscribe(res => {
+     this.authService.authenticate(this.signInForm.value.username, this.signInForm.value.password).pipe(take(1))
+     .subscribe(res => {
         this.router.navigate(['']);
       }, err => {
         this.errorMessage = err && err.error;
@@ -37,5 +40,14 @@ export class SignInComponent {
       this.errorMessage = 'Please enter valid data';
     }
   }
+
+  private passwordValidator(control: AbstractControl): ValidationErrors | null {
+    if (control?.value) {
+        const isValid = this.passwordRegex.test(control.value);
+        return !isValid ? {invalidPassword: true} : null;
+    }
+
+    return null;
+}
 }
 

@@ -40,6 +40,7 @@ export class EditProfileModalWinComponent {
         this.profileForm.value.email, this.profileForm.value.status)
         .pipe(take(1)).subscribe(res => {
           this.router.navigate(['']);
+          this.dialogRef.close();
         }, err => {
           this.errorMessage = err && err.error;
         });
