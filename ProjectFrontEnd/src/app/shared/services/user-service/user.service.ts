@@ -5,7 +5,8 @@ import { tap } from 'rxjs/operators';
 import { User } from 'src/app/modules/auth/models/user';
 import { AuthService } from 'src/app/modules/auth/services/auth.service';
 import { environment } from 'src/environments/environment';
-import { AuthUserService } from '../AuthUser/auth-user.service';
+import { GetUser } from '../../models/getUser';
+import { AuthUserService } from '../auth-user/auth-user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +32,14 @@ export class UserService {
       this.authService.user$.next(user);
       this.authUserService.authUser = user;
     }));
+  }
+
+  getAllUsers():Observable<GetUser[]>{
+debugger
+    return this.httpClient.get<GetUser[]>(`${environment.apiUrl}user`, { withCredentials: true })
+    .pipe(tap(users=> {
+        //this.authService.user$.next(users);
+        this.authUserService.users = users;
+      }));
   }
 }
