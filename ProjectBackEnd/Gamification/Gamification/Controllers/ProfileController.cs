@@ -60,7 +60,7 @@ namespace Gamification.Controllers
 
                 var achievements = await _achievementService.GetAllUserAchievementsAsync(userId, cancellationToken);
 
-                if(achievements == null)
+                if (achievements == null)
                 {
                     return NoContent();
                 }

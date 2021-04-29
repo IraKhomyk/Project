@@ -14,7 +14,6 @@ namespace Gamification.Controllers
     [Route("api/user")]
     [ApiController]
     [Authorize]
-
     public class UserController : ControllerBase
     {
         private IUserService _userService { get; set; }
@@ -23,7 +22,7 @@ namespace Gamification.Controllers
         {
             _userService = userService;
         }
-      
+
         [HttpGet]
         [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<UserDTO>>> GetAllUsersAsync(CancellationToken cancellationToken)
@@ -55,7 +54,6 @@ namespace Gamification.Controllers
         }
         [HttpGet()]
         [Route("short-info")]
-        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<UserShortInfoDTO>>> GetAllUsersWithLastAchievementAsync(CancellationToken cancellationToken)
         {
             try
@@ -70,7 +68,6 @@ namespace Gamification.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
         public async Task<ActionResult<CreateUserDTO>> CreateUserAsync(CreateUserDTO newUser, CancellationToken cancellationToken)
         {
             try
@@ -110,7 +107,7 @@ namespace Gamification.Controllers
             {
                 return StatusCode(500);
             }
-            
+
         }
 
     }

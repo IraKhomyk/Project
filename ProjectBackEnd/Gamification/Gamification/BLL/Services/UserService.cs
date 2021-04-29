@@ -79,7 +79,7 @@ namespace Gamification.BLL.Services
         {
             User newUser = await _unitOfWork.userRepository.ChangePasswordAsync(oldPassword, newPassword, confirmRassword, cancellationToken);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
-            if(newUser != null)
+            if (newUser != null)
             {
                 AuthenticationUserDTO updatedUser = _mapper.Map<AuthenticationUserDTO>(newUser);
 
