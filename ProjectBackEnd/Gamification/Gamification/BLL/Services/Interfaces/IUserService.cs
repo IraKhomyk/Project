@@ -17,5 +17,8 @@ namespace Gamification.BLL.Services.Interfaces
         public Task<User> DeleteUserAsync(Guid userId, CancellationToken cancellationToken);
         public Task<AuthenticationUserDTO> GetCurrentUserAsync(Guid userId, CancellationToken cancellationToken);
         public Task<AuthenticationUserDTO> GetUserByRefreshTokenAsync(Guid userId, CancellationToken cancellationToken);
+        public Task<AuthenticationUserDTO> ChangePasswordAsync(string oldPassword, string newPassword, string confirmRassword, CancellationToken cancellationToken);
+        public Task<IEnumerable<UserShortInfoDTO>> GetAllUsersWithLastAchievementAsync(CancellationToken cancellationToken);
+
     }
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthUserService } from 'src/app/shared/services/auth-user-service/auth-user.service';
 
 @Component({
   selector: 'app-badges',
@@ -6,4 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./badges.component.scss']
 })
 export class BadgesComponent {
+
+  constructor(public readonly authUserService: AuthUserService){}
 }

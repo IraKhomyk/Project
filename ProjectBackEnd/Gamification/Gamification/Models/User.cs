@@ -36,13 +36,14 @@ namespace Gamification.Models
         public int Xp { get; set; }
         public int Badges { get; set; }
 
-        public Guid? AvatarId { get; set; }
+        public string AvatarId { get; set; }
 
         public ICollection<Role> Roles { get; set; }
 
         public ICollection<Achievement> Achievements { get; set; }
         public Thank Thank { get; set; }
         public ICollection<JwtRefreshToken> JwtRefreshTokens { get; set; }
+        public ICollection<RequestAchievement> RequestAchievements { get; set; }
         public string Token { get; set; }
     }
 }

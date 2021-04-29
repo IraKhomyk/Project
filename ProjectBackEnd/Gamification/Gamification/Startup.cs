@@ -125,6 +125,7 @@ namespace Gamification
             services.AddTransient<IAchievementService, AchievementService>();
             services.AddTransient<IAuthService, AuthService>();
             services.AddTransient<IThankService, ThankService>();
+            services.AddTransient<IRequestAchievementService, RequestAchievementService>();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 

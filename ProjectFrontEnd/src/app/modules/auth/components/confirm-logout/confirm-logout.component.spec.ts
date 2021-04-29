@@ -8,9 +8,9 @@ describe('ConfirmLogoutComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ConfirmLogoutComponent ]
+      declarations: [ConfirmLogoutComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

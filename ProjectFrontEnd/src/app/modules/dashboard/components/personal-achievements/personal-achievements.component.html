@@ -1,26 +1,31 @@
-<mat-card class="app-personal-achievements-container">
+<mat-card class="personal-achievements-container">
   <div class="request-button">
     <span class="text-uppercase">personal achievements</span>
     <button mat-raised-button (click)="request()">Request</button>
   </div>
 
   <mat-list class="display-achiv-container">
-    <mat-list-item *ngFor="let achievement of achievementServiceService.achievements | slice:0:4;">
-      <img matListAvata class="circle" [src]="achievement.photoUrl">
+    <div *ngFor="let achievement of userAchievementsService.achievements | slice:0:4;" class="leveling">
+      <mat-list-item>
+        <img matListAvata class="circle" [src]="achievement.iconId | createPath">
 
-      <div class="display-achiv-info">
-        <span matLine>
-          {{achievement.name}}
-        </span>
+        <div class="display-achiv-info">
+          <span matLine>
+            {{achievement.name}}
+          </span>
 
-        <span>
-          {{achievement.date | dateTimeAgo}}
-        </span>
+          <span>
+            {{achievement.addedTime | timeAgo}}
+          </span>
+        </div>
+      </mat-list-item>
 
+      <mat-list-item>
         <span class="xp-points">
-          &#11044; + {{achievement.exp}}
+          &#11044; + {{achievement.xp}}
         </span>
-      </div>
-    </mat-list-item>
+      </mat-list-item>
+    </div>
+
   </mat-list>
 </mat-card>

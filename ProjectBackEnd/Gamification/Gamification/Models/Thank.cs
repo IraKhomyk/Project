@@ -11,6 +11,7 @@ namespace Gamification.Models
         [Required]
         public Guid ToUserId { get; set; }
 
+        //public Guid FromUserId { get; set; }
         public User FromUser { get; set; }
 
         [Required]

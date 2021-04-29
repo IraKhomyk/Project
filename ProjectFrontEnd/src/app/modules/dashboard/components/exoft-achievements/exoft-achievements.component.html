@@ -10,28 +10,32 @@
 
 
     <div>
-        <div class="user-block" *ngFor="let user of userService.users">
+        <div class="user-block" *ngFor="let user of authUserService.usersShort">
             <div class="user-info">
-                <div class="circle">
-                    <img *ngIf="user.photoUrl" src={{user.photoUrl}}>
-
-                    <div *ngIf="!user.photoUrl" class="initials">
-                        {{user | initials}}
+                <button mat-button (click)="otherProfile(user.id)">
+                    <div class="circle">
+                        <img *ngIf="user.avatarId" src={{user.avatarId}}>
+    
+                        <div *ngIf="!user.avatarId" class="initials">
+                            {{user | initials}}
+                        </div>
                     </div>
-                </div>
-                <span class="user-name">
+                </button>
+
+                <div class="user-name">
                     {{user.firstName}} {{user.lastName}}
-                </span>
+                </div>
 
-                <span class="time-ago">
-                    0 mins ago
-                </span>
-
+               
             </div>
 
-            <div class="achiv-info">
+            <div class="achiv-info" *ngFor="let achiev of user.achievements">
+                <div class="time-ago">
+                    {{achiev.addedTime | timeAgo}}
+                </div>
+
                 <span class='achivment'>
-                    Got achievement Exoft turbo power
+                    Got achievement {{achiev.name}}
                 </span>
                 <mat-chip class="records">Records</mat-chip>
             </div>

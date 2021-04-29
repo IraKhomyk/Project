@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./challenges.component.scss']
 })
 export class ChallengesComponent {
-  imageUrl = './../../../../assets/beauty.jpg';
+  imageUrl = './../../../../assets/code.jpg';
 }

@@ -8,25 +8,22 @@ import { SharedModule } from 'src/app/shared/shared.module';
 
 import { GreetingComponent } from '../components/greeting/greeting.component';
 import { PersonalAchievementsComponent } from '../components/personal-achievements/personal-achievements.component';
-import { ThankYouComponent } from '../components/thank-you/thank-you.component';
 import { BadgesComponent } from '../components/badges/badges.component';
 import { TopChartComponent } from '../components/top-chart/top-chart.component';
 import { ExoftAchievementsComponent } from '../components/exoft-achievements/exoft-achievements.component';
 import { ChallengesComponent } from '../components/challenges/challenges.component';
 import { DashboardComponent } from './dashboard.component';
-import { OtherUserProfileComponent } from '../components/other-user-profile/other-user-profile.component';
 
 @NgModule({
   declarations: [
     GreetingComponent,
     PersonalAchievementsComponent,
-    ThankYouComponent,
     BadgesComponent,
     TopChartComponent,
     ExoftAchievementsComponent,
     ChallengesComponent,
     DashboardComponent,
-    OtherUserProfileComponent,
+
   ],
   imports: [
     CommonModule,

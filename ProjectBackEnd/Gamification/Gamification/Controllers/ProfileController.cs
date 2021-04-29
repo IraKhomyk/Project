@@ -73,6 +73,47 @@ namespace Gamification.Controllers
                 return StatusCode(500);
             }
         }
+
+        [HttpGet]
+        [Route("last")]
+        public async Task<ActionResult<IEnumerable<AchievementDTO>>> GetLastUserAchievementsAsync(CancellationToken cancellationToken)
+        {
+            try
+            {
+                Guid userId = Guid.Parse(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+                var achievements = await _achievementService.GetLastUserAchievementsAsync(userId, cancellationToken);
+
+                if (achievements == null)
+                {
+                    return NoContent();
+                }
+
+                return Ok(achievements);
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
+        }
+
+
+        [HttpPut]
+        [Route("change-password")]
+        public async Task<ActionResult<AuthenticationUserDTO>> ChangePasswordAsync(string oldPassword, string newPassword, string confirmPassword, CancellationToken cancellationToken)
+        {
+            try
+            {
+                AuthenticationUserDTO newUser = await _userService.ChangePasswordAsync(oldPassword, newPassword, confirmPassword, cancellationToken);
+
+                return Ok(newUser);
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
+        }
+
         private void SetRefreshTokenInCookie(string refreshToken, string accessToken)
         {
             var cookieOptions = new CookieOptions

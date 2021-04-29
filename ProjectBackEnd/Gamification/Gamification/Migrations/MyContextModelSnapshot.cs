@@ -40,21 +40,48 @@ namespace Gamification.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("AddedTime")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("IconId")
-                        .HasColumnType("int");
+                    b.Property<string>("IconId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("Xp")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Name")
+                        .IsUnique();
+
                     b.ToTable("Achievements");
+                });
+
+            modelBuilder.Entity("Gamification.Models.RequestAchievement", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AchievementId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId", "AchievementId");
+
+                    b.HasIndex("AchievementId");
+
+                    b.ToTable("RequestAchievements");
                 });
 
             modelBuilder.Entity("Gamification.Models.Role", b =>
@@ -105,8 +132,8 @@ namespace Gamification.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("AvatarId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("AvatarId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Badges")
                         .HasColumnType("int");
@@ -183,6 +210,25 @@ namespace Gamification.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Gamification.Models.RequestAchievement", b =>
+                {
+                    b.HasOne("Gamification.Models.Achievement", "Achievement")
+                        .WithMany("RequestAchievements")
+                        .HasForeignKey("AchievementId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Gamification.Models.User", "User")
+                        .WithMany("RequestAchievements")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Achievement");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Gamification.Models.Thank", b =>
                 {
                     b.HasOne("Gamification.Models.User", "FromUser")
@@ -248,9 +294,19 @@ namespace Gamification.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Gamification.Models.Achievement", b =>
+                {
+                    b.Navigation("RequestAchievements");
+                });
+
             modelBuilder.Entity("Gamification.Models.Thank", b =>
                 {
                     b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("Gamification.Models.User", b =>
+                {
+                    b.Navigation("RequestAchievements");
                 });
 #pragma warning restore 612, 618
         }

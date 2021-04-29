@@ -15,7 +15,8 @@ namespace Gamification.DAL.Repository.UnitOfWork
         private IAchievementRepository _achievementRepository;
         private IUserRepository _userRepository;
         private IThankRepository _thankRepository;
-        private MyContext _context;
+        private IRequestAchievementRepository _requestAchievementRepository;
+        private readonly MyContext _context;
 
         public UnitOfWork(MyContext context, IHttpContextAccessor httpContextAccessor)
         {
@@ -61,6 +62,22 @@ namespace Gamification.DAL.Repository.UnitOfWork
                     this._thankRepository = new ThankRepository(_context);
                 }
                 return _thankRepository;
+            }
+            set
+            {
+
+            }
+        }
+
+        public IRequestAchievementRepository requestAchievementRepository
+        {
+            get
+            {
+                if (this._requestAchievementRepository == null)
+                {
+                    this._requestAchievementRepository = new RequestAchievementRepository(_context);
+                }
+                return _requestAchievementRepository;
             }
             set
             {

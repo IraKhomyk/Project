@@ -17,23 +17,23 @@
                 <span class="date-title">Date</span>
             </td>
         </tr>
-        <tr *ngFor="let achievement of achievementService.achievements | slice:0:4">
+        <tr *ngFor="let achievement of userAchievementsService.achievements">
             <td class="achiev-info">
-                <img matListAvata class="circle" [src]="achievement.photoUrl">
+                <img matListAvata class="circle" [src]="achievement.iconId | createPath">
                 <span matLine class="text">
                     {{achievement.name}}
                 </span>
             </td>
 
             <td>
-                <span class="text xp-info">
-                    + {{achievement.exp}}
+                <span class="text xp-info text-uppercase">
+                    + {{achievement.xp}} xp
                 </span>
             </td>
 
             <td>
                 <span class="text">
-                   {{achievement.date | dateTimeAgo}}
+                    {{achievement.addedTime | timeAgo}}
                 </span>
             </td>
         </tr>

@@ -14,5 +14,6 @@ namespace Gamification.DAL.Repository.UnitOfWork
         IAchievementRepository achievementRepository { get; set; }
         IUserRepository userRepository { get; set; }
         IThankRepository thankRepository { get; set; }
+        IRequestAchievementRepository requestAchievementRepository { get; set; }
     }
 }

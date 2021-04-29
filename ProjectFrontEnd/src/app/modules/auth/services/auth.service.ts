@@ -3,8 +3,9 @@ import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { User } from "../models/user";
 import { tap, switchMap } from 'rxjs/operators';
-import { AuthUserService } from "src/app/shared/services/AuthUser/auth-user.service";
+import { AuthUserService } from "src/app/shared/services/auth-user-service/auth-user.service";
 import { environment } from "src/environments/environment";
+import { UserService } from "src/app/shared/services/user-service/user.service";
 
 @Injectable({
     providedIn: 'root'

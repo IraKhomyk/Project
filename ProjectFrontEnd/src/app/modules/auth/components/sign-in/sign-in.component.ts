@@ -5,6 +5,8 @@ import { AuthService } from '../../services/auth.service';
 import { take } from 'rxjs/operators';
 import { Subject, Subscription } from 'rxjs';
 import { User } from '../../models/user';
+import { UserService } from 'src/app/shared/services/user-service/user.service';
+import { AuthUserService } from 'src/app/shared/services/auth-user-service/auth-user.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -24,18 +26,20 @@ export class SignInComponent {
   user$!: Subject<User>;
 
   constructor(private router: Router,
-     private readonly authService: AuthService) {
+    private readonly authService: AuthService,
+    private readonly userService: UserService,
+    public readonly authUserService: AuthUserService) {
     this.user$ = this.authService.user$;
   }
 
   authenticate(): void {
     if (this.signInForm.valid) {
-     this.authService.authenticate(this.signInForm.value.username, this.signInForm.value.password).pipe(take(1))
-     .subscribe(res => {
-        this.router.navigate(['']);
-      }, err => {
-        this.errorMessage = err && err.error;
-      });
+      this.authService.authenticate(this.signInForm.value.username, this.signInForm.value.password).pipe(take(1))
+        .subscribe(res => {
+          this.router.navigate(['']);
+        }, err => {
+          this.errorMessage = err && err.error;
+        });
     } else {
       this.errorMessage = 'Please enter valid data';
     }
@@ -43,11 +47,11 @@ export class SignInComponent {
 
   private passwordValidator(control: AbstractControl): ValidationErrors | null {
     if (control?.value) {
-        const isValid = this.passwordRegex.test(control.value);
-        return !isValid ? {invalidPassword: true} : null;
+      const isValid = this.passwordRegex.test(control.value);
+      return !isValid ? { invalidPassword: true } : null;
     }
 
     return null;
-}
+  }
 }
 

@@ -267,7 +267,7 @@ body {
 }
 
 //----------------------------------profile modal window
-.edit-profile-modal-win {
+.modal-window-container {
   max-width: 80vw;
   width: 800px;
   height: 400px;
@@ -339,5 +339,55 @@ body {
     box-shadow: none;
     background: transparent;
     color: transparent;
+  }
+}
+//----------------------------------personal achievement
+.personal-achievements-container {
+  .mat-list-base .mat-list-item .mat-list-item-content,
+  .mat-list-base .mat-list-option .mat-list-item-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0;
+  }
+
+  .personal-achievements-container .mat-list-base .mat-list-item,
+  .personal-achievements-container .mat-list-base .mat-list-option {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .mat-list-base .mat-list-item .mat-list-item-content,
+  .personal-achievements-container .mat-list-base .mat-list-option .mat-list-item-content {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .mat-list-base .mat-list-item,
+  .mat-list-base .mat-list-option {
+    display: block;
+    width: 100%;
+  }
+
+  .mat-list-base .mat-list-item,
+  .mat-list-base .mat-list-option {
+    display: block;
+    height: 100%;
+    width: 100%;
+    padding: 1%;
+  }
+}
+
+//----------------------------------last achievement container
+.last-achievements-container {
+  .mat-list-base .mat-list-item,
+  .mat-list-base .mat-list-option {
+    display: block;
+    height: 48px;
+    -webkit-tap-highlight-color: transparent;
+    width: 30%;
+    padding: 0;
   }
 }

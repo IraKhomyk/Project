@@ -1,5 +1,5 @@
-.app-personal-achievements-container {
-    background-color:  #424750;
+.personal-achievements-container {
+    background-color: #424750;
     font-size: 15px;
     font-family: Roboto, "Helvetica Neue", sans-serif;
     height: 100%;
@@ -25,6 +25,15 @@
     color: white;
 }
 
+
+.leveling{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 90%;
+    align-items: center;
+}
+
 .circle {
     border-radius: 50%;
     width: 50px;
@@ -36,13 +45,6 @@
         width: 40px;
         height: 40px;
     }
-
-    .initials {
-        color: white;
-        font-size: 20px;
-        line-height: 19px;
-        letter-spacing: 0.2625px;
-    }
 }
 
 .display-achiv-container {
@@ -51,30 +53,17 @@
     align-items: flex-start;
 
     .display-achiv-info {
-        font-size: 12px;
+        font-size: 13px;
         color: white;
     }
 
     .xp-points {
         color: gold;
-        font-size: 12px;
-        margin-left: 60px;
+        font-size: 15px;
+       
     }
 }
 
-.mat-list-base .mat-list-item,
-.mat-list-base .mat-list-option {
-    width: 90%;
-    padding: 4% 0;
-}
 
-.mat-list-base .mat-list-item .mat-list-item-content,
-.mat-list-base .mat-list-option .mat-list-item-content {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    box-sizing: border-box;
-    position: relative;
-    height: inherit;
-    padding: 0;
-}
+
+

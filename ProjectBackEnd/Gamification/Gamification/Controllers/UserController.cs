@@ -25,12 +25,14 @@ namespace Gamification.Controllers
     public class UserController : ControllerBase
     {
         private IUserService _userService { get; set; }
-        public UserController(IUserService userService, IMapper mapper)
+
+        public UserController(IUserService userService)
         {
             _userService = userService;
         }
       
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<UserDTO>>> GetAllUsersAsync(CancellationToken cancellationToken)
         {
             try
@@ -44,13 +46,29 @@ namespace Gamification.Controllers
             }
         }
 
-        [HttpGet("{Id}")]
+        [HttpGet()]
+        [Route("id")]
         public async Task<ActionResult<UserDTO>> GetUserByIdAsync(Guid Id, CancellationToken cancellationToken)
         {
             try
             {
                 UserDTO user = await _userService.GetUserByIdAsync(Id, cancellationToken);
                 return Ok(user);
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
+        }
+        [HttpGet()]
+        [Route("short-info")]
+        [AllowAnonymous]
+        public async Task<ActionResult<IEnumerable<UserShortInfoDTO>>> GetAllUsersWithLastAchievementAsync(CancellationToken cancellationToken)
+        {
+            try
+            {
+                var users = await _userService.GetAllUsersWithLastAchievementAsync(cancellationToken);
+                return Ok(users);
             }
             catch
             {
@@ -101,5 +119,6 @@ namespace Gamification.Controllers
             }
             
         }
+
     }
 }

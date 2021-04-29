@@ -75,5 +75,28 @@ namespace Gamification.BLL.Services
 
             return _mapper.Map<AuthenticationUserDTO>(user);
         }
+
+        public async Task<AuthenticationUserDTO> ChangePasswordAsync(string oldPassword, string newPassword, string confirmRassword, CancellationToken cancellationToken)
+        {
+            User newUser = await _unitOfWork.userRepository.ChangePasswordAsync(oldPassword, newPassword, confirmRassword, cancellationToken);
+            await _unitOfWork.SaveChangesAsync(cancellationToken);
+            if(newUser != null)
+            {
+                AuthenticationUserDTO updatedUser = _mapper.Map<AuthenticationUserDTO>(newUser);
+
+                return updatedUser;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public async Task<IEnumerable<UserShortInfoDTO>> GetAllUsersWithLastAchievementAsync(CancellationToken cancellationToken)
+        {
+            var users = await _unitOfWork.userRepository.GetAllUsersWithLastAchievementAsync(cancellationToken);
+
+            return _mapper.Map<IEnumerable<UserShortInfoDTO>>(users);
+        }
     }
 }

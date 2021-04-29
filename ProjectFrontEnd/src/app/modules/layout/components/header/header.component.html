@@ -39,19 +39,19 @@
 
             <div>
                 <div class="right-sidebar">
-                        <div class="circle">
-                            <img *ngIf="authUserService.authUser.avatarId" src={{userService.users[0].photoUrl}}>
+                    <div class="circle">
+                        <img *ngIf="authUserService.authUser.avatarId" src={{userService.users[0].photoUrl}}>
 
-                            <div *ngIf="!authUserService.authUser.avatarId" class="initials">
-                                {{authUserService.authUser | initials}}
-                            </div>
+                        <div *ngIf="!authUserService.authUser.avatarId" class="initials">
+                            {{authUserService.authUser | initials}}
                         </div>
+                    </div>
 
-                        <button mat-icon-button [matMenuTriggerFor]="menu">
-                            {{authUserService.authUser.firstName}}
-                            {{authUserService.authUser.lastName}}
-                            <mat-icon>arrow_drop_down</mat-icon>
-                        </button>
+                    <button mat-icon-button [matMenuTriggerFor]="menu">
+                        {{authUserService.authUser.firstName}}
+                        {{authUserService.authUser.lastName}}
+                        <mat-icon>arrow_drop_down</mat-icon>
+                    </button>
                 </div>
 
                 <mat-menu #menu="matMenu">
@@ -59,7 +59,7 @@
                         <span>Edit profile</span>
                     </button>
 
-                    <button mat-menu-item>
+                    <button mat-menu-item (click)="changePassword()">
                         <span>Change password</span>
                     </button>
 

@@ -1,5 +1,5 @@
-<div class="sidebar-content">
-    <div>
+<div class="sidebar-container">
+    <div class="all-content">
         <div class="circle">
             <img *ngIf="authUserService.authUser.avatarId" src={{authUserService.authUser.avatarId}}>
 
@@ -9,14 +9,17 @@
         </div>
 
         <div>
-            <div class="user-name">{{authUserService.authUser.firstName}} {{authUserService.authUser.lastName}}</div>
+            <div class="user-name">
+                {{authUserService.authUser.firstName}}
+                {{authUserService.authUser.lastName}}
+            </div>
 
             <div class="sidebar-button-column">
                 <button mat-raised-button (click)="editProfile()">Edit profile</button>
             </div>
 
             <div class="sidebar-button-column">
-                <button mat-raised-button>Change password</button>
+                <button mat-raised-button (click)="changePassword()">Change password</button>
             </div>
 
             <div class="sidebar-button-column">

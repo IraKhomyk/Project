@@ -18,10 +18,10 @@ import { LayoutComponent } from './layout.component';
   ],
   imports: [
     CommonModule,
-    MaterialModule,
     RouterModule,
+    PipesModule,
     ReactiveFormsModule,
-    PipesModule.forRoot(),
+    MaterialModule,
   ],
   exports: [
     HeaderComponent,

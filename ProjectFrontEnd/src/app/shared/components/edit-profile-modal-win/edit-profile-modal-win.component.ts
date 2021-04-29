@@ -3,8 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { take } from 'rxjs/operators';
-import { AuthUserService } from 'src/app/shared/services/AuthUser/auth-user.service';
-import { UserService } from '../../services/UserService/user.service';
+import { AuthUserService } from 'src/app/shared/services/auth-user-service/auth-user.service';
+import { UserService } from '../../services/user-service/user.service';
 
 @Component({
   selector: 'app-edit-profile-modal-win',
@@ -12,7 +12,6 @@ import { UserService } from '../../services/UserService/user.service';
   styleUrls: ['./edit-profile-modal-win.component.scss']
 })
 export class EditProfileModalWinComponent {
-
   errorMessage: string;
 
   profileForm: FormGroup = new FormGroup({
