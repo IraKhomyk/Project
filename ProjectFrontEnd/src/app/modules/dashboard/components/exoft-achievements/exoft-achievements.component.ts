@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
-import { userWithAchievements } from 'src/app/models/user-with-achievements.model';
-type userShortInfo = Pick<userWithAchievements, 'firstName' | 'lastName' | 'photoUrl' | 'color'>;
+import { MatDialog } from '@angular/material/dialog';
+import { take } from 'rxjs/operators';
+import { OtherUserProfileComponent } from 'src/app/shared/components/other-user-profile/other-user-profile.component';
+import { AuthUserService } from 'src/app/shared/services/auth-user-service/auth-user.service';
+import { UserService } from 'src/app/shared/services/user-service/user.service';
 
 @Component({
   selector: 'app-exoft-achievements',
@@ -8,16 +11,30 @@ type userShortInfo = Pick<userWithAchievements, 'firstName' | 'lastName' | 'phot
   styleUrls: ['./exoft-achievements.component.scss']
 })
 export class ExoftAchievementsComponent {
+  userId: string;
 
-  users: Array<userShortInfo> = [
-    { firstName: 'Ira', lastName: 'Khomyk', photoUrl: './../../../../assets/myphoto.jpg', color: 'lavander', },
-    { firstName: 'Dima', lastName: 'Khomyk', photoUrl: '', color: 'rgb(196, 127, 184)' },
-    { firstName: 'Diana', lastName: 'Demydko', photoUrl: '', color: 'gold' },
-    { firstName: 'Coffee', lastName: 'Coffee', photoUrl: '', color: 'purple', },
-    { firstName: 'Valuha', lastName: 'Ahahaha', photoUrl: '', color: 'rgb(196, 127, 184)' },
-    { firstName: 'Leonardo', lastName: 'DiCaprio', photoUrl: '', color: 'gold' },
-    { firstName: 'No', lastName: 'Name', photoUrl: '', color: 'lightblue' },
-    { firstName: 'Who', lastName: 'I am', photoUrl: '', color: 'purple' },
-  ]
+  constructor(
+    public dialog: MatDialog,
+    public readonly authUserService: AuthUserService,
+    private readonly userService: UserService) { }
 
+  ngOnInit(): void {
+    this.getAllUsersShortInfo();
+  }
+
+  otherProfile(id: string): void {
+    const dialogRef = this.dialog.open(OtherUserProfileComponent, {
+      panelClass: 'say-thanks-container',
+      width: '800px',
+      height: '400px',
+      data: id,
+    })
+    this.userId = id;
+  }
+
+  getAllUsersShortInfo(): void {
+    this.userService.getAllUsersShortInfo().pipe(take(1)).subscribe(res => {
+      console.log(res)
+    });
+  }
 }

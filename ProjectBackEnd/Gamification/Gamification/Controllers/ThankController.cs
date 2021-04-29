@@ -25,13 +25,13 @@ namespace Gamification.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<ThankDTO>> GetLastThankAsync(CancellationToken cancellationToken)
+        public async Task<ActionResult<CreateThankDTO>> GetLastThankAsync(CancellationToken cancellationToken)
         {
             try
             {
                 Guid userId = Guid.Parse(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
 
-                ThankDTO lastThank = await _thankService.GetLastThankAsync(userId, cancellationToken);
+                GetThank lastThank = await _thankService.GetLastThankAsync(userId, cancellationToken);
                 return Ok(lastThank);
             }
             catch
@@ -41,13 +41,13 @@ namespace Gamification.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ThankDTO>> SayThankAsync(ThankDTO newThank, CancellationToken cancellationToken)
+        public async Task<ActionResult<CreateThankDTO>> SayThankAsync(CreateThankDTO newThank, CancellationToken cancellationToken)
         {
             try
             {
                 Guid userId = Guid.Parse(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
 
-                ThankDTO thank = await _thankService.SayThankAsync(userId, newThank, cancellationToken);
+                CreateThankDTO thank = await _thankService.SayThankAsync(userId, newThank, cancellationToken);
                 return Ok(thank);
             }
             catch

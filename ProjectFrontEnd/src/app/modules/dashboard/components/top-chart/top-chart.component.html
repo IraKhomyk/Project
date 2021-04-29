@@ -2,25 +2,28 @@
     <div>
         <span class="top-chart-text text-uppercase">top chart</span>
     </div>
+
     <div class="info-title">
         <span class="name-title">
             Name
         </span>
+
         <span class="total-title">
             Total XP
         </span>
+
         <div class="line"></div>
     </div>
 
     <mat-list class="display-chart">
         <table class="leveling">
-            <tr *ngFor="let user of usersWithAchiv">
+            <tr *ngFor="let user of authUserService.users | slice:0:5;">
                 <td class="leveling">
-                    <button mat-button (click)="otherProfile()">
-                        <div class="circle" [ngStyle]="{'background-color': user.color}">
-                            <img *ngIf="user.photoUrl" src={{user.photoUrl}}>
+                    <button mat-button (click)="otherProfile(user.id)">
+                        <div class="circle">
+                            <img *ngIf="user.avatarId" src={{user.avatarId}}>
 
-                            <div *ngIf="!user.photoUrl" class="initials">
+                            <div *ngIf="!user.avatarId" class="initials">
                                 {{user | initials}}
                             </div>
                         </div>
@@ -28,17 +31,25 @@
                 </td>
 
                 <td>
-                    <span class="user-name"> {{user.firstName}}</span>
+                    <span class="user-name">
+                        {{user.firstName}}
+                    </span>
                     <br>
-                    <span class="user-name">{{user.lastName}}</span>
+                    <span class="user-name">
+                        {{user.lastName}}
+                    </span>
                 </td>
 
                 <td>
-                    <span class="user-xp">{{user.XP}}</span>
+                    <span class="user-xp text-uppercase">
+                        {{user.xp}} <span>xp</span>
+                    </span>
+
                 </td>
 
                 <td class="leveling">
-                    <div class="bar" [style.background-color]="user.color" [style.width]='user.size'></div>
+                    <div class="bar" [ngStyle]="{'width': user.xp+'px', 'background-color': user.xp | createColor}">
+                    </div>
                 </td>
             </tr>
         </table>

@@ -19,24 +19,22 @@ namespace Gamification.BLL.Services.Interfaces
             this._mapper = mapper;
         }
 
-        public async Task<ThankDTO> SayThankAsync(Guid userId, ThankDTO newThank, CancellationToken cancellationToken)
+        public async Task<CreateThankDTO> SayThankAsync(Guid currentUserId, CreateThankDTO newThank, CancellationToken cancellationToken)
         {
             Thank mapData = _mapper.Map<Thank>(newThank);
-            User currentUser = await _unitOfWork.userRepository.GetCurrentUserAsync(userId, cancellationToken);
+            User currentUser = await _unitOfWork.userRepository.GetCurrentUserAsync(currentUserId, cancellationToken);
 
             Thank thank = await _unitOfWork.thankRepository.SayThankAsync(currentUser, mapData, cancellationToken);
 
-            return _mapper.Map<ThankDTO>(thank);
+            return _mapper.Map<CreateThankDTO>(thank);
         }
 
-        public async Task<ThankDTO> GetLastThankAsync(Guid userId, CancellationToken cancellationToken)
+        public async Task<GetThank> GetLastThankAsync(Guid userId, CancellationToken cancellationToken)
         {
-            User currentUser = await _unitOfWork.userRepository.GetCurrentUserAsync(userId, cancellationToken);
-            Guid currentUserId = currentUser.Id;
 
-            Thank thank = await _unitOfWork.thankRepository.GetLastThankAsync(currentUserId, cancellationToken);
+            Thank thank = await _unitOfWork.thankRepository.GetLastThankAsync(userId, cancellationToken);
 
-            return _mapper.Map<ThankDTO>(thank);
+            return _mapper.Map<GetThank>(thank);
         }
     }
 }

@@ -2,10 +2,10 @@
     <div>
         <span class="badges-text-title text-uppercase">badges</span>
     </div>
-    
+
     <div class="badges-count-container">
         <span class="badges-count-number">
-            4
+            {{authUserService.authUser.badges}}
         </span>
     </div>
 
@@ -14,9 +14,16 @@
     </div>
 
     <div class="badges-summary-container">
-        <span class="badges-summary-text">25% more than average</span>
+        <span class="badges-summary-text">
+            25% more than average
+        </span>
+
         <mat-icon>stop_circle</mat-icon>
-        <span class="badges-summary-text">+5 new this month</span>
+
+        <span class="badges-summary-text">
+            +5 new this month
+        </span>
+
         <mat-icon>stop_circle</mat-icon>
     </div>
 </mat-card>

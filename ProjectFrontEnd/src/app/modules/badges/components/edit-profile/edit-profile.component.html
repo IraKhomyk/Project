@@ -1,0 +1,19 @@
+<mat-card class="edit-profile-container">
+    <div class="edit-profile-button">
+        <button mat-raised-button (click)="editProfile()">Edit</button>
+    </div>
+
+    <div class="body">
+        <div class="circle">
+            <img *ngIf="authUserService.authUser.avatarId" src={{authUserService.authUser.avatarId}}>
+
+            <div *ngIf="!authUserService.authUser.avatarId" class="initials">
+                {{authUserService.authUser | initials}}
+            </div>
+        </div>
+
+        <div class="user-name">
+            {{authUserService.authUser.firstName}} {{authUserService.authUser.lastName}}
+        </div>
+    </div>
+</mat-card>

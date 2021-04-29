@@ -1,31 +1,34 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { RequestAchievementComponent } from '../request-achievement/request-achievement.component';
+import { take } from 'rxjs/operators';
+import { AchievementService } from 'src/app/shared/services/achievement-service/achievement.service';
+import { UserAchievementsService } from 'src/app/shared/services/user-achievements/user-achievements.service';
+import { RequestAchievementComponent } from '../../../../shared/components/request-achievement/request-achievement.component';
 
 @Component({
   selector: 'app-personal-achievements',
   templateUrl: './personal-achievements.component.html',
   styleUrls: ['./personal-achievements.component.scss']
 })
-export class PersonalAchievementsComponent {
-  achievements = [
-    { photoUrl: './../../../../assets/achiv1.jpg', name: 'Exoft turbo power', time: '0 min ago', ex: '15 px', },
-    { photoUrl: './../../../../assets/achiv2.jpg', name: 'Exoft turbo power', time: '0 min ago', ex: '15 px', },
-    { photoUrl: './../../../../assets/achiv3.jpg', name: 'Exoft corporate power', time: '0 min ago', ex: '15 px', },
-    { photoUrl: './../../../../assets/achiv4.jpg', name: 'Exoft skylark power', time: '0 min ago', ex: '15 px', },
-  ];
+export class PersonalAchievementsComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog,
+    private readonly achievementService: AchievementService,
+    readonly userAchievementsService: UserAchievementsService) { }
+
+  ngOnInit(): void {
+    this.getAllUserAchievements();
+  }
 
   request(): void {
     const dialogRef = this.dialog.open(RequestAchievementComponent, {
       panelClass: 'request-model-container',
       width: '700px',
       height: '300px',
-      data: {}
     });
+  }
 
-    dialogRef.afterClosed().subscribe(result => {
-    });
+  getAllUserAchievements(): void {
+    this.achievementService.getAllUserAchievements().pipe(take(1)).subscribe();
   }
 }

@@ -1,0 +1,64 @@
+.last-achievements-container {
+    background-color: #424750;
+    font-size: 15px;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    height: 100%;
+    width: 100%;
+}
+
+.mat-card > :first-child,
+.mat-card-content > :first-child {
+    margin-top: 5px;
+}
+
+.request-button {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    color: white;
+    font-weight: 500;
+    margin-right: 25px;
+}
+
+.mat-raised-button {
+    background-color: #5ea002;
+    color: white;
+}
+
+.leveling {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    padding: 2%;
+}
+
+.circle {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+
+    img {
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+    }
+}
+
+.display-achiv-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    .display-achiv-info {
+        font-size: 15px;
+        color: white;
+    }
+
+    .xp-points {
+        color: gold;
+        font-size: 15px;
+    }
+}

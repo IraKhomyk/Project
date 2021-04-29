@@ -19,7 +19,7 @@ namespace Gamification.DAL.Repositories
 
         public async Task<Thank> GetLastThankAsync(Guid currentUserId, CancellationToken cancellationToken)
         {
-            Thank lastThank = await _context.Thanks.OrderByDescending(x => x.AddedTime).FirstOrDefaultAsync(x => x.ToUserId == currentUserId, cancellationToken);
+            Thank lastThank = await _context.Thanks.Include(u => u.FromUser).OrderByDescending(x => x.AddedTime).FirstOrDefaultAsync(x => x.ToUserId == currentUserId, cancellationToken);
 
             return lastThank;
         }

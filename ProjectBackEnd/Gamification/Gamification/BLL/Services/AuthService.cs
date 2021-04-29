@@ -122,8 +122,6 @@ namespace Gamification.BLL.Services
                 return authenticationUser;
             }
 
-            var token = GenerateJWT(user);
-
             var refreshToken = user.JwtRefreshTokens.Single(x => x.RefreshToken == tokenId);
 
             if (!refreshToken.IsActive)
@@ -142,6 +140,7 @@ namespace Gamification.BLL.Services
             await _unitOfWork.SaveChangesAsync(cancellationToken);
 
             //Generates new jwt
+            var token = GenerateJWT(user);
             authenticationUser.IsAuthenticated = true;
             authenticationUser.Token = token;
             authenticationUser.RefreshToken = newRefreshToken.RefreshToken;
@@ -149,5 +148,6 @@ namespace Gamification.BLL.Services
 
             return authenticationUser;
         }
+
     }
 }

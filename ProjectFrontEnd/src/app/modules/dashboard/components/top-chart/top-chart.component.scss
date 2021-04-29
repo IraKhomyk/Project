@@ -2,7 +2,7 @@
     background-color: #424750;
     width: 100%;
     height: 100%;
-    font-size: 15px;
+    font-size: 100%;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 
     .top-chart-text {
@@ -11,79 +11,78 @@
         justify-content: space-between;
         flex-direction: row;
         color: white;
-        font-weight: 550;
+        font-weight: 100%;
     }
 
     .info-title {
         color: #5ea002;
 
         .total-title {
-            margin-left: 130px;
+            margin-left: 20%;
         }
 
         .name-title {
-            margin-left: 35px;
+            margin-left: 5%;
         }
 
         .line {
             background-color: #5ea002;
             width: 45%;
             height: 1px;
-            margin-top: 5px;
-            margin-bottom: 15px;
+            margin-top: 0.5%;
         }
     }
 }
 
-$Largura-Barra: 80px;
-$MaxWidth: 10px;
-
 .bar {
-    width: $MaxWidth;
+    max-width: 100%;
     min-height: 1px;
     border-top-left-radius: 2px;
     border-top-right-radius: 2px;
     justify-content: space-between;
-    padding: 10px;
+    padding: 7%;
     color: white;
-    margin-left: 100px;
+    margin-left: 35%;
 }
 
 .display-chart {
-    font-size: 13px;
+    font-size: 100%;
     justify-content: space-between;
     display: flex;
     color: white;
+    width: 100%;
+    height: 100%;
 
     .circle {
         border-radius: 50%;
         border: 1px solid rgb(255, 255, 255);
-        width: 30px;
-        height: 30px;
+        width: 35px;
+        height: 35px;
         display: flex;
         justify-content: center;
         align-items: center;
+        background-color: rgb(83, 83, 83);
 
         img {
             border-radius: 50%;
-            width: 30px;
-            height: 30px;
+            width: 35px;
+            height: 35px;
         }
 
         .initials {
-            color: white;
+            color: #5ea002;
             font-size: 15px;
             line-height: 19px;
-            letter-spacing: 0.2625px;
         }
     }
 
     .leveling {
-        .user-name {
-            margin-left: 25px;
-        }
         .user-xp {
-            margin-left: 50px;
+            margin-left: 80px;
         }
+    }
+
+    td {
+        padding-top: 3%;
     }
 }

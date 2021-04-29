@@ -3,6 +3,8 @@
     flex-direction: column;
     overflow-y: scroll;
     height: 100%;
+    width: 90%;
+    background-color: #424750;
 }
 
 .header {
@@ -31,10 +33,12 @@
         padding: 5px;
     }
 }
+
 .user-block {
     display: flex;
     flex-direction: column;
     position: relative;
+    padding: 5%;
 }
 
 .block-title {
@@ -42,38 +46,37 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    margin-left: 15px;
     border-left: 1px solid rgb(177, 174, 174);
 }
 
 .user-info {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
+    margin-left: -8%;
 
     .circle {
         border-radius: 50%;
         border: 1px solid #5ea002;
-        width: 40px;
-        height: 40px;
+        width: 45px;
+        height: 45px;
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-left: -5px;
+        background-color: rgb(83, 83, 83);
 
         img {
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             display: flex;
             justify-content: center;
             flex-direction: row;
         }
+
         .initials {
             color: white;
             font-size: 20px;
             line-height: 19px;
-            letter-spacing: 0.2625px;
             margin-top: 85px;
             flex-direction: row;
         }
@@ -81,50 +84,51 @@
 
     .user-name {
         color: #5ea002;
-        padding: 10px;
         font-size: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
-    .time-ago {
-        color: white;
-        display: flex;
-        justify-content: end;
-        font-size: 11px;
-        padding: 5px;
-    }
+    
 }
 
 .achiv-info {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    flex-wrap: wrap;
     margin-left: 15px;
     border-left: 1px solid #b1aeae;
     height: 100%;
     width: 100%;
     color: white;
-    padding: 5px;
 
     .records {
         color: white;
         border-radius: 40px;
-        padding: 5px;
-        margin: 10px;
-        margin-left: 15px;
-        width: 70px;
-        height: 20px;
+        margin: 5%;
+        padding: 2%;
+        width: 65px;
+        height: 15px;
         font-size: 15px;
         display: flex;
         align-items: center;
         justify-content: center;
         background-color: #10acac;
-        border-radius: 40px;
+        border-radius: 10px;
+        margin-bottom: 30px;
     }
 
     .achivment {
-        margin-left: 15px;
-        font-size: 13px;
+        padding-left: 5%;
+        font-size: 15px;
+    }
+
+    .time-ago {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: -7%;
+        padding: 5%;
     }
 }
 
@@ -143,5 +147,4 @@
 
 .ng-star-inserted {
     height: 100px;
-    margin: 4px;
 }

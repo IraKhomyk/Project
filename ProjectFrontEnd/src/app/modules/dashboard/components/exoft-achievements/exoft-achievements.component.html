@@ -1,4 +1,4 @@
-<mat-card class="component-container challenges-container">
+<mat-card class="challenges-container">
     <div class="header">
         <span class="top-title text-uppercase">
             exoft achievement
@@ -8,29 +8,34 @@
         </mat-chip>
     </div>
 
-    <div>
-        <div class="user-block" *ngFor="let user of users">
-            <div class="user-info">
-                <div class="circle" [ngStyle]="{'background-color': user.color}">
-                    <img *ngIf="user.photoUrl" src={{user.photoUrl}}>
 
-                    <div *ngIf="!user.photoUrl" class="initials">
-                        {{user | initials}}
+    <div>
+        <div class="user-block" *ngFor="let user of authUserService.usersShort">
+            <div class="user-info">
+                <button mat-button (click)="otherProfile(user.id)">
+                    <div class="circle">
+                        <img *ngIf="user.avatarId" src={{user.avatarId}}>
+    
+                        <div *ngIf="!user.avatarId" class="initials">
+                            {{user | initials}}
+                        </div>
                     </div>
+                </button>
+
+                <div class="user-name">
+                    {{user.firstName}} {{user.lastName}}
                 </div>
 
-                <span class="user-name">
-                    {{user.firstName}} {{user.lastName}}
-                </span>
-
-                <span class="time-ago">
-                    0 mins ago
-                </span>
+               
             </div>
 
-            <div class="achiv-info">
+            <div class="achiv-info" *ngFor="let achiev of user.achievements">
+                <div class="time-ago">
+                    {{achiev.addedTime | timeAgo}}
+                </div>
+
                 <span class='achivment'>
-                    Got achievement Exoft turbo power
+                    Got achievement {{achiev.name}}
                 </span>
                 <mat-chip class="records">Records</mat-chip>
             </div>
