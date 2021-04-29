@@ -30,8 +30,8 @@ namespace Gamification
             CreateMap<Thank, CreateThankDTO>();
             CreateMap<CreateThankDTO, Thank>();
 
-            CreateMap<Thank, GetThank>();
-            CreateMap<GetThank, Thank>();
+            CreateMap<Thank, GetThankDTO>();
+            CreateMap<GetThankDTO, Thank>();
 
             CreateMap<User, UserAchievementsDTO>();
             CreateMap<UserAchievementsDTO, User>();

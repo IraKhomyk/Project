@@ -1,4 +1,5 @@
-﻿using Gamification.BLL.Services.Interfaces;
+﻿using Gamification.BLL.DTO;
+using Gamification.BLL.Services.Interfaces;
 using Gamification.DAL.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -31,7 +32,7 @@ namespace Gamification.Controllers
             {
                 Guid userId = Guid.Parse(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
 
-                GetThank lastThank = await _thankService.GetLastThankAsync(userId, cancellationToken);
+                GetThankDTO lastThank = await _thankService.GetLastThankAsync(userId, cancellationToken);
                 return Ok(lastThank);
             }
             catch

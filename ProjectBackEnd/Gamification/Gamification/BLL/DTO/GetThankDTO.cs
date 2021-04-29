@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Gamification.BLL.DTO
 {
-    public class GetThank
+    public class GetThankDTO
     {
         public string Text { get; set; }
         public Guid ToUserId { get; set; }
