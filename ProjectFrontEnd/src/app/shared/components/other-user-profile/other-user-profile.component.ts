@@ -32,7 +32,6 @@ export class OtherUserProfileComponent implements OnInit {
       data: id,
     })
     this.toUserId = id;
-    console.log(this.toUserId);
   }
 
   close(): void {

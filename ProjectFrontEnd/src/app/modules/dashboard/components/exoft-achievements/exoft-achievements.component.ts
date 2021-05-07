@@ -34,7 +34,6 @@ export class ExoftAchievementsComponent {
 
   getAllUsersShortInfo(): void {
     this.userService.getAllUsersShortInfo().pipe(take(1)).subscribe(res => {
-      console.log(res)
     });
   }
 }

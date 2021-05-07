@@ -89,7 +89,6 @@ export class UserService {
 
     return this.httpClient.post<Thank>(`${environment.apiUrl}thank`, body, { withCredentials: true })
       .pipe(tap(thank => {
-        console.log(thank);
       }))
   }
 }

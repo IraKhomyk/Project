@@ -9,7 +9,7 @@
 
     <div class="body">
         <div class="user-info">
-            <div class="circle">
+            <div class="circle" *ngIf="authUserService.userById">
                 <img *ngIf="authUserService.userById.avatarId" src={{authUserService.userById.avatarId}}>
 
                 <div *ngIf="!authUserService.userById.avatarId" class="initials">
