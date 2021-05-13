@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthUserService } from 'src/app/shared/services/auth-user-service/auth-user.service';
 import { UserService } from 'src/app/shared/services/user-service/user.service';
-import { OtherUserProfileComponent } from '../../../../shared/components/other-user-profile/other-user-profile.component';
+import { OtherUserProfileComponent } from '../../../../../shared/components/other-user-profile/other-user-profile.component';
 import { take } from 'rxjs/operators';
+import { Roles } from 'src/app/shared/enums/roles';
 
 @Component({
   selector: 'app-top-chart',
@@ -20,7 +21,6 @@ export class TopChartComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllUsers();
-
   }
 
   otherProfile(id: string): void {

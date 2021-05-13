@@ -91,15 +91,26 @@ namespace Gamification.BLL.Services
                     claims.Add(new Claim(ClaimTypes.Role, role.RoleName));
                 }
             }
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(claims),
+                Expires = DateTime.Now.AddMinutes(AuthOptions.TokenLifeTime),
+                SigningCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256)
+            };
 
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            // var token = tokenHandler.CreateToken(tokenDescriptor);
+            /*var subject = new ClaimsIdentity(claims).Claims;
+            
             var token = new JwtSecurityToken(
                 AuthOptions.Issuer,
                 AuthOptions.Audience,
-                claims,
+                subject,
                 expires: DateTime.Now.AddMinutes(AuthOptions.TokenLifeTime),
-                signingCredentials: credentialist);
+                signingCredentials: credentialist);*/
 
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            return tokenHandler.WriteToken(token);
         }
 
         private JwtRefreshToken CreateRefreshToken()

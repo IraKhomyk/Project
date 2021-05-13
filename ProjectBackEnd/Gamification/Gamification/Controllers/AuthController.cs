@@ -33,6 +33,7 @@ namespace Gamification.Controllers
             {
                 return UnprocessableEntity(ModelState);
             }
+
             try
             {
                 AuthenticationUserDTO userNewToken = await _authService.AuthenticateAsync(login.UserName, login.Password, cancellationToken);
@@ -89,6 +90,7 @@ namespace Gamification.Controllers
                 SameSite = SameSiteMode.None,
                 Secure = true
             };
+
             Response.Cookies.Append("refreshToken", refreshToken, cookieOptions);
             Response.Cookies.Append("accessToken", accessToken, cookieOptions);
         }

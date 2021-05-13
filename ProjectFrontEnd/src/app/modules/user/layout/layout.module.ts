@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { PipesModule } from '../../shared/pipes/pipes.module';
+import { PipesModule } from '../../../shared/pipes/pipes.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MaterialModule } from '../../shared/modules/material.module';
+import { MaterialModule } from '../../../shared/modules/material.module';
 
 import { HeaderComponent } from './components/header/header.component';
 import { LeftSidebarComponent } from './components/left-sidebar/left-sidebar.component';

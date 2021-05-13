@@ -4,7 +4,6 @@ import { RouterModule } from '@angular/router';
 import { MaterialModule } from 'src/app/shared/modules/material.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { PipesModule } from 'src/app/shared/pipes/pipes.module';
-import { DashboardModule } from '../../dashboard/dashboard/dashboard.module';
 
 import { BadgesComponent } from './badges.component';
 import { EditProfileComponent } from '../components/edit-profile/edit-profile.component';
@@ -27,7 +26,6 @@ import { FullListOfAchievementsComponent } from '../components/full-list-of-achi
     MaterialModule,
     SharedModule,
     PipesModule,
-    DashboardModule
   ],
   exports: [
     BadgesComponent,

@@ -6,6 +6,7 @@ import { tap, switchMap } from 'rxjs/operators';
 import { AuthUserService } from "src/app/shared/services/auth-user-service/auth-user.service";
 import { environment } from "src/environments/environment";
 import { UserService } from "src/app/shared/services/user-service/user.service";
+import { Roles } from "src/app/shared/enums/roles";
 
 @Injectable({
     providedIn: 'root'
@@ -17,6 +18,7 @@ export class AuthService {
         private readonly authUserService: AuthUserService) { }
 
     authenticate(userName: string, password: string): Observable<User> {
+        debugger
         const body = {
             userName,
             password
@@ -35,6 +37,8 @@ export class AuthService {
             switchMap(user => {
                 // check if we already have user data
                 if (user) {
+                    const role = this.roleMatch();
+                    user.roles = role;
                     return of(user);
                 }
 
@@ -65,6 +69,7 @@ export class AuthService {
                 tap(response => {
                     localStorage.setItem('accessToken', response.token);
                     localStorage.setItem('refreshToken', response.refreshToken);
+
                 })
             );
     }
@@ -73,5 +78,17 @@ export class AuthService {
         localStorage.removeItem('accessToken');
         localStorage.removeItem('refreshToken');
         this.user$.next(null);
+    }
+
+    roleMatch(): Roles {
+        let jwt = localStorage.getItem('accessToken')
+        let jwtData = jwt.split('.')[1]
+        let decodedJwtJsonData = window.atob(jwtData)
+
+        if (decodedJwtJsonData.match(Roles.User)) {
+            return Roles.User;
+        } else if (decodedJwtJsonData.match(Roles.Admin)) {
+            return Roles.Admin;
+        }
     }
 }

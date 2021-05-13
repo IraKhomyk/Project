@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { take } from 'rxjs/operators';
 import { AchievementService } from 'src/app/shared/services/achievement-service/achievement.service';
 import { UserAchievementsService } from 'src/app/shared/services/user-achievements/user-achievements.service';
-import { RequestAchievementComponent } from '../../../../shared/components/request-achievement/request-achievement.component';
+import { RequestAchievementComponent } from '../../../../../shared/components/request-achievement/request-achievement.component';
 
 @Component({
   selector: 'app-personal-achievements',

@@ -12,6 +12,6 @@ export interface User {
   status: string;
   xp: number;
   badges: number;
-  roles: Roles[];
+  roles: Roles;
   avatarId: string;
 }

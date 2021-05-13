@@ -4,10 +4,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './core/guards/auth.guard';
 
 import { SignInComponent } from './modules/auth/components/sign-in/sign-in.component';
-import { LayoutComponent } from './modules/layout/layout.component';
-import { DashboardComponent } from './modules/dashboard/dashboard/dashboard.component';
-import { BadgesComponent } from './modules/badges/badges/badges.component';
-import { GreetingComponent } from './modules/dashboard/components/greeting/greeting.component';
+import { LayoutComponent } from './modules/user/layout/layout.component';
+import { DashboardComponent } from './modules/user/dashboard/dashboard/dashboard.component';
+import { BadgesComponent } from './modules/user/badges/badges/badges.component';
+import { GreetingComponent } from './modules/user/dashboard/components/greeting/greeting.component';
+import { Roles } from './shared/enums/roles';
+import { AdminComponent } from './modules/admin/admin/admin.component';
 
 const routes: Routes = [
   {
@@ -18,6 +20,7 @@ const routes: Routes = [
     path: '',
     component: LayoutComponent,
     canActivate: [AuthGuard],
+   // data: { roles: [Roles.Admin] },
     children: [
       {
         path: '',
@@ -27,7 +30,6 @@ const routes: Routes = [
       {
         path: 'dashboard',
         component: DashboardComponent,
-
       },
       {
         path: 'orders',
@@ -38,7 +40,12 @@ const routes: Routes = [
         component: BadgesComponent,
       }
     ]
-  }
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [AuthGuard],
+},
 ];
 @NgModule({
   imports: [

@@ -96,7 +96,7 @@ namespace Gamification
                            //ValidIssuer = AuthOptions.Issuer,
 
                            ValidateAudience = false,
-                           // ValidAudience = AuthOptions.Audience,
+                           //ValidAudience = AuthOptions.Audience,
                            ValidateLifetime = true,
 
                            IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
