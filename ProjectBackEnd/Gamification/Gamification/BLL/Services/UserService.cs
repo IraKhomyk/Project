@@ -5,7 +5,6 @@ using Gamification.DAL.Repository.UnitOfWork;
 using Gamification.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -80,7 +79,7 @@ namespace Gamification.BLL.Services
         {
             User newUser = await _unitOfWork.userRepository.ChangePasswordAsync(oldPassword, newPassword, confirmRassword, cancellationToken);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
-            if(newUser != null)
+            if (newUser != null)
             {
                 AuthenticationUserDTO updatedUser = _mapper.Map<AuthenticationUserDTO>(newUser);
 

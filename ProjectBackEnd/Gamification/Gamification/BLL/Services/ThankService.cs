@@ -4,8 +4,6 @@ using Gamification.DAL.Repositories;
 using Gamification.DAL.Repository.UnitOfWork;
 using Gamification.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -32,12 +30,12 @@ namespace Gamification.BLL.Services.Interfaces
             return _mapper.Map<CreateThankDTO>(thank);
         }
 
-        public async Task<GetThank> GetLastThankAsync(Guid userId, CancellationToken cancellationToken)
+        public async Task<GetThankDTO> GetLastThankAsync(Guid userId, CancellationToken cancellationToken)
         {
 
             Thank thank = await _unitOfWork.thankRepository.GetLastThankAsync(userId, cancellationToken);
 
-            return _mapper.Map<GetThank>(thank);
+            return _mapper.Map<GetThankDTO>(thank);
         }
     }
 }

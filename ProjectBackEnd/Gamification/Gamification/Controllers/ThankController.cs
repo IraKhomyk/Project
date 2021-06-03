@@ -5,8 +5,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
@@ -34,7 +32,7 @@ namespace Gamification.Controllers
             {
                 Guid userId = Guid.Parse(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
 
-                GetThank lastThank = await _thankService.GetLastThankAsync(userId, cancellationToken);
+                GetThankDTO lastThank = await _thankService.GetLastThankAsync(userId, cancellationToken);
                 return Ok(lastThank);
             }
             catch

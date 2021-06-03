@@ -1,12 +1,9 @@
-﻿using AutoMapper;
-using Gamification.DAL.IRepository;
+﻿using Gamification.DAL.IRepository;
 using Gamification.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
 

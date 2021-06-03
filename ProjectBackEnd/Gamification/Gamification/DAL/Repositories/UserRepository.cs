@@ -1,11 +1,9 @@
 ﻿using Gamification.DAL.IRepositories;
 using Gamification.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -57,10 +55,12 @@ namespace Gamification.DAL.Repositories
 
         public async Task<User> UpdateUserAsync(Guid userId, User newUser, CancellationToken cancellationToken)
         {
-            User user = await _context.Users.FirstOrDefaultAsync(x => x.Id == userId, cancellationToken);
+            User user = await _context.Users.Include(x=>x.JwtRefreshTokens).FirstOrDefaultAsync(x => x.Id == userId, cancellationToken);
 
             if (user != null)
             {
+                user.JwtRefreshTokens.Clear();
+                user.JwtRefreshTokens = newUser.JwtRefreshTokens;
                 user.Password = user.Password;
                 user.Id = userId;
                 user.FirstName = newUser.FirstName;
@@ -86,7 +86,7 @@ namespace Gamification.DAL.Repositories
 
         public async Task<User> AuthenticateUserAsync(string userName, string password, CancellationToken cancellationToken)
         {
-            User authenticatedUser = await _context.Users.Include(x=>x.Achievements).Include(a => a.Roles).FirstOrDefaultAsync(x => x.UserName == userName && x.Password == password, cancellationToken);
+            User authenticatedUser = await _context.Users.Include(x => x.Achievements).Include(a => a.Roles).FirstOrDefaultAsync(x => x.UserName == userName && x.Password == password, cancellationToken);
 
             int totalXp = authenticatedUser.Achievements.Sum(x => x.Xp);
             authenticatedUser.Xp = totalXp;

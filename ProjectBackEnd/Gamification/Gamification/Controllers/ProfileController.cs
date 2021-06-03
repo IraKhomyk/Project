@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
@@ -61,7 +60,7 @@ namespace Gamification.Controllers
 
                 var achievements = await _achievementService.GetAllUserAchievementsAsync(userId, cancellationToken);
 
-                if(achievements == null)
+                if (achievements == null)
                 {
                     return NoContent();
                 }
