@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/sLVZ8mwULBvcUJZZzml+KU7xsFgp0T5LGcTDKa6fnh6ZzfAsDKGUSadqI5+VYYia9HkdAGq3zJT2Axfna+Lgg==",
+  "dgSpecHash": "X6nkJ67S7zCGRuF8Oh3144MOWC4Er2eZHyGN43jH/Z5wSwCFGxh9MxCNAm7DiZS+zCTJfjKlx8qjRK34ppcqPg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\flagman\\Desktop\\Project\\ProjectBackEnd\\Gamification\\Gamification\\Gamification.csproj",
+  "projectFilePath": "C:\\Users\\flagman\\Desktop\\camp\\Project\\ProjectBackEnd\\Gamification\\Gamification\\Gamification.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\flagman\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\flagman\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

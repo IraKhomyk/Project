@@ -20,7 +20,10 @@ namespace Gamification.DAL.Repositories
 
         public async Task<IEnumerable<User>> GetAllUsersAsync(CancellationToken cancellationToken)
         {
-            var users = await _context.Users.Include(a => a.Roles).Include(b => b.Achievements).ToListAsync(cancellationToken);
+            var users = await _context.Users
+                .Include(a => a.Roles)
+                .Include(b => b.Achievements)
+                .ToListAsync(cancellationToken);
 
             foreach (User user in users)
             {
@@ -34,7 +37,10 @@ namespace Gamification.DAL.Repositories
 
         public async Task<User> GetUserByIdAsync(Guid userId, CancellationToken cancellationToken)
         {
-            User user = await _context.Users.Include(a => a.Roles).Include(b => b.Achievements).FirstOrDefaultAsync(x => x.Id == userId, cancellationToken);
+            User user = await _context.Users
+                .Include(a => a.Roles)
+                .Include(b => b.Achievements)
+                .FirstOrDefaultAsync(x => x.Id == userId, cancellationToken);
 
             int totalXp = user.Achievements.Sum(x => x.Xp);
             user.Xp = totalXp;
@@ -46,8 +52,11 @@ namespace Gamification.DAL.Repositories
         public async Task<User> CreateUserAsync(User newUser, CancellationToken cancellationToken)
         {
             Guid guid = Guid.NewGuid();
+
             newUser.Id = guid;
+
             await _context.Users.AddAsync(newUser, cancellationToken);
+
             await _context.SaveChangesAsync();
 
             return newUser;
@@ -55,7 +64,8 @@ namespace Gamification.DAL.Repositories
 
         public async Task<User> UpdateUserAsync(Guid userId, User newUser, CancellationToken cancellationToken)
         {
-            User user = await _context.Users.Include(x=>x.JwtRefreshTokens).FirstOrDefaultAsync(x => x.Id == userId, cancellationToken);
+            User user = await _context.Users.Include(x => x.JwtRefreshTokens)
+                .FirstOrDefaultAsync(x => x.Id == userId, cancellationToken);
 
             if (user != null)
             {
@@ -77,10 +87,15 @@ namespace Gamification.DAL.Repositories
 
         public async Task<User> DeleteUserAsync(Guid userId, CancellationToken cancellationToken)
         {
-            User user = await _context.Users.FirstOrDefaultAsync(x => x.Id == userId, cancellationToken);
+            User user = await _context.Users
+                .FirstOrDefaultAsync(x => x.Id == userId, cancellationToken);
+
             _context.Users.Attach(user);
+
             _context.Users.Remove(user);
+
             await _context.SaveChangesAsync(cancellationToken);
+
             return user;
         }
 
@@ -104,7 +119,9 @@ namespace Gamification.DAL.Repositories
 
         public async Task<IEnumerable<Role>> GetUserRolesAsync(Guid userId, CancellationToken cancellationToken)
         {
-            User user = await _context.Users.Include(x => x.Roles).FirstOrDefaultAsync(x => x.Id == userId, cancellationToken);
+            User user = await _context.Users
+                .Include(x => x.Roles)
+                .FirstOrDefaultAsync(x => x.Id == userId, cancellationToken);
 
             if (user != null)
             {
@@ -117,7 +134,11 @@ namespace Gamification.DAL.Repositories
 
         public async Task<User> GetUserByRefreshTokenAsync(Guid refreshTokenId, CancellationToken cancellationToken)
         {
-            User user = await _context.Users.Include(x => x.Roles).Include(x => x.JwtRefreshTokens).FirstOrDefaultAsync(u => u.JwtRefreshTokens.Any(t => t.RefreshToken == refreshTokenId), cancellationToken);
+            User user = await _context.Users
+                .Include(x => x.Roles)
+                .Include(x => x.JwtRefreshTokens)
+                .FirstOrDefaultAsync(u => u.JwtRefreshTokens
+                    .Any(t => t.RefreshToken == refreshTokenId), cancellationToken);
 
             return user;
         }
@@ -126,7 +147,10 @@ namespace Gamification.DAL.Repositories
         {
             if (newPassword == confirmRassword)
             {
-                User user = await _context.Users.Include(x => x.Roles).FirstOrDefaultAsync(x => x.Password == oldPassword, cancellationToken);
+                User user = await _context.Users
+                    .Include(x => x.Roles)
+                    .FirstOrDefaultAsync(x => x.Password == oldPassword, cancellationToken);
+
                 user.Password = newPassword;
                 User newUser = await UpdateUserAsync(user.Id, user, cancellationToken);
 

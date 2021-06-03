@@ -107,7 +107,6 @@ namespace Gamification.Controllers
             {
                 return StatusCode(500);
             }
-
         }
 
     }

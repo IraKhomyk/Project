@@ -8450,11 +8450,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\flagman\\Desktop\\Project\\ProjectBackEnd\\Gamification\\Gamification\\Gamification.csproj",
+      "projectUniqueName": "C:\\Users\\flagman\\Desktop\\camp\\Project\\ProjectBackEnd\\Gamification\\Gamification\\Gamification.csproj",
       "projectName": "Gamification",
-      "projectPath": "C:\\Users\\flagman\\Desktop\\Project\\ProjectBackEnd\\Gamification\\Gamification\\Gamification.csproj",
+      "projectPath": "C:\\Users\\flagman\\Desktop\\camp\\Project\\ProjectBackEnd\\Gamification\\Gamification\\Gamification.csproj",
       "packagesPath": "C:\\Users\\flagman\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\flagman\\Desktop\\Project\\ProjectBackEnd\\Gamification\\Gamification\\obj\\",
+      "outputPath": "C:\\Users\\flagman\\Desktop\\camp\\Project\\ProjectBackEnd\\Gamification\\Gamification\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\flagman\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -8548,7 +8548,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }

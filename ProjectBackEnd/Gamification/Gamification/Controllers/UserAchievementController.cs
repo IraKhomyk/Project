@@ -27,7 +27,8 @@ namespace Gamification.Controllers
         {
             try
             {
-                var achievements = await _achievementService.UpdateUserAchievementsAsync(userId, achievementId, cancellationToken);
+                var achievements = await _achievementService
+                    .UpdateUserAchievementsAsync(userId, achievementId, cancellationToken);
 
                 return Ok(achievements);
             }
