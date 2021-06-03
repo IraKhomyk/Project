@@ -5,15 +5,15 @@
 
     <div class="body">
         <div class="circle">
-            <img *ngIf="userService.users[0].photoUrl" src={{userService.users[0].photoUrl}}>
+            <img *ngIf="authUserService.authUser.avatarId" src={{authUserService.authUser.avatarId}}>
 
-            <div *ngIf="!userService.users[0].photoUrl" class="initials">
-                {{userService.users[0] | initials}}
+            <div *ngIf="!authUserService.authUser.avatarId" class="initials">
+                {{authUserService.authUser | initials}}
             </div>
         </div>
 
         <div class="user-name">
-            {{userService.users[0].firstName}} {{userService.users[0].lastName}}
+            {{authUserService.authUser.firstName}} {{authUserService.authUser.lastName}}
         </div>
     </div>
 </mat-card>

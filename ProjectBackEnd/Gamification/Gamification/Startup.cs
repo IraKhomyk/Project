@@ -34,7 +34,8 @@ namespace Gamification
                 options.AddDefaultPolicy(
                     builder =>
                     {
-                        builder.AllowAnyOrigin()
+                        builder.WithOrigins("http://localhost:4200")
+                        .AllowCredentials()
                         .AllowAnyMethod()
                         .AllowAnyHeader();
                     });
@@ -117,12 +118,14 @@ namespace Gamification
             services.AddTransient<IAchievementService, AchievementService>();
             services.AddTransient<IAuthService, AuthService>();
             services.AddTransient<IThankService, ThankService>();
-
+            services.AddTransient<IRequestAchievementService, RequestAchievementService>();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             var authOptionsConfiguration = Configuration.GetSection("Auth");
             services.Configure<AuthOptions>(authOptionsConfiguration);
+
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

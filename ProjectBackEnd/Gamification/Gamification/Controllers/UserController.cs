@@ -14,16 +14,17 @@ namespace Gamification.Controllers
     [Route("api/user")]
     [ApiController]
     [Authorize]
-
     public class UserController : ControllerBase
     {
         private IUserService _userService { get; set; }
-        public UserController(IUserService userService, IMapper mapper)
+
+        public UserController(IUserService userService)
         {
             _userService = userService;
         }
-      
+
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<UserDTO>>> GetAllUsersAsync(CancellationToken cancellationToken)
         {
             try
@@ -37,7 +38,8 @@ namespace Gamification.Controllers
             }
         }
 
-        [HttpGet("{Id}")]
+        [HttpGet()]
+        [Route("id")]
         public async Task<ActionResult<UserDTO>> GetUserByIdAsync(Guid Id, CancellationToken cancellationToken)
         {
             try
@@ -50,9 +52,22 @@ namespace Gamification.Controllers
                 return StatusCode(500);
             }
         }
+        [HttpGet()]
+        [Route("short-info")]
+        public async Task<ActionResult<IEnumerable<UserShortInfoDTO>>> GetAllUsersWithLastAchievementAsync(CancellationToken cancellationToken)
+        {
+            try
+            {
+                var users = await _userService.GetAllUsersWithLastAchievementAsync(cancellationToken);
+                return Ok(users);
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
+        }
 
         [HttpPost]
-
         public async Task<ActionResult<CreateUserDTO>> CreateUserAsync(CreateUserDTO newUser, CancellationToken cancellationToken)
         {
             try
@@ -71,7 +86,7 @@ namespace Gamification.Controllers
         {
             try
             {
-                User user = await _userService.UpdateUserAsync(userId, newUser, cancellationToken);
+                UpdateUserDTO user = await _userService.UpdateUserAsync(userId, newUser, cancellationToken);
                 return Ok(user);
             }
             catch
@@ -92,7 +107,7 @@ namespace Gamification.Controllers
             {
                 return StatusCode(500);
             }
-            
         }
+
     }
 }

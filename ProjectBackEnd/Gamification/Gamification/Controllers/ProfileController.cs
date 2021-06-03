@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
@@ -29,13 +30,18 @@ namespace Gamification.Controllers
 
         [HttpGet]
         [Route("current")]
-        public async Task<ActionResult<UserDTO>> GetCurrentUserAsync(CancellationToken cancellationToken)
+        public async Task<ActionResult<AuthenticationUserDTO>> GetCurrentUserAsync(CancellationToken cancellationToken)
         {
             try
             {
                 Guid userId = Guid.Parse(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
 
-                UserDTO currentUser = await _userService.GetCurrentUserAsync(userId, cancellationToken);
+                AuthenticationUserDTO currentUser = await _userService.GetCurrentUserAsync(userId, cancellationToken);
+
+                currentUser.Token = _httpContextAccessor.HttpContext.Request.Cookies["accessToken"];
+                currentUser.RefreshToken = Guid.Parse(_httpContextAccessor.HttpContext.Request.Cookies["refreshToken"]);
+
+                SetRefreshTokenInCookie(currentUser.RefreshToken.ToString(), currentUser.Token);
                 return Ok(currentUser);
             }
             catch
@@ -54,7 +60,7 @@ namespace Gamification.Controllers
 
                 var achievements = await _achievementService.GetAllUserAchievementsAsync(userId, cancellationToken);
 
-                if(achievements == null)
+                if (achievements == null)
                 {
                     return NoContent();
                 }
@@ -66,5 +72,59 @@ namespace Gamification.Controllers
                 return StatusCode(500);
             }
         }
+
+        [HttpGet]
+        [Route("last")]
+        public async Task<ActionResult<IEnumerable<AchievementDTO>>> GetLastUserAchievementsAsync(CancellationToken cancellationToken)
+        {
+            try
+            {
+                Guid userId = Guid.Parse(_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+                var achievements = await _achievementService.GetLastUserAchievementsAsync(userId, cancellationToken);
+
+                if (achievements == null)
+                {
+                    return NoContent();
+                }
+
+                return Ok(achievements);
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
+        }
+
+
+        [HttpPut]
+        [Route("change-password")]
+        public async Task<ActionResult<AuthenticationUserDTO>> ChangePasswordAsync(string oldPassword, string newPassword, string confirmPassword, CancellationToken cancellationToken)
+        {
+            try
+            {
+                AuthenticationUserDTO newUser = await _userService.ChangePasswordAsync(oldPassword, newPassword, confirmPassword, cancellationToken);
+
+                return Ok(newUser);
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
+        }
+
+        private void SetRefreshTokenInCookie(string refreshToken, string accessToken)
+        {
+            var cookieOptions = new CookieOptions
+            {
+                HttpOnly = true,
+                Expires = DateTime.UtcNow.AddDays(10),
+                SameSite = SameSiteMode.None,
+                Secure = true
+            };
+            Response.Cookies.Append("refreshToken", refreshToken, cookieOptions);
+            Response.Cookies.Append("accessToken", accessToken, cookieOptions);
+        }
+
     }
 }

@@ -20,18 +20,27 @@ namespace Gamification
 
             CreateMap<User, UpdateUserDTO>();
             CreateMap<UpdateUserDTO, User>();
+            
+            CreateMap<User, UserShortInfoDTO>();
+            CreateMap<UserShortInfoDTO, User>();
 
             CreateMap<Role, RoleDTO>();
             CreateMap<RoleDTO, Role>();
 
-            CreateMap<Thank, ThankDTO>();
-            CreateMap<ThankDTO, Thank>();
+            CreateMap<Thank, CreateThankDTO>();
+            CreateMap<CreateThankDTO, Thank>();
+
+            CreateMap<Thank, GetThankDTO>();
+            CreateMap<GetThankDTO, Thank>();
 
             CreateMap<User, UserAchievementsDTO>();
             CreateMap<UserAchievementsDTO, User>();
 
             CreateMap<User, AuthenticationUserDTO>();
             CreateMap<AuthenticationUserDTO, User>();
+
+            CreateMap<RequestAchievement, RequestAchievementDTO>();
+            CreateMap<RequestAchievementDTO, RequestAchievement>();
         }
     }
 }

@@ -1,7 +1,6 @@
 .greeting-container {
     background-color: #5ea002;
     color: white;
-    font-size: 20px;
     font-family: Roboto, "Helvetica Neue", sans-serif;
     height: 100%;
     width: 100%;
@@ -10,7 +9,7 @@
         margin-left: 60px;
 
         .main-greeting {
-            font-size: 40px;
+            font-size: 55px;
             height: 50px;
             width: 100%;
             display: flex;
@@ -18,15 +17,16 @@
 
         .take-a-look {
             display: flex;
-            height: 30px;
+            padding-top: 1%;
+            height: 100%;
             width: 100%;
-            font-size: 23px;
+            font-size: 30px;
         }
     }
 }
 
 .greet-important {
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .mat-card > :first-child,

@@ -1,0 +1,134 @@
+.other-user-container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    flex-direction: column;
+}
+
+.body {
+    display: flex;
+    height: 90%;
+    flex-direction: row;
+}
+
+.user-info {
+    flex-direction: column;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 35%;
+    align-items: center;
+
+    .user-name {
+        display: flex;
+        justify-content: center;
+        margin: 15px;
+        color: white;
+        font-size: 20px;
+        align-items: center;
+        align-content: center;
+    }
+
+    .user-exp {
+        color: white;
+        font-size: 20px;
+        padding: 5px;
+        justify-content: center;
+        display: flex;
+        padding: 5px;
+
+        .exp {
+            color: #5ea002;
+        }
+    }
+
+    .circle {
+        border-radius: 50%;
+        border: 1px solid #5ea002;
+        width: 140px;
+        height: 140px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 20px;
+        margin-top: -30px;
+        background-color: rgb(83, 83, 83);
+
+        img {
+            border-radius: 50%;
+            width: 140px;
+            height: 140px;
+        }
+
+        .initials {
+            color: white;
+            font-size: 80px;
+        }
+    }
+}
+
+.achievement-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-top: 4%;
+    display: flex;
+    justify-content: flex-start;
+    height: 100%;
+
+    .achiv-img {
+        border-radius: 50%;
+        border: 1px solid #5ea002;
+        width: 70px;
+        height: 70px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+        }
+    }
+
+    .achiv-name {
+        color: white;
+        font-size: 12px;
+        padding: 5px;
+    }
+}
+
+.say-thanks-button {
+    border-bottom: 5px solid #5ea002;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #5ea002;
+
+    .btn {
+        font-size: 25px;
+        color: white;
+        border: medium none;
+        background-image: none;
+        background: transparent;
+        float: left;
+        background-color: transparent;
+        width: 100%;
+    }
+}
+
+.achiv-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.material-icons {
+    color: #5ea002;
+}
+
+.close-button {
+    display: flex;
+    justify-content: flex-end;
+}

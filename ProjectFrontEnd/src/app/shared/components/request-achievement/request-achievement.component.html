@@ -1,0 +1,30 @@
+<div class="request-container">
+  <div class="close-button">
+    <button mat-button (click)="close()">
+      <span class="material-icons">
+        close
+      </span>
+    </button>
+  </div>
+
+  <span mat-dialog-title>
+    Please, leave a message and your achievement will be assigned soon
+  </span>
+
+  <form [formGroup]="requestForm" class="body-request">
+    <mat-select id="achievement" formControlName="achievement">
+      <mat-option *ngFor="let item of allAchievementsService.achievements" [value]="item.id">
+        {{item.name}}
+      </mat-option>
+    </mat-select>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Your message</mat-label>
+      <textarea matInput id="message" formControlName="message"></textarea>
+    </mat-form-field>
+
+    <button class="send-button send" mat-button (click)="addRequest()" [disabled]="requestForm.invalid">
+      Send
+    </button>
+  </form>
+</div>

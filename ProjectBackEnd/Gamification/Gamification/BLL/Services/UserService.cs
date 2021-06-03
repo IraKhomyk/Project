@@ -44,13 +44,13 @@ namespace Gamification.BLL.Services
             return user;
         }
 
-        public async Task<User> UpdateUserAsync(Guid userId, UpdateUserDTO newUser, CancellationToken cancellationToken)
+        public async Task<UpdateUserDTO> UpdateUserAsync(Guid userId, UpdateUserDTO newUser, CancellationToken cancellationToken)
         {
             User mapData = _mapper.Map<User>(newUser);
             User user = await _unitOfWork.userRepository.UpdateUserAsync(userId, mapData, cancellationToken);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
-
-            return user;
+            UpdateUserDTO updatedUser = _mapper.Map<UpdateUserDTO>(user);
+            return updatedUser;
         }
 
         public async Task<User> DeleteUserAsync(Guid userId, CancellationToken cancellationToken)
@@ -61,11 +61,11 @@ namespace Gamification.BLL.Services
             return deletedUser;
         }
 
-        public async Task<UserDTO> GetCurrentUserAsync(Guid userId, CancellationToken cancellationToken)
+        public async Task<AuthenticationUserDTO> GetCurrentUserAsync(Guid userId, CancellationToken cancellationToken)
         {
             User user = await _unitOfWork.userRepository.GetCurrentUserAsync(userId, cancellationToken);
 
-            return _mapper.Map<UserDTO>(user);
+            return _mapper.Map<AuthenticationUserDTO>(user);
         }
 
         public async Task<AuthenticationUserDTO> GetUserByRefreshTokenAsync(Guid refreshTokenId, CancellationToken cancellationToken)
@@ -73,6 +73,29 @@ namespace Gamification.BLL.Services
             User user = await _unitOfWork.userRepository.GetUserByRefreshTokenAsync(refreshTokenId, cancellationToken);
 
             return _mapper.Map<AuthenticationUserDTO>(user);
+        }
+
+        public async Task<AuthenticationUserDTO> ChangePasswordAsync(string oldPassword, string newPassword, string confirmRassword, CancellationToken cancellationToken)
+        {
+            User newUser = await _unitOfWork.userRepository.ChangePasswordAsync(oldPassword, newPassword, confirmRassword, cancellationToken);
+            await _unitOfWork.SaveChangesAsync(cancellationToken);
+            if (newUser != null)
+            {
+                AuthenticationUserDTO updatedUser = _mapper.Map<AuthenticationUserDTO>(newUser);
+
+                return updatedUser;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public async Task<IEnumerable<UserShortInfoDTO>> GetAllUsersWithLastAchievementAsync(CancellationToken cancellationToken)
+        {
+            var users = await _unitOfWork.userRepository.GetAllUsersWithLastAchievementAsync(cancellationToken);
+
+            return _mapper.Map<IEnumerable<UserShortInfoDTO>>(users);
         }
     }
 }

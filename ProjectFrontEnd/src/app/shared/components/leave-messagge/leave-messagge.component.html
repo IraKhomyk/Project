@@ -1,0 +1,17 @@
+<div class="confirm-container">
+  <span class="title">
+    Leave the comment
+  </span>
+
+  <form [formGroup]="commentForm" class="form-comment">
+    <mat-form-field class="o">
+      <input matInput id="comment" formControlName="comment">
+    </mat-form-field>
+  </form>
+
+  <div class="button-container">
+    <button class="btn" [disabled]="commentForm.invalid" (click)="sayThank()" mat-button>
+      Thanks!
+    </button>
+  </div>
+</div>

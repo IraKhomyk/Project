@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/models/user.model';
-type userShortInfo = Pick<User, 'firstName'>;
+import { AuthUserService } from 'src/app/shared/services/auth-user-service/auth-user.service';
 
 @Component({
   selector: 'app-greeting',
@@ -8,11 +7,9 @@ type userShortInfo = Pick<User, 'firstName'>;
   styleUrls: ['./greeting.component.scss']
 })
 export class GreetingComponent implements OnInit {
-  user: userShortInfo = {
-    firstName: 'Ira',
-  };
-
   greet: string;
+
+  constructor(public readonly authUserService: AuthUserService) { }
 
   ngOnInit(): void {
     this.getGreeting();

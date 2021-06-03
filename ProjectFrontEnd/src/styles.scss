@@ -104,7 +104,7 @@ body {
     display: block;
     width: 100%;
     height: 100%;
-    background-color: #534f4f;
+    background-color: #3d4147;
     color: white;
     border-radius: 20px;
   }
@@ -112,6 +112,7 @@ body {
   .mat-select-panel {
     background-color: gray;
   }
+
   .mat-select {
     display: inline-block;
     width: 100%;
@@ -171,7 +172,7 @@ body {
   max-height: inherit;
   padding: 0px;
   margin: 0px;
-  background-color: #534f4f;
+  background-color: #3d4147;
   border-radius: 20px;
 }
 
@@ -184,12 +185,13 @@ body {
 
   .mat-form-field.mat-form-field-invalid .mat-form-field-label {
     color: white;
-    font-size: 10px;
+    font-size: 15px;
   }
 
   .mat-input-element {
     color: white;
-    font-size: 10px;
+    font-size: 20px;
+    background-color: transparent;
   }
 
   .mat-form-field-appearance-legacy .mat-form-field-label {
@@ -197,7 +199,6 @@ body {
   }
 
   .mat-card {
-    background: white;
     color: white;
     display: contents;
     margin-top: 0;
@@ -206,11 +207,12 @@ body {
     flex-direction: column;
   }
 
-  .mat-card>:first-child, .mat-card-content>:first-child {
+  .mat-card > :first-child,
+  .mat-card-content > :first-child {
     margin-top: 0;
     height: 97%;
     box-shadow: none;
-}
+  }
 
   .mat-form-field-appearance-legacy .mat-form-field-underline {
     background-color: white;
@@ -234,7 +236,7 @@ body {
     border-radius: 0%;
   }
 
-  .context{
+  .context {
     height: 100%;
     background-color: #3d4147;
     border-top: 10px solid #5ea002;
@@ -246,11 +248,26 @@ body {
     border-bottom-left-radius: 5%;
     border-bottom-right-radius: 5%;
   }
-
+}
+//----------------------------------confirm logout modal window
+.confirm-logout-container {
+  .mat-dialog-container {
+    display: block;
+    overflow: auto;
+    outline: 0;
+    width: 100%;
+    height: 100%;
+    min-height: inherit;
+    max-height: inherit;
+    padding: 0px;
+    border-radius: 0px;
+    background-color: transparent;
+    box-shadow: none;
+  }
 }
 
 //----------------------------------profile modal window
-.edit-profile-modal-win {
+.modal-window-container {
   max-width: 80vw;
   width: 800px;
   height: 400px;
@@ -297,5 +314,80 @@ body {
   .mat-dialog-container {
     background: transparent;
     color: white;
+  }
+}
+
+//----------------------------------leave messagge container
+.leave-message-container {
+  .mat-input-element {
+    caret-color: white;
+  }
+
+  .mat-form-field-appearance-legacy .mat-form-field-underline {
+    background-color: white;
+  }
+
+  .mat-form-field-appearance-legacy .mat-form-field-underline {
+    background-color: white;
+  }
+
+  .mat-form-field-ripple {
+    background-color: white;
+  }
+
+  .mat-dialog-container {
+    box-shadow: none;
+    background: transparent;
+    color: transparent;
+  }
+}
+//----------------------------------personal achievement
+.personal-achievements-container {
+  .mat-list-base .mat-list-item .mat-list-item-content,
+  .mat-list-base .mat-list-option .mat-list-item-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0;
+  }
+
+  .personal-achievements-container .mat-list-base .mat-list-item,
+  .personal-achievements-container .mat-list-base .mat-list-option {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .mat-list-base .mat-list-item .mat-list-item-content,
+  .personal-achievements-container .mat-list-base .mat-list-option .mat-list-item-content {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .mat-list-base .mat-list-item,
+  .mat-list-base .mat-list-option {
+    display: block;
+    width: 100%;
+  }
+
+  .mat-list-base .mat-list-item,
+  .mat-list-base .mat-list-option {
+    display: block;
+    height: 100%;
+    width: 100%;
+    padding: 1%;
+  }
+}
+
+//----------------------------------last achievement container
+.last-achievements-container {
+  .mat-list-base .mat-list-item,
+  .mat-list-base .mat-list-option {
+    display: block;
+    height: 48px;
+    -webkit-tap-highlight-color: transparent;
+    width: 30%;
+    padding: 0;
   }
 }

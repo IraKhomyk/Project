@@ -1,0 +1,32 @@
+<mat-card class="thank-you-container">
+    <div class="thank-you-title">
+        <span class="text-uppercase">thank you</span>
+    </div>
+
+    <div class="star-content">
+        <img class="star" src="./../../../../assets/star-big-image.png"> <br>
+        <div>
+            <span>
+                {{authUserService.userLastThank?.text}}
+            </span>
+        </div>
+    </div>
+
+    <div class="user" *ngIf="authUserService.userLastThank">
+        <button mat-button (click)="sayThanks(authUserService.userLastThank.fromUser.id)">
+            <div class="circle">
+                <img *ngIf="authUserService.userLastThank.fromUser.avatarId"
+                    src={{authUserService.userLastThank.fromUser.avatarId}}>
+
+                <div *ngIf="!authUserService.userLastThank.fromUser.avatarId" class="initials">
+                    {{authUserService.userLastThank.fromUser | initials}}
+                </div>
+            </div>
+        </button>
+
+        <div class="user-name">
+            {{authUserService.userLastThank.fromUser.firstName}}
+            {{authUserService.userLastThank.fromUser.lastName}}
+        </div>
+    </div>
+</mat-card>

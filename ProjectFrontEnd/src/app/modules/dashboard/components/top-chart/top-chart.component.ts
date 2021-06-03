@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { UserServiceService } from 'src/app/services/UserService/user-service.service';
-import { OtherUserProfileComponent } from '../other-user-profile/other-user-profile.component';
+import { AuthUserService } from 'src/app/shared/services/auth-user-service/auth-user.service';
+import { UserService } from 'src/app/shared/services/user-service/user.service';
+import { OtherUserProfileComponent } from '../../../../shared/components/other-user-profile/other-user-profile.component';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-top-chart',
@@ -9,35 +11,34 @@ import { OtherUserProfileComponent } from '../other-user-profile/other-user-prof
   styleUrls: ['./top-chart.component.scss']
 })
 export class TopChartComponent implements OnInit {
-  showInitials = false;
-  total = 0;
-  maxWidth = 450;
+  userId: string;
 
   constructor(
     public dialog: MatDialog,
-    public readonly userServiceService: UserServiceService) { }
+    public readonly authUserService: AuthUserService,
+    private readonly userService: UserService) { }
 
   ngOnInit(): void {
-    this.createGrafic();
+    this.getAllUsers();
+
   }
 
-  createGrafic(): void {
-    this.userServiceService.usersWithAchivements.forEach(element => {
-      this.total += element.xp;
-    });
-
-    this.userServiceService.usersWithAchivements.forEach(element => {
-      element.size = Math.round((element.xp * this.maxWidth) / this.total) + '%';
-    });
-  }
-
-  otherProfile(): void {
+  otherProfile(id: string): void {
     const dialogRef = this.dialog.open(OtherUserProfileComponent, {
       panelClass: 'say-thanks-container',
       width: '800px',
       height: '400px',
+      data: id,
     })
+    this.userId = id;
+  }
+
+  getAllUsers(): void {
+    this.userService.getAllUsers().pipe(take(1)).subscribe();
+  }
+
+  getRandomColor() {
+    var color = Math.floor(0x1000000 * Math.random()).toString(16);
+    return "#" + ("000000" + color).slice(-6);
   }
 }
-
-

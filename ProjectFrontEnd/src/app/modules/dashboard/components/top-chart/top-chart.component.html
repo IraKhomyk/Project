@@ -17,13 +17,13 @@
 
     <mat-list class="display-chart">
         <table class="leveling">
-            <tr *ngFor="let user of userServiceService.usersWithAchivements">
+            <tr *ngFor="let user of authUserService.users | slice:0:5;">
                 <td class="leveling">
-                    <button mat-button (click)="otherProfile()">
+                    <button mat-button (click)="otherProfile(user.id)">
                         <div class="circle">
-                            <img *ngIf="user.photoUrl" src={{user.photoUrl}}>
+                            <img *ngIf="user.avatarId" src={{user.avatarId}}>
 
-                            <div *ngIf="!user.photoUrl" class="initials">
+                            <div *ngIf="!user.avatarId" class="initials">
                                 {{user | initials}}
                             </div>
                         </div>
@@ -41,13 +41,15 @@
                 </td>
 
                 <td>
-                    <span class="user-xp">
-                        {{user.xp}}
+                    <span class="user-xp text-uppercase">
+                        {{user.xp}} <span>xp</span>
                     </span>
+
                 </td>
 
                 <td class="leveling">
-                    <div class="bar" [style.background-color]="user.color" [style.width]='user.size'></div>
+                    <div class="bar" [ngStyle]="{'width': user.xp+'px', 'background-color': user.xp | createColor}">
+                    </div>
                 </td>
             </tr>
         </table>
